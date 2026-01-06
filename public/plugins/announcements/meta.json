@@ -1,0 +1,8 @@
+{
+  "slug": "announcements",
+  "name": "Announcement",
+  "version": "1.2.4",
+  "author": "stn-labz",
+  "description": "Adds an announcement hook on the home and in the API",
+  "entry": "plugin.php"
+}

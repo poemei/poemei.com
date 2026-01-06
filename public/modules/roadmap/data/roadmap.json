@@ -1,0 +1,71 @@
+{
+    "title": "Chaos CMS Core Roadmap (v2.0.7)",
+    "items": [
+        {
+            "label": "Updating",
+            "percent": 100,
+            "category": "Core",
+            "text": "Updates announced in admin, with option to perform update. Stable."
+        },
+        {
+            "label": "Routing",
+            "percent": 100,
+            "category": "Core",
+            "text": "Router loads hooks for themes, modules, JSON, and plugins. Stable."
+        },
+        {
+            "label": "Utilities",
+            "percent": 100,
+            "category": "Core",
+            "text": "Utility functions for common function, and handlers."
+        },
+        {
+            "label": "Libraries",
+            "percent": 10,
+            "category": "Core",
+            "text": "Library functions for handling of content. JSON, MD, and more, Social media sharing and CSRF security."
+        },
+        {
+            "label": "Modules",
+            "percent": 100,
+            "category": "Features",
+            "text": "Modules provide your site's content and functionality. Core routing and sample modules are working. Module creator is pending."
+        },
+        {
+            "label": "Themes",
+            "percent": 100,
+            "category": "Features",
+            "text": "Themes control the visual aspect of your domain. Minimal theme live, assets organized. Theme creator is pending."
+        },
+        {
+            "label": "Plugins",
+            "percent": 100,
+            "category": "Features",
+            "text": "Plugins extend the core without touching it. Managed in admin. Plugin creator is pending. Core Plugin Loader."
+        },
+        {
+            "label": "Admin",
+            "percent": 100,
+            "category": "Support",
+            "text": "Admin panel for managing users, posts, settings, pages, plugins, and themes."
+        },
+        {
+            "label": "Mailer",
+            "percent": 100,
+            "category": "Support",
+            "text": "Mailer system for sending email from your domain, managed in admin settings, utilizes PHPMailer."
+        },
+        {
+            "label": "Documentation",
+            "percent": 20,
+            "category": "Support",
+            "text": "Project documentation. Needs full user and developer guides."
+        },
+        {
+            "label": "Codex",
+            "percent": 20,
+            "category": "Support",
+            "text": "Development Guides, Rules and etc.."
+        },
+    ]
+}

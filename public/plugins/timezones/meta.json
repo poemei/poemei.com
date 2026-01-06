@@ -1,0 +1,9 @@
+{
+  "slug": "timezones",
+  "name": "Timezones",
+  "version": "1.0.0",
+  "author": "stn-labz",
+  "description": "Adds a UTC + Local time block (live JS) via the home_time slot.",
+  "has_admin": false
+}
+

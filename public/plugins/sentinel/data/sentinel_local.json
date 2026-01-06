@@ -1,0 +1,25 @@
+{
+    "threat_patterns": [],
+    "blocklists": {
+        "ips": [
+            "34.72.155.2",
+            "34.168.73.136",
+            "146.70.42.158",
+            "2a06:98c0:3600::103",
+            "34.59.225.156",
+            "103.132.182.39",
+            "185.251.19.80"
+        ],
+        "user_agents": [],
+        "asns": [],
+        "ranges": [],
+        "countries": []
+    },
+    "known_threats": [],
+    "global_patterns": [],
+    "last_sync": null,
+    "data_version": "0.0.0",
+    "sync_hash": "",
+    "install_date": "2025-11-05T18:19:06+00:00",
+    "last_manual_resync": "2025-12-26T01:10:01+00:00"
+}

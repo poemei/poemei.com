@@ -1,0 +1,7 @@
+{
+  "slug": "holidays",
+  "name": "Pagan Holidays",
+  "version": "1.0.0",
+  "author": "Poe Mei",
+  "description": "Pops a message on the day of a Holiday or stays quiet.",
+}

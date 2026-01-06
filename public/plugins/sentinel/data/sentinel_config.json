@@ -1,0 +1,11 @@
+{
+  "api_key": "d5b4c05a88b8418537875896e21c5da1ce5733b59fe4066b93a02d40aa94ada3",
+  "api_base": "https://api.stn-labz.com/v1",
+  "site_id": "site_pm001",
+  "update_interval": 1800,
+  "log_threats": true,
+  "block_threats": true,
+  "meta_tag": true,
+  "auto_update": true,
+  "debug": true
+}

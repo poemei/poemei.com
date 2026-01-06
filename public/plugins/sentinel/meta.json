@@ -1,0 +1,10 @@
+{
+  "slug": "sentinel",
+  "name": "Sentinel",
+  "version": "1.8.3",
+  "author": "stn-labz",
+  "description": "Distributed security and denylist manager for ChaosCMS.",
+  "entry": "plugin.php",
+  "has_admin": true,
+  "admin": "admin/main.php"
+}

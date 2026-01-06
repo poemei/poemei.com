@@ -1,0 +1,27 @@
+[
+  {
+    "id": "resume",
+    "title": "Education",
+    "description": "<ul><li>GED - NH State Department of Education 1994</li><li>1 Year Certificate in Business Operations from Spokane County Community College in Spokane, WA, 2024</li><li>Forever a Student</li></ul>"
+  },
+  {
+    "id": "resume",
+    "title": "Development",
+    "description": "<ul><li>The <a href=\"/projects/chaos-cms\">ChaosCMS</a> (What this site is driven by)</li><li><a href=\"/projects/devbot\">DevBot</a> website dev tracking tool</li><li>The STN (Sentinel Threat Network) <a href=\"/projects/block-chain\">Blockchain</a> in Go and Support systems</li><li>STN-Labz <ul><li>AI Platform (<a href=\"/projects/digitd\">Digit</a>)</li><li>AI Platform (<a href=\"/projects/rictusd\">Rictus</a>)</li></ul></ul>"
+  },
+  {
+    "id": "resume",
+    "title": "Military",
+    "description": "From 1994 to 2016, United States Army, Infantry Squad Leader which equates to a Manager."
+  },
+  {
+    "id": "resume",
+    "title": "Work",
+    "description": "Due to nerve damage in my right leg from injuries in Iraq, and lack of employment opportunities without any proper education, my employment record is less than adequate, I did spend some time Managing a convenience store in Belmont, NH in 2018-2019. Before that I was in the Military. I mostly worked from home as a freelance web developer.<ul><li>Owner/Operator DevWorks OSI, Lakewood, WA, 2010-2024</li><li>Owner/Operator Twisted Media, Lakewood, WA, 2010-2015</li><li>Executive Assistant to a Company Level Executive Officer.</li><li>Manager, Jesus is Christ Ministry, July 2025 - Present</li></ul>" 
+  },
+  {
+    "id": "resume",
+    "title": "Skills",
+    "description": "<ul><li>PHP</li><li>MySQL</li><li>HTML</li><li>CSS</li><li>Go Programming Language</li><li>Networking</li><li>Linux Server Development and Maintenance</li><li>Personell Management</li><li>Office Management</li><li>Crisis Intervention</li><li>Warehouse Management</li></ul>."
+  }
+]

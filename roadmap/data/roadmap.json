@@ -1,0 +1,59 @@
+{
+    "title": "Chaos CMS Core Roadmap (v2.0.5)",
+    "items": [
+        {
+            "label": "Routing",
+            "percent": 100,
+            "category": "Core",
+            "text": "Router loads hooks for themes, modules, JSON, and plugins. Stable."
+        },
+        {
+            "label": "Utilities",
+            "percent": 75,
+            "category": "Core",
+            "text": "Utility functions for JSON handling, rendering, cron, and theme helpers. Auto Updating and Core Overwrite on Update."
+        },
+        {
+            "label": "Libraries",
+            "percent": 95,
+            "category": "Core",
+            "text": "Library functions for handling of content. JSON, MD, and more. Common aspects of the site."
+        },
+        {
+            "label": "Modules",
+            "percent": 100,
+            "category": "Features",
+            "text": "Modules provide your site's content and functionality. Core routing and sample modules are working. Module creator is pending."
+        },
+        {
+            "label": "Themes",
+            "percent": 100,
+            "category": "Features",
+            "text": "Themes control the visual aspect of your domain. Minimal theme live, assets organized. Theme creator is pending."
+        },
+        {
+            "label": "Plugins",
+            "percent": 90,
+            "category": "Features",
+            "text": "Plugins extend the core without touching it. Managed in admin. Plugin creator is pending. Core Plugin Loader."
+        },
+        {
+            "label": "Admin",
+            "percent": 100,
+            "category": "Support",
+            "text": "Admin panel for managing users, posts, settings, pages, plugins, and themes."
+        },
+        {
+            "label": "Mailer",
+            "percent": 100,
+            "category": "Support",
+            "text": "Mailer system for sending email from your domain, managed in admin (schema ready, integration in-progress)."
+        },
+        {
+            "label": "Documentation",
+            "percent": 100,
+            "category": "Support",
+            "text": "Project documentation. Needs full user and developer guides."
+        }
+    ]
+}
