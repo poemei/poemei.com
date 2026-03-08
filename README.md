@@ -16,15 +16,15 @@ https://www.poemei.com
 
 ## Markdown Rendering
 In `/app/lib/render_md.php`
-Loaded from `/app/bootstrap.php`->`autoload()`
-- Links `[text](url)`
-- Headings: `#..######` (space optional)
-- Bold: `**text**`
-- Small: `~~text~~`
-- Inline code: `code`
-- Fenced code: ```php / ```json / ```go / etc.
-- Blockquotes: `> text` (multi-line)
-- Unordered lists: `-, *, +`
-- Ordered lists: `1. 2. 3.`
-- Newlines preserved outside `<pre>`.
+ - Loaded from `/app/bootstrap.php`->`autoload()`
+   - Links `[text](url)`
+   - Headings: `#..######` (space optional)
+   - Bold: `**text**`
+   - Small: `~~text~~`
+   - Inline code: `code`
+   - Fenced code: ```php / ```json / ```go / etc.
+   - Blockquotes: `> text` (multi-line)
+   - Unordered lists: `-, *, +`
+   - Ordered lists: `1. 2. 3.`
+   - Newlines preserved outside `<pre>`.
 
