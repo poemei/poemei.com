@@ -14,9 +14,16 @@ Me = Poe Mei = a Transgender Female Content and micro OF creator
 # Where
 https://www.poemei.com
 
-## Rendering
+## Markdown Rendering
+In `/app/lib/render_md.php`
 - Links `[text](url)`
 - Headings: `#..######` (space optional)
 - Bold: `**text**`
 - Small: `~~text~~`
 - Inline code: `code`
+- Fenced code: ```php / ```json / ```go / etc.
+- Blockquotes: `> text` (multi-line)
+- Unordered lists: `-, *, +`
+- Ordered lists: `1. 2. 3.`
+- Newlines preserved outside `<pre>`.
+
