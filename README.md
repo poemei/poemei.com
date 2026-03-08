@@ -16,6 +16,7 @@ https://www.poemei.com
 
 ## Markdown Rendering
 In `/app/lib/render_md.php`
+Loaded from `/app/bootstrap.php`->`autoload()`
 - Links `[text](url)`
 - Headings: `#..######` (space optional)
 - Bold: `**text**`
