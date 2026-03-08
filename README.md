@@ -27,4 +27,8 @@ In `/app/lib/render_md.php`
    - Unordered lists: `-, *, +`
    - Ordered lists: `1. 2. 3.`
    - Newlines preserved outside `<pre>`.
+   
+## To Do
+- [ ] SEO Automation
+
 
