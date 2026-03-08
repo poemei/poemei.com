@@ -16,73 +16,162 @@ class admin extends controller
 
 
     public function refresh_indices()
-{
-    if (!isset($_SESSION['user_level']) || $_SESSION['user_level'] < 9) {
+    {
+        if (!isset($_SESSION['user_level']) || $_SESSION['user_level'] < 9) {
+            header("Location: /admin");
+            exit;
+        }
+
+        $base_url = URLROOT;
+
+        $excluded = [
+            '.', '..',
+            'admin.php',
+            'auth.php',
+            'health.php',
+            'sentinel.php',
+            'modules.php',
+            'sitemap.php',
+            'ror.php',
+            'llms.php'
+        ];
+
+        $controllers = array_diff(
+            scandir(APPROOT . '/controllers'),
+            $excluded
+        );
+
+        $urls = [];
+
+        // Controllers
+        foreach ($controllers as $file) {
+
+            if (substr($file, -4) !== '.php') {
+                continue;
+            }
+
+            $name = str_replace('.php', '', $file);
+
+            $urls[] = $base_url . '/' . $name;
+        }
+
+        // DB modules (optional)
+        try {
+
+            $modules = $this->model('modules_model')->get_all();
+
+            foreach ($modules as $m) {
+
+                if (!empty($m['slug']) && (int)$m['is_active'] === 1) {
+                    $urls[] = $base_url . '/' . $m['slug'];
+                }
+            }
+
+        } catch (\Throwable $e) {
+            // modules table optional
+        }
+
+        $urls = array_unique($urls);
+
+        /* =========================
+           SITEMAP.XML
+        ========================= */
+
+        $xml  = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
+        $xml .= "<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n";
+
+        foreach ($urls as $url) {
+            $xml .= "  <url>\n";
+            $xml .= "    <loc>{$url}</loc>\n";
+            $xml .= "    <priority>0.7</priority>\n";
+            $xml .= "  </url>\n";
+        }
+
+        $xml .= "</urlset>";
+
+        file_put_contents(PUBROOT . '/sitemap.xml', $xml);
+
+
+        /* =========================
+           ROR.XML
+        ========================= */
+
+        $ror  = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
+        $ror .= "<rss version=\"2.0\" xmlns:ror=\"http://rorweb.com/0.1/\">\n";
+        $ror .= "<channel>\n";
+
+        foreach ($urls as $url) {
+
+            $ror .= "<item>\n";
+            $ror .= "<link>{$url}</link>\n";
+            $ror .= "<ror:updatePeriod>weekly</ror:updatePeriod>\n";
+            $ror .= "</item>\n";
+        }
+
+        $ror .= "</channel>\n";
+        $ror .= "</rss>";
+
+        file_put_contents(PUBROOT . '/ror.xml', $ror);
+
+
+        /* =========================
+           LLMS.TXT
+        ========================= */
+
+        $llms = "User-agent: *\n";
+        $llms .= "Allow: /\n\n";
+
+        foreach ($urls as $url) {
+            $llms .= $url . "\n";
+        }
+
+        file_put_contents(PUBROOT . '/llms.txt', $llms);
+
+
+        $_SESSION['admin_status'] = 'SEO indices refreshed.';
         header("Location: /admin");
         exit;
     }
 
-    $tools = ['sitemap', 'ror', 'llms'];
-
-    foreach ($tools as $tool) {
-
-        $path = APPROOT . '/controllers/' . $tool . '.php';
-
-        if (file_exists($path)) {
-
-            if (!class_exists($tool)) {
-                require_once $path;
-            }
-
-            $instance = new $tool();
-
-            if (method_exists($instance, 'index')) {
-                $instance->index();
-            }
-        }
-    }
-
-    $_SESSION['admin_status'] = 'SEO XML files refreshed.';
-    header("Location: /admin");
-    exit;
-}
 
     /**
      * Module Uninstaller
      */
-    public function uninstall() {
+    public function uninstall()
+    {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
             $module = $_POST['module'];
-            
-            // 1. Load the controller to check Core status
+
             $path = APPROOT . '/controllers/' . $module . '.php';
+
             if (file_exists($path)) {
+
                 require_once $path;
+
                 if (property_exists($module, 'is_core') && $module::$is_core) {
-                    // Cannot uninstall core architecture
                     header("Location: /admin");
                     exit;
                 }
             }
 
-            // 2. Wipe Database Tables
             $this->db->query("DROP TABLE IF EXISTS " . $module);
 
-            // 3. Wipe Backend Logic (Controller & Model)
             $backend = [
                 APPROOT . "/controllers/" . $module . ".php",
                 APPROOT . "/models/" . $module . "_model.php"
             ];
+
             foreach ($backend as $file) {
                 if (file_exists($file)) unlink($file);
             }
 
-            // 4. Wipe Admin View
             $admin_view = APPROOT . "/views/admin/" . $module . ".php";
+
             if (file_exists($admin_view)) unlink($admin_view);
 
-            // 5. Wipe Nested Public View Directory
             $public_dir = APPROOT . "/views/public/" . $module;
+
             if (is_dir($public_dir)) {
                 $this->recursive_rmdir($public_dir);
             }
@@ -92,22 +181,26 @@ class admin extends controller
         }
     }
 
-    /**
-     * Helper to ensure nested directories are fully purged
-     */
-    private function recursive_rmdir($dir) {
+
+    private function recursive_rmdir($dir)
+    {
         if (is_dir($dir)) {
+
             $objects = scandir($dir);
+
             foreach ($objects as $object) {
+
                 if ($object != "." && $object != "..") {
-                    if (is_dir($dir . "/" . $object))
+
+                    if (is_dir($dir . "/" . $object)) {
                         $this->recursive_rmdir($dir . "/" . $object);
-                    else
+                    } else {
                         unlink($dir . "/" . $object);
+                    }
                 }
             }
+
             rmdir($dir);
         }
     }
-
 }
