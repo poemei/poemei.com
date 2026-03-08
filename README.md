@@ -16,3 +16,7 @@ https://www.poemei.com
 
 ## Rendering
 - Links `[text](url)`
+- Headings: `#..######` (space optional)
+- Bold: `**text**`
+- Small: `~~text~~`
+- Inline code: `code`
