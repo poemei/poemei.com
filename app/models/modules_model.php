@@ -5,7 +5,9 @@ class modules_model extends model
 {
     public function get_all()
     {
-        return $this->query("SELECT * FROM modules ORDER BY title ASC")->fetchAll();
+        return $this->query(
+            "SELECT * FROM modules WHERE is_active = 1 ORDER BY title ASC"
+        )->fetchAll();
     }
     
     /**
