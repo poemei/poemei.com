@@ -16,43 +16,36 @@ class admin extends controller
 
 
     public function refresh_indices()
-    {
-        if (!isset($_SESSION['user_level']) || $_SESSION['user_level'] < 9) {
-            header("Location: /admin");
-            exit;
-        }
+{
+    if (!isset($_SESSION['user_level']) || $_SESSION['user_level'] < 9) {
+        header("Location: /admin");
+        exit;
+    }
 
-        // Generators to run
-        $generators = ['sitemap', 'ror', 'llms'];
+    $tools = ['sitemap', 'ror', 'llms'];
 
-        foreach ($generators as $g) {
+    foreach ($tools as $tool) {
 
-            // Load controller if not already loaded
-            if (!class_exists($g)) {
+        $path = APPROOT . '/controllers/' . $tool . '.php';
 
-                $path = APPROOT . '/controllers/' . $g . '.php';
+        if (file_exists($path)) {
 
-                if (file_exists($path)) {
-                    require_once $path;
-                }
+            if (!class_exists($tool)) {
+                require_once $path;
             }
 
-            if (!class_exists($g)) {
-                continue;
-            }
-
-            $instance = new $g();
+            $instance = new $tool();
 
             if (method_exists($instance, 'index')) {
                 $instance->index();
             }
         }
-
-        $_SESSION['admin_status'] = 'SEO indices refreshed.';
-
-        header("Location: /admin");
-        exit;
     }
+
+    $_SESSION['admin_status'] = 'SEO XML files refreshed.';
+    header("Location: /admin");
+    exit;
+}
 
     /**
      * Module Uninstaller
