@@ -1,66 +1,32 @@
 <?php
-
 declare(strict_types=1);
 
-/**
- * Chaos CMS DB — Core Utilities
- *
- * Core-only:
- *  - Provide functions for the entirety of the Chaos CMS.
- */
 class utility
 {
-
-  public static function redirect_to(string $url): void
+    public function nav_active(string $href, string $current): string
     {
-            header('Location: ' . $url, true);
-	    exit;
-    }
-  
-  /*---------------------------------------------------------
-   * NAV HELPERS
-   * ------------------------------------------------------- */
+        // 1. Normalize both strings to remove trailing slashes for the comparison
+        $href = rtrim($href, '/');
+        $current = rtrim($current, '/');
 
-    public static function current_path(): string
-    {
-        return parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH) ?: '/';
-    }
-
-    public static function nav_active(string $href): string
-    {
-        $current = self::current_path();
-
-        if ($href === '/') {
-            return ($current === '/') ? ' active' : '';
+        // 2. Exact match check (handles home page and exact paths)
+        if ($current === $href) {
+            return 'active';
         }
 
-        return (strpos($current, $href) === 0) ? ' active' : '';
-    }
-
-    /**
-     * Navigation state helper
-     */
-    public static function nav_state(auth $auth): array
-    {
-        if (!$auth->check()) {
-            return [
-                'logged_in' => false,
-                'username'  => '',
-                'role_id'   => 1,
-                'can_admin' => false,
-            ];
+        // 3. Drill-down check: Current must start with href + a slash
+        // This ensures /admin/dashboard matches /admin/dashboard/edit 
+        // but / does NOT match /logout
+        if ($href !== '' && strpos($current, $href . '/') === 0) {
+            return 'active';
         }
 
-        $user = $auth->user();
+        return '';
+    }
 
-        $roleId = (int)($user['role_id'] ?? 1);
-
-        return [
-            'logged_in' => true,
-            'username'  => ucfirst((string)($user['username'] ?? '')),
-            'role_id'   => $roleId,
-            // editor(2), moderator(3), admin(4)
-            'can_admin' => in_array($roleId, [2, 3, 4], true),
-        ];
+    public function redirect_to(string $url): never
+    {
+        header("Location: " . $url);
+        exit;
     }
 }

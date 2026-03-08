@@ -1,0 +1,5 @@
+# Poe Mei
+
+> This file provides a high-level map of the Poe Mei directory for LLM scrapers and AI assistants.
+
+## Core Modules

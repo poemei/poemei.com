@@ -1,5 +1,5 @@
 # poemei.com
-Built upon the Chaos CMS v2
+Built upon the Chaos MVC V1
 
 # What
 Various changes pertaining to my domain only.

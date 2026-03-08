@@ -1,0 +1,8 @@
+# ars rosaic policy
+contact: mailto:security@arsrosaic.org
+encryption: https://arsrosaic.org/security/pgp_key
+canonical: https://arsrosaic.org/.well-known/security.txt
+policy: https://arsrosaic.org/security
+acknowledgments: https://arsrosaic.org/org/acknowledgments
+hiring: https://arsrosaic.org/org/jobs
+expires: 2027-01-01t00:00:00.000z

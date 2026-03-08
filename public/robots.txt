@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://www.arsrosaic.org/sitemap.xml
+LLM-Text: https://www.arsrosaic.org/llm

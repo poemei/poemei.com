@@ -1,0 +1,358 @@
+:root {
+    --sw-bg: #050509;
+    --sw-bg-soft: #0b0f16;
+    --sw-text: #f5f3f0;
+    --sw-text-soft: #b3b0c0;
+    --sw-accent: #3ea6ff;       /* moonlight blue */
+    --sw-accent-soft: #284f73;
+    --sw-danger: #c01a2a;       /* blood moon red */
+    --sw-border: #262938;
+    --sw-shadow: rgba(0, 0, 0, 0.8);
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* Allow either class:
+   - themes.php sets sw-body automatically for shadow_witch
+   - also allow body.shadow_witch just in case */
+body.sw-body,
+body.shadow_witch {
+    margin: 0;
+    min-height: 100vh;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background:
+        radial-gradient(circle at top, #151624 0, var(--sw-bg) 45%, #000 100%);
+    color: var(--sw-text);
+}
+
+/* -------------------------------------------------------------
+   Core UI Overrides (prevents "light + dark mix")
+   ------------------------------------------------------------- */
+
+.sw-body .core-page,
+body.shadow_witch .core-page {
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+.sw-body .core-nav,
+body.shadow_witch .core-nav {
+    background: rgba(5, 5, 9, 0.9);
+    border-bottom: 1px solid var(--sw-border);
+    backdrop-filter: blur(8px);
+}
+
+.sw-body .core-nav__inner,
+body.shadow_witch .core-nav__inner {
+    max-width: 960px;
+    margin: 0 auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+
+.sw-body .core-nav a,
+body.shadow_witch .core-nav a {
+    color: var(--sw-text-soft);
+}
+
+.sw-body .core-nav a:hover,
+body.shadow_witch .core-nav a:hover {
+    color: var(--sw-accent);
+}
+
+.sw-body .core-nav__brand,
+body.shadow_witch .core-nav__brand {
+    color: var(--sw-text);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.sw-body .post-row,
+.sw-body .post-card,
+.sw-body .reply,
+body.shadow_witch .post-row,
+body.shadow_witch .post-card,
+body.shadow_witch .reply {
+    background: rgba(10, 10, 18, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.sw-body .post-meta,
+.sw-body .post-row-meta,
+body.shadow_witch .post-meta,
+body.shadow_witch .post-row-meta {
+    color: var(--sw-text-soft);
+}
+
+/* HERO ------------------------------------------------------------- */
+.sw-hero {
+    position: relative;
+    height: 45vh;          /* proportional to viewport height */
+    max-height: 420px;     /* keeps it from being a huge slab */
+    min-height: 260px;     /* stops it collapsing on small screens */
+    overflow: hidden;
+}
+
+/* This pulls directly from /public/media */
+.sw-hero-image {
+    position: absolute;
+    inset: 0;
+    background-image: url("/assets/img/witchy.png");
+    background-size: cover;
+    background-position: center 30%;
+    background-repeat: no-repeat;
+    filter: contrast(1.05) brightness(0.9);
+}
+
+.sw-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.45),
+        rgba(5, 5, 9, 0.9)
+    );
+}
+
+.sw-hero-content {
+    position: relative;
+    z-index: 5;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+    color: #fff;
+}
+
+.sw-hero-title {
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.sw-hero-subtitle {
+    margin-top: 0.3rem;
+    color: #ddd;
+    font-size: 0.95rem;
+    letter-spacing: 0.08em;
+}
+
+.sw-hero-meta span {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--sw-accent);
+}
+
+/* NAV -------------------------------------------------------------- */
+
+.sw-nav {
+    background: rgba(5, 5, 9, 0.9);
+    border-bottom: 1px solid var(--sw-border);
+    backdrop-filter: blur(8px);
+}
+
+.sw-nav-list {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0.5rem 1.5rem;
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+}
+
+.sw-nav-list a {
+    color: var(--sw-text-soft);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    text-decoration: none;
+}
+
+.sw-nav-list a:hover {
+    color: var(--sw-accent);
+}
+
+/* MAIN CONTENT ----------------------------------------------------- */
+
+.sw-main {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem 4rem;
+}
+
+.sw-main h1,
+.sw-main h2,
+.sw-main h3 {
+    font-family: "Georgia", "Times New Roman", serif;
+    color: var(--sw-text);
+}
+
+.sw-main h2 {
+    font-size: 1.6rem;
+    margin-top: 3rem;
+    margin-bottom: 0.8rem;
+    position: relative;
+}
+
+.sw-main h2::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -0.5rem;
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(to right, var(--sw-danger), transparent);
+}
+
+.sw-main p {
+    color: var(--sw-text-soft);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+}
+
+.sw-main a {
+    color: var(--sw-accent);
+    text-decoration: none;
+}
+
+.sw-main a:hover {
+    text-decoration: underline;
+}
+
+/* FOOTER ----------------------------------------------------------- */
+
+.sw-footer {
+    border-top: 1px solid var(--sw-border);
+    padding: 1.5rem;
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--sw-text-soft);
+    background: #050509;
+}
+
+.sw-footer-mark {
+    margin-top: 0.5rem;
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--sw-accent-soft);
+}
+
+#latest-announcement {
+    position: relative;
+    background: linear-gradient(
+        to bottom right,
+        rgba(20, 20, 30, 0.95),
+        rgba(10, 10, 18, 0.95)
+    );
+    border: 1px solid rgba(190, 40, 60, 0.35); /* Blood moon red */
+    border-radius: 12px;
+    padding: 1.5rem 1.8rem;
+    color: #f5f3f0;
+    backdrop-filter: blur(4px);
+    box-shadow:
+        0 0 12px rgba(0, 0, 0, 0.8),
+        0 0 40px rgba(190, 40, 60, 0.15); /* subtle red aura */
+    overflow: hidden;
+}
+
+/* glowing rune divider at top */
+#latest-announcement::before {
+    content: "✶  ✦  ✶";
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.75rem;
+    letter-spacing: 0.5em;
+    color: rgba(190, 40, 60, 0.6);
+    text-shadow: 0 0 8px rgba(190, 40, 60, 0.8);
+    pointer-events: none;
+}
+
+/* subtle shadow swirl background */
+#latest-announcement::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+        circle at bottom right,
+        rgba(60, 0, 10, 0.25),
+        transparent 60%
+    );
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+/* Title styling if you place a heading inside */
+#latest-announcement h3,
+#latest-announcement h4 {
+    margin-top: 0.5rem;
+    margin-bottom: 0.8rem;
+    font-family: "Georgia", serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #ffeded;
+    text-shadow: 0 0 6px rgba(255, 50, 80, 0.4);
+}
+
+/* Body text */
+#latest-announcement p {
+    margin: 0.6rem 0;
+    line-height: 1.6;
+    color: #d8d6e0;
+}
+
+/* Links inside announcement */
+#latest-announcement a {
+    color: #3ea6ff;
+    text-decoration: none;
+}
+
+#latest-announcement a:hover {
+    text-decoration: underline;
+    color: #7ac7ff;
+}
+
+/* Holidays Plugin */
+.home-holiday-wrap {
+    max-width: 980px;
+    margin: 14px auto 0 auto;
+    padding: 0 14px;
+}
+
+.home-holiday {
+    margin: 0;
+    padding: 12px 14px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(0, 0, 0, 0.35);
+    color: inherit;
+    font-size: 1rem;
+    line-height: 1.2;
+    text-align: center;
+    backdrop-filter: blur(6px);
+}
+
+/* Text Wrapping Classes */
+.wrap-right {
+    float: right;
+    width: 320px;
+    margin: 10px 0 20px 30px;
+    border: 4px solid #fff;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* Subtle lift */
+}
+
+.wrap-left {
+    float: left;
+    width: 320px;
+    margin: 10px 30px 20px 0;
+    border: 4px solid #fff;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
