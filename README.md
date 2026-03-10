@@ -47,8 +47,12 @@ This is just a test `Markdown` message.
  ***
 
 ## To Do
-- [x] ***SEO Automation***
+**Core**
+- [x] Admin
+- [x] SEO Automation
 - [x] Posts
 - [x] Media
-- [ ] Monetization
+
+**Not Core**
+- [] Monetization
 
