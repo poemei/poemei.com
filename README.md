@@ -27,10 +27,18 @@ In `/app/lib/render_md.php`
    - Unordered lists: `-, *, +`
    - Ordered lists: `1. 2. 3.`
    - Newlines preserved outside `<pre>`.
-   
+- **Usage**: 
+```php
+$text = "
+# Hi
+This is just a test Markdown message
+ - Yould **Echo** this
+```
+`echo $this->render_md->markdown($text);`
+
 ## To Do
 - [x] ***SEO Automation***
-- [ ] Posts
+- [x] Posts
 - [x] Media
 - [ ] Monetization
 
