@@ -27,7 +27,7 @@ class posts extends controller {
     $data = [
         'post' => $post,
         'comments' => $comments,
-        'shareUrl' => URLROOT . "/posts/show/" . ($post['slug'] ?? $post['id']),
+        'shareUrl' => URLROOT . "/posts/" . ($post['slug'] ?? $post['id']),
         'title' => $post['title']
     ];
 
