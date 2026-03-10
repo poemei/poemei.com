@@ -14,7 +14,7 @@
     
     **The Chaos CMS**
     Chaos is very much a part of my life, so the naming became very important and the development was chaotic.
-      - Is to be shelved and converted to this **MCV**
+      - Is to be shelved and converted to this **MVC**
       - On the web at [Chaos CMS](https://www.chaoscms.org)
      
      **Stn-Labz**
@@ -33,7 +33,7 @@
        **The Indicia Institue**
        A part of the **Rosaic Traditon**.
         - To provide academic instruction for certain grades and positions within the `tradition`.
-        - One the Web at [Indicia Institute](https://www.arsrosaic.org/s/indicia).
+        - On the Web at [Indicia Institute](https://www.arsrosaic.org/s/indicia).
         - I am the Chief architect and dean of this institute.
     ";
     echo $this->render_md->markdown($projects);

@@ -21,17 +21,21 @@ class posts extends controller {
         exit;
     }
 
-    // Load replies (this was missing)
     $comments = $model->get_comments_by_post($post['id']);
+    //$clean_comments = string($comments);
+    //$rendered = $this->render_md->markdown($clean_comments);
+    
+
+    // restore markdown rendering
+    $post['body'] = $this->render_md->markdown($post['body']);
 
     $data = [
         'post' => $post,
         'comments' => $comments,
-        'shareUrl' => URLROOT . "/posts/show/" . ($post['slug'] ?? $post['id']),
+        'shareUrl' => URLROOT . "/posts/" . ($post['slug'] ?? $post['id']),
         'title' => $post['title']
     ];
 
-    // Correct view path
     $this->view('public/posts/show', $data);
 }
 

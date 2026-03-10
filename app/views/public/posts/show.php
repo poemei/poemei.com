@@ -2,69 +2,78 @@
 require APPROOT . '/views/inc/head.php';
 require_once APPROOT . '/lib/share.php';
 
-// Prepare URL for share buttons
 $post_url = rtrim(URLROOT, '/') . '/posts/show/' . urlencode((string)($post['slug'] ?? ''));
 ?>
 
-<div class="post-container" style="max-width: 800px; margin: auto; padding: 20px;">
+<div class="post-container" style="width: 100%; margin: 0; padding: 0;">
+    
     <?php if (!empty($post['image_path'])): ?>
-        <div class="featured-image" style="margin-bottom: 25px; overflow: hidden; border-radius: 8px;">
-            <img src="<?= htmlspecialchars($post['image_path'], ENT_QUOTES, 'UTF-8') ?>"
-                 alt="<?= htmlspecialchars($post['title'], ENT_QUOTES, 'UTF-8') ?>"
-                 style="width: 100%; max-height: 450px; object-fit: cover; display: block;">
+        <div class="featured-image" style="margin-bottom: 20px;">
+            <img src="<?= $post['image_path'] ?>" 
+                 style="width: 100%; height: auto; display: block;">
         </div>
     <?php endif; ?>
 
-    <article>
-        <h1 style="margin-bottom: 10px;"><?= htmlspecialchars($post['title'], ENT_QUOTES, 'UTF-8') ?></h1>
+    <article style="padding: 0; margin: 0;">
+        <h1 style="margin: 0 0 10px 0;"><?= $post['title'] ?></h1>
 
         <?php if (function_exists('share_buttons')): ?>
-            <div style="margin: 15px 0 25px 0;">
+            <div style="margin: 10px 0 20px 0;">
                 <?= share_buttons($post_url, (string)($post['title'] ?? '')) ?>
             </div>
         <?php endif; ?>
 
-        <div class="post-body" style="line-height: 1.7; font-size: 1.15rem; white-space: pre-wrap; word-wrap: break-word;">
+        <div class="post-body" style="line-height: 1.6; white-space: pre-wrap;">
             <?= $post['body'] ?>
         </div>
     </article>
 
-    <hr style="margin: 40px 0;">
+    <hr style="margin: 40px 0; border: 0; border-top: 1px solid #333;">
 
-    <section class="replies">
-        <h3>Replies</h3>
+    <section class="replies" style="padding: 0; margin: 0;">
+        <h3 style="margin: 0 0 20px 0;">Replies</h3>
+        <p><small>Allowed Markdown</small>
+        <pre>
+        # text = h1
+        ## text = h2
+        **text** = strong/bold
+        *text* = italic/empasized
+        ~~text~~ = small text
+        *** or --- = a horizontal rule hr
+        replace text with your content
+        </pre>
+        </p>
 
         <?php if (isset($_SESSION['user_id'])): ?>
-            <div class="reply-form" style="margin-bottom: 30px; padding: 20px; background: #f4f4f4; border-radius: 8px;">
-                <h4>Leave a Reply</h4>
+            <div class="reply-form" style="margin-bottom: 30px;">
                 <form action="/posts/reply" method="POST">
-                    <input type="hidden" name="post_id" value="<?= (int)$post['id'] ?>">
-                    <div style="margin-bottom: 10px;">
-                        <label>Name</label><br>
-                        <input type="text" name="author_name" value="<?= htmlspecialchars($_SESSION['user_name'] ?? 'Member', ENT_QUOTES, 'UTF-8') ?>" required style="width: 100%; padding: 8px;">
-                    </div>
-                    <div style="margin-bottom: 10px;">
-                        <label>Message</label><br>
-                        <textarea name="body" required style="width: 100%; height: 100px; padding: 8px;"></textarea>
-                    </div>
-                    <button type="submit" style="padding: 10px 20px; background: #333; color: #fff; border: none; cursor: pointer;">Post Reply</button>
+                    <input type="hidden" name="post_id" value="<?= $post['id'] ?>">
+                    <textarea name="body" required style="width: 100%; height: 100px; padding: 10px; background: #1a1a1a; color: #fff; border: 1px solid #333;"></textarea>
+                    <br>
+                    <button type="submit" style="margin-top: 10px; padding: 10px 20px; background: #eee; color: #000; border: none; cursor: pointer; font-weight: bold;">Post Reply</button>
                 </form>
-            </div>
-        <?php else: ?>
-            <div class="login-prompt" style="margin-bottom: 30px; padding: 15px; border: 1px dashed #ccc; text-align: center;">
-                <p>Please <a href="/login">log in</a> to join the conversation.</p>
             </div>
         <?php endif; ?>
 
-        <?php foreach ($comments as $comment): ?>
-            <div class="comment" style="background: #000; color: #fff; padding: 15px; margin-bottom: 10px; border-radius: 5px;">
-                <p>
-                    <strong><?= ucfirst(htmlspecialchars($comment['author_name'], ENT_QUOTES, 'UTF-8')) ?>:</strong><br>
-                    <?= nl2br(htmlspecialchars($comment['body'], ENT_QUOTES, 'UTF-8')) ?>
-                </p>
-                <small class="text-muted" style="color: #888;"><?= htmlspecialchars($comment['created_at'], ENT_QUOTES, 'UTF-8') ?></small>
-            </div>
-        <?php endforeach; ?>
+        <?php if (!empty($comments)): ?>
+            <?php foreach ($comments as $comment): ?>
+                <?php 
+                    // Convert the comment body into a string for rendering
+                    $comment_content = (string)($comment['body'] ?? ''); 
+                ?>
+                <div class="comment" style="margin-bottom: 30px; border-top: 1px solid #222; padding-top: 15px;">
+                    <div style="margin-bottom: 5px;">
+                        <strong><?= htmlspecialchars($comment['author_name']) ?></strong>
+                        <small style="color: #666; margin-left: 10px;"><?= $comment['created_at'] ?></small>
+                    </div>
+                    <div style="white-space: pre-wrap; color: #ccc;">
+                        <?php
+                        echo $this->render_md->markdown($comment_content);
+                        ?>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        <?php endif; ?>
     </section>
 </div>
 

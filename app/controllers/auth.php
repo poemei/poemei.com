@@ -119,4 +119,37 @@ class auth extends controller {
 
         $this->view('auth/reset_password', ['token' => $token]);
     }
+    
+    /**
+     * RESTORED: Register Method
+     * Matches schema in accounts.sql
+     */
+    public function register() {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $model = $this->model('accounts_model');
+            
+            // Hash the password before storage
+            $hashed_password = password_hash($_POST['password'], PASSWORD_BCRYPT);
+
+            // Mapping to your SQL table columns
+            $data = [
+                'username'      => trim($_POST['username']),
+                'email_address' => trim($_POST['email']), // Column name from SQL
+                'password_hash' => $hashed_password,      // Column name from SQL
+                'display_name'  => trim($_POST['display_name'] ?? $_POST['username']), // Required NOT NULL
+                'user_level'    => 1 // Default level
+            ];
+
+            $sql = "INSERT INTO accounts (username, email_address, password_hash, display_name, user_level) 
+                    VALUES (:username, :email_address, :password_hash, :display_name, :user_level)";
+
+            if ($model->query($sql, $data)) {
+                header("Location: /login?register=success");
+                exit;
+            } else {
+                $data['error'] = "Registration failed.";
+            }
+        }
+        $this->view('auth/register', $data ?? []);
+    }
 }

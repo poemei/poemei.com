@@ -29,7 +29,7 @@ class router
         /* -------------------------------------------------
            CLEAN URL ALIASES
            /login   → /auth/login
-           /signup  → /auth/signup
+           /signup  → /auth/register
            /logout  → /auth/logout
            /forgot-password → /auth/forgot_password
            /reset-password → /auth/reset_password
@@ -39,7 +39,7 @@ class router
 
             $aliases = [
                 'login'  => ['auth', 'login'],
-                'signup' => ['auth', 'signup'],
+                'signup' => ['auth', 'register'],
                 'logout' => ['auth', 'logout'],
                 'forgot-password' => ['auth', 'forgot_password'],
                 'reset-password'  => ['auth', 'reset_password']

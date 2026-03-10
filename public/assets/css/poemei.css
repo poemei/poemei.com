@@ -356,3 +356,34 @@ body.shadow_witch .post-row-meta {
     border: 4px solid #fff;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
+
+.share-bar {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin: 15px 0;
+}
+
+.share-label {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.share-pill {
+    display: inline-block;
+    padding: 6px 12px;
+    background: #222;
+    color: #fff;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.share-pill:hover {
+    background: #444;
+}
+
+.share-copy {
+    border: none;
+    cursor: pointer;
+}
