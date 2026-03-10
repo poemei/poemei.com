@@ -54,5 +54,6 @@ This is just a test `Markdown` message.
 - [x] Media
 
 **Not Core**
-- [] Monetization
+- [ ] Monetization
+- [ ] Web3 Blockchain Integrations
 
