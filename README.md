@@ -32,14 +32,19 @@ In `/app/lib/render_md.php`
 <?php
 $text = "
 # Hi
-This is just a test Markdown message
- - You should **Echo** this
+This is just a test `Markdown` message.
+ - You should **echo** this.
  ";
 ```
 ```php
 <?php
 echo $this->render_md->markdown($text);
 ```
+Will render as:
+# Hi
+This is just a test `Markdown` message.
+ - You should **echo** this.
+ ***
 
 ## To Do
 - [x] ***SEO Automation***
