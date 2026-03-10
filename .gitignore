@@ -1,2 +1,5 @@
 
 *.zip
+app/controllers/sentinel.php
+app/models/sentinel_model.php
+app/views/admin/sentinel.php
