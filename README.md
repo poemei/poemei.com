@@ -29,13 +29,17 @@ In `/app/lib/render_md.php`
    - Newlines preserved outside `<pre>`.
 - **Usage**: 
 ```php
+<?php
 $text = "
 # Hi
 This is just a test Markdown message
  - You should **Echo** this
  ";
 ```
-`echo $this->render_md->markdown($text);`
+```php
+<?php
+echo $this->render_md->markdown($text);
+```
 
 ## To Do
 - [x] ***SEO Automation***
