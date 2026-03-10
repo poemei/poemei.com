@@ -39,7 +39,7 @@ class router
 
             $aliases = [
                 'login'  => ['auth', 'login'],
-                'signup' => ['auth', 'register'],
+                'signup' => ['auth', 'signup'],
                 'logout' => ['auth', 'logout'],
                 'forgot-password' => ['auth', 'forgot_password'],
                 'reset-password'  => ['auth', 'reset_password']
@@ -164,7 +164,7 @@ class router
     {
         header("HTTP/1.0 404 Not Found");
 
-        $error_file = APPROOT . '/views/errors/404.php';
+        $error_file = APPROOT . '/views/errors/error_page.php';
 
         if (file_exists($error_file)) {
             require_once $error_file;

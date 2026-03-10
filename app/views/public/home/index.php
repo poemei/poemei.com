@@ -13,8 +13,8 @@ if (!empty($data['holiday_message'])) {
   <section>
   <div class="content-wrap">
     <img src="/assets/icons/icon.png" class="wrap-left" alt="Trans Developer">
-    <h2>Oops, I did it again...</h2>
-    <p>I changed up my domain because...well? cause I can, and.... I created this platfom.</p>
+    <h2>Greetings and Welcome</h2>
+    <p>To Poe Mei dot Com</p>
     <p>This platform is my own custom MVC:
     <ul>
       <li> <strong>M</strong>odel, which handles all database functions.</li>
@@ -78,11 +78,10 @@ This platform is my creation, and I'm always working on it, so if you get here a
     - HTML5
     - CSS4
     - Some Bootstrap
- 
-      If this is your sort of thing, and you got an interest, always check the [Changelog](/changelog) and send me an email to [poe@poemei.com](mailto:poe@poemei.com). I would love to be able to work with you. Males need not apply, no offense, but I was **once one of you**, and I **care not**, to be around ~~**your energy**~~.
-";
+  ";
 echo $this->render_md->markdown($recruiting);
 ?>
+<p>If this is your sort of thing, and you got an interest, always check the <a href="/changelog">Changelog</a>, and send me an email to <a href="mailto:poe@poemei.com">poe@poemei.com</a>. I would love to be able to work with you. <b>Males</b> I am so sorry but you need not apply, no offense, but I was <b>once one of you</b>, and I <b>care not</b>, to be around <b><em>your energy</em></b>.</p>
 </div>
   </section>
 </div>

@@ -33,17 +33,17 @@ $post_url = rtrim(URLROOT, '/') . '/posts/show/' . urlencode((string)($post['slu
     <section class="replies" style="padding: 0; margin: 0;">
         <h3 style="margin: 0 0 20px 0;">Replies</h3>
         <p><small>Allowed Markdown</small>
-        <pre>
-        # text = h1
-        ## text = h2
-        **text** = strong/bold
-        *text* = italic/empasized
-        ~~text~~ = small text
-        *** or --- = a horizontal rule hr
-        replace text with your content
-        </pre>
-        </p>
-
+<pre>
+# text = h1
+## text = h2
+**text** = strong/bold
+*text* = italic/empasized
+~~text~~ = small text
+*** or --- = a horizontal rule hr
+`text` = code (pretty pink text)
+replace text with your content
+</pre>
+</p>
         <?php if (isset($_SESSION['user_id'])): ?>
             <div class="reply-form" style="margin-bottom: 30px;">
                 <form action="/posts/reply" method="POST">
@@ -53,22 +53,23 @@ $post_url = rtrim(URLROOT, '/') . '/posts/show/' . urlencode((string)($post['slu
                     <button type="submit" style="margin-top: 10px; padding: 10px 20px; background: #eee; color: #000; border: none; cursor: pointer; font-weight: bold;">Post Reply</button>
                 </form>
             </div>
+        <?php else: ?>
+            <p style="margin-bottom: 30px;">
+                Please <a href="/login" style="color: #eee; font-weight: bold;">Login</a> to leave a reply.
+            </p>
         <?php endif; ?>
 
         <?php if (!empty($comments)): ?>
             <?php foreach ($comments as $comment): ?>
-                <?php 
-                    // Convert the comment body into a string for rendering
-                    $comment_content = (string)($comment['body'] ?? ''); 
-                ?>
                 <div class="comment" style="margin-bottom: 30px; border-top: 1px solid #222; padding-top: 15px;">
                     <div style="margin-bottom: 5px;">
                         <strong><?= htmlspecialchars($comment['author_name']) ?></strong>
                         <small style="color: #666; margin-left: 10px;"><?= $comment['created_at'] ?></small>
                     </div>
                     <div style="white-space: pre-wrap; color: #ccc;">
-                        <?php
-                        echo $this->render_md->markdown($comment_content);
+                        <?php 
+                        $com = (string)$comment['body'];
+                        echo $this->render_md->markdown($com);
                         ?>
                     </div>
                 </div>

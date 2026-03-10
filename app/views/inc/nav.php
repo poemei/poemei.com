@@ -1,6 +1,7 @@
 <nav class="sw-nav">
   <div class="sw-nav-list">
     <a href="/">Home</a>
+    <a href="/about">About Me</a>
     <a href="/posts">Posts</a>
     <a href="/projects">Projects</a>
     <a href="/resume">Resume</a>

@@ -55,14 +55,23 @@ $moon = sw_get_moon_phase();
 ?>
 </main>
 
-<footer class="sw-footer">
-    <div>© <?= date('Y'); ?> <?= htmlspecialchars($SITE['name'] ?? 'Poe Mei', ENT_QUOTES, 'UTF-8'); ?></div>
-    <div class="sw-footer-moon">
+<footer class="sw-footer" style="display: flex; justify-content: space-between; align-items: center; padding: 20px 0; border-top: 1px solid #333; font-size: 0.9rem;">
+    <div style="flex: 1; text-align: left;">
+        <p style="margin-left: 20px;">© <?= date('Y'); ?> <?= htmlspecialchars($SITE['name'] ?? 'Poe Mei', ENT_QUOTES, 'UTF-8'); ?></p>
+    </div>
+
+    <div class="sw-footer-moon" style="flex: 1; text-align: center;">
         <span class="sw-footer-moon-icon"><?= $moon['icon']; ?></span>
-        <span class="sw-footer-moon-label">
+        <span class="sw-footer-moon-label" style="margin: 0 5px;">
             <?= htmlspecialchars($moon['label'], ENT_QUOTES, 'UTF-8'); ?>
         </span>
-        <span class="sw-footer-moon-note">· UTC</span>
+        <span class="sw-footer-moon-note" style="color: #666;">· UTC</span>
+    </div>
+
+    <div style="flex: 1; text-align: right;">
+        <a href="/legal/terms" style="text-decoration: none; color: inherit; margin-left: 10px;">Terms</a>
+        <a href="/legal/privacy" style="text-decoration: none; color: inherit; margin-left: 10px;">Privacy</a>
+        <a href="/security" style="text-decoration: none; color: inherit; margin-left: 10px; margin-right: 20px;">Security</a>
     </div>
 </footer>
 

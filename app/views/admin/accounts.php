@@ -3,6 +3,11 @@
 <div class="container mt-4">
 
 <h2>Account Management</h2>
+<?php if(isset($_SESSION['msg'])): ?>
+    <div class="alert alert-<?= $_SESSION['msg_type']; ?> mt-3">
+        <?= $_SESSION['msg']; unset($_SESSION['msg']); ?>
+    </div>
+<?php endif; ?>
 
 <table class="table table-bordered">
 <thead>
@@ -41,16 +46,12 @@
 
 <td>
 
-<?php if ($a['id'] != ($_SESSION['account_id'] ?? 0)): ?>
-
-<form method="POST" action="<?php echo URLROOT; ?>/admin/accounts/delete/<?php echo $a['id']; ?>">
-<button type="submit">delete</button>
-</form>
-
+<?php if ($a['id'] != ($_SESSION['user_id'] ?? 0)): ?>
+    <form method="POST" action="<?php echo URLROOT; ?>/auth/delete/<?php echo $a['id']; ?>">
+        <button type="submit">delete</button>
+    </form>
 <?php else: ?>
-
-logged in
-
+    <strong>(You)</strong>
 <?php endif; ?>
 
 </td>

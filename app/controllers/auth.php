@@ -121,35 +121,65 @@ class auth extends controller {
     }
     
     /**
-     * RESTORED: Register Method
-     * Matches schema in accounts.sql
+     * Signup Method
+     * Fixed to match register.php form and accounts_model.php
      */
-    public function register() {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $model = $this->model('accounts_model');
-            
-            // Hash the password before storage
-            $hashed_password = password_hash($_POST['password'], PASSWORD_BCRYPT);
+    public function signup() {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $model = $this->model('accounts_model');
+        
+        // 1. Get data from the form
+        $username = trim($_POST['username']);
+        $email = trim($_POST['email_address']); 
+        $display_name = trim($_POST['display_name']);
+        $password = $_POST['password'];
+        $level = 1; // Default level for new signups
 
-            // Mapping to your SQL table columns
-            $data = [
-                'username'      => trim($_POST['username']),
-                'email_address' => trim($_POST['email']), // Column name from SQL
-                'password_hash' => $hashed_password,      // Column name from SQL
-                'display_name'  => trim($_POST['display_name'] ?? $_POST['username']), // Required NOT NULL
-                'user_level'    => 1 // Default level
-            ];
-
-            $sql = "INSERT INTO accounts (username, email_address, password_hash, display_name, user_level) 
-                    VALUES (:username, :email_address, :password_hash, :display_name, :user_level)";
-
-            if ($model->query($sql, $data)) {
-                header("Location: /login?register=success");
-                exit;
-            } else {
-                $data['error'] = "Registration failed.";
-            }
+        // 2. Call the existing model method
+        // The model expects: create($username, $password, $name, $level)
+        try {
+            // Note: We need to update the model to handle email_address as well
+            $model->create($username, $password, $display_name, $level, $email);
+            header("Location: /login?signup=success");
+            exit;
+        } catch (Exception $e) {
+            $data['error'] = "Signup failed. Username or email may already be in use.";
         }
-        $this->view('auth/register', $data ?? []);
     }
+    $this->view('auth/register', $data ?? []);
+}
+
+    public function delete($id = null) {
+    // 1. Authenticate as Admin
+    if (!isset($_SESSION['user_id']) || $_SESSION['user_level'] != 9) {
+        header("Location: /login");
+        exit;
+    }
+
+    // 2. CRITICAL SAFETY: Prevent self-deletion
+    // We use 'user_id' because that is what auth.php sets upon login
+    if ((int)$id === (int)$_SESSION['user_id']) {
+        $_SESSION['msg'] = "Error: You cannot delete the account you are currently logged into.";
+        $_SESSION['msg_type'] = "danger";
+        header("Location: /admin/accounts");
+        exit;
+    }
+
+    if ($id) {
+        $model = $this->model('accounts_model');
+        
+        // 3. Forced Integer Casting
+        // This ensures an associative array or malicious string cannot be passed
+        if ($model->delete((int)$id)) {
+            $_SESSION['msg'] = "Account #$id deleted.";
+            $_SESSION['msg_type'] = "success";
+        } else {
+            $_SESSION['msg'] = "Deletion failed.";
+            $_SESSION['msg_type'] = "danger";
+        }
+    }
+
+    header("Location: /admin/accounts");
+    exit;
+}
 }

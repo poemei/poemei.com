@@ -28,19 +28,20 @@ class accounts_model extends model
     }
 
 
-    public function create($username, $password, $name, $level)
+    public function create($username, $password, $name, $level, $email)
     {
         $this->query(
-            "INSERT INTO accounts
-            (username, password_hash, display_name, user_level)
-            VALUES
-            (:u, :p, :n, :l)",
-            [
-                'u' => $username,
-                'p' => password_hash($password, PASSWORD_DEFAULT),
-                'n' => $name,
-                'l' => (int)$level
-            ]
+        "INSERT INTO accounts 
+        (username, password_hash, display_name, user_level, email_address) 
+        VALUES 
+        (:u, :p, :n, :l, :e)",
+        [
+            'u' => $username,
+            'p' => password_hash($password, PASSWORD_DEFAULT),
+            'n' => $name,
+            'l' => (int)$level,
+            'e' => $email // Added missing email_address
+        ]
         );
     }
 
@@ -60,10 +61,14 @@ class accounts_model extends model
 
 
     public function delete($id)
-    {
-        $this->query(
-            "DELETE FROM accounts WHERE id = :id",
-            ['id' => (int)$id]
-        );
-    }
+{
+    // Execute the deletion using an explicit integer
+    $this->query("DELETE FROM accounts WHERE id = :id", ['id' => (int)$id]);
+
+    // Verify it is gone by trying to fetch it
+    $check = $this->fetch("SELECT id FROM accounts WHERE id = :id", ['id' => (int)$id]);
+    
+    // If fetch returns false, the record was successfully removed
+    return $check === false;
+}
 }

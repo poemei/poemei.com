@@ -1,29 +1,18 @@
 <?php
-declare(strict_types=1);
+// path: /app/controllers/health.php
 
-final class legal extends controller
+class legal extends controller 
 {
-    public function index($url_params = null): void
-    {
-        $modules = $this->model('modules_model');
-        $this->view('public/legal/index');
+    public function index() {
+        $util = new utility();
+        $util->redirect_to('/');
     }
     
-    public function charter($url_params = null): void
-    {
-        $modules = $this->model('modules_model');
-        $this->view('public/legal/charter');
-    }
-    
-    public function privacy($url_params = null): void
-    {
-        $modules = $this->model('modules_model');
-        $this->view('public/legal/privacy');
-    }
-    
-    public function terms($url_params = null): void
-    {
-        $modules = $this->model('modules_model');
+    public function terms() {
         $this->view('public/legal/terms');
+    }
+    
+    public function privacy() {
+        $this->view('public/legal/privacy');
     }
 }
