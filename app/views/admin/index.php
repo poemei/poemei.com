@@ -3,7 +3,7 @@
     
     <div class="text-center mb-5">
         <h1 class="fw-bold text-uppercase">Admin</h1>
-        <p class="text-muted small">Poe Mei's Management Suite</p>
+        <p class="text-muted small">Management Suite</p>
     </div>
     
     <?php if (!empty($_SESSION['admin_status'])): ?>

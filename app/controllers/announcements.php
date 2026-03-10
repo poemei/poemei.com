@@ -4,8 +4,7 @@
 class announcements extends controller {
 
     public function index($url = []) {
-        $data = ['items' => []]; // Initialize with the key expected by the view
-        
+        $data = ['items' => []];
         $model = $this->model('announcements_model');
         
         if (method_exists($model, 'get_all')) {
@@ -15,8 +14,8 @@ class announcements extends controller {
         $this->view('public/announcements/index', $data);
     }
 
-    public function admin($url = []) {
-        $data = ['items' => []]; // Initialize with the key expected by the view
+    public function admin($params = []) {
+        $data = ['items' => []];
         
         if (!isset($_SESSION['user_level']) || $_SESSION['user_level'] < 7) {
             header("Location: /auth/login");
@@ -25,14 +24,24 @@ class announcements extends controller {
 
         $model = $this->model('announcements_model');
 
-        // Handle deletions if delete_id is posted
+        // ACTION: URL-based Deletion (e.g., /admin/announcements/delete/5)
+        $action = $params[1] ?? null;
+        $id     = $params[2] ?? null;
+
+        if ($action === 'delete' && $id) {
+            $model->delete('announcements', "id = " . (int)$id);
+            header("Location: /admin/announcements");
+            exit;
+        }
+
+        // ACTION: POST-based Deletion
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_id'])) {
             $model->delete('announcements', "id = " . (int)$_POST['delete_id']);
             header("Location: /admin/announcements");
             exit;
         }
 
-        // Handle new additions
+        // ACTION: New Addition
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['title'])) {
             $model->insert('announcements', [
                 'title' => $_POST['title'],

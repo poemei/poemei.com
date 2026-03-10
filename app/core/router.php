@@ -1,304 +1,177 @@
 <?php
-declare(strict_types=1);
-
 /**
  * Router
- *
- * Routes requests to controllers/methods in a strict and secure way.
- * - No silent fallback to index()
- * - Strict controller/method name validation
- * - Blocks magic/underscore methods
- * - Throws internally, responds with controlled 404 externally (Strategy D)
- *
- * @package STN-Labz
+ * Responsible only for dispatching URL → controller → method → params
+ * No database calls belong here.
+ * THIS FILE IS LOCKED
+ * NO MORE EDITS TO THIS FILE ARE ALLOWED
  */
 
-final class router
+class router
 {
-    private string $controllersDir = '/controllers';
-    private string $defaultController = 'home';
-    private string $defaultMethod = 'index';
+    protected $controller = 'home';
+    protected $method = 'index';
+    protected $params = [];
 
-    public function run(): void
+    public function __construct()
     {
-        try {
-            $this->dispatch();
-        } catch (Throwable $e) {
-            $this->logException($e);
-            $this->respond404();
-        }
+        $this->dispatch();
     }
 
-    private function dispatch(): void
+    /**
+     * Main dispatch logic
+     */
+    private function dispatch()
     {
-        $url = $this->get_url();
+        $url = $this->parseUrl();
 
-        /*
-        -------------------------------------------------------
-        ADMIN MODULE HANDOFF
-        -------------------------------------------------------
-        /admin/{module}
-        routes to admin controller which loads module controllers
-        -------------------------------------------------------
-        */
 
-        if (($url[0] ?? '') === 'admin') {
+        /* -------------------------------------------------
+           CLEAN URL ALIASES
+           /login   → /auth/login
+           /signup  → /auth/signup
+           /logout  → /auth/logout
+           /forgot-password → /auth/forgot_password
+           /reset-password → /auth/reset_password
+        --------------------------------------------------*/
 
-            require_once APPROOT . $this->controllersDir . '/admin.php';
+        if (!empty($url[0])) {
 
-            if (!class_exists('admin', false)) {
-                throw new RuntimeException('Admin controller not found.');
+            $aliases = [
+                'login'  => ['auth', 'login'],
+                'signup' => ['auth', 'signup'],
+                'logout' => ['auth', 'logout'],
+                'forgot-password' => ['auth', 'forgot_password'],
+                'reset-password'  => ['auth', 'reset_password']
+            ];
+
+            if (isset($aliases[$url[0]])) {
+
+                $map = $aliases[$url[0]];
+
+                $url[0] = $map[0];
+                $url[1] = $map[1];
             }
+        }
 
-            $controller = new admin();
 
-            if (!method_exists($controller, 'index')) {
-                throw new RuntimeException('Admin controller missing index().');
+        /* -------------------------------------------------
+           CONTROLLER
+        --------------------------------------------------*/
+
+        if (isset($url[0]) && $url[0] !== '') {
+
+            $controller_file = APPROOT . '/controllers/' . $url[0] . '.php';
+
+            if (file_exists($controller_file)) {
+                $this->controller = $url[0];
+                unset($url[0]);
             }
+        }
 
-            $controller->index($url);
+        $controller_path = APPROOT . '/controllers/' . $this->controller . '.php';
+
+        if (!file_exists($controller_path)) {
+            $this->error404();
             return;
         }
 
-        /*
-        -------------------------------------------------------
-        AUTH SHORTCUTS
-        -------------------------------------------------------
-        */
+        require_once $controller_path;
 
-        if (($url[0] ?? '') === 'login') {
-            $url = ['auth', 'login'];
-        } elseif (($url[0] ?? '') === 'logout') {
-            $url = ['auth', 'logout'];
-        }
-
-        $controllerName = $this->normalizeControllerName($url[0] ?? $this->defaultController);
-        $methodName     = $this->normalizeMethodName($url[1] ?? $this->defaultMethod);
-
-        $params = array_slice($url, 2);
-
-        if ($this->controllerFileExists($controllerName)) {
-            $this->dispatchController($controllerName, $methodName, $params);
+        if (!class_exists($this->controller)) {
+            $this->error404();
             return;
         }
 
-        $this->dispatchPageFallback($controllerName);
-    }
+        $this->controller = new $this->controller;
 
-    private function dispatchController(string $controllerName, string $methodName, array $params): void
-    {
-        $controllerFile = $this->controllerFilePath($controllerName);
 
-        require_once $controllerFile;
+        /* -------------------------------------------------
+           METHOD
+        --------------------------------------------------*/
 
-        if (!class_exists($controllerName, false)) {
-            throw new RuntimeException('Controller class not found after require: ' . $controllerName);
-        }
+        if (isset($url[1])) {
 
-        if (class_exists('controller', false) && !is_subclass_of($controllerName, 'controller')) {
-            throw new RuntimeException('Controller does not extend base controller: ' . $controllerName);
-        }
-
-        $controller = new $controllerName();
-
-        if ($this->isDeniedMethod($methodName)) {
-            throw new RuntimeException('Denied method requested: ' . $controllerName . '::' . $methodName);
-        }
-
-        if (!method_exists($controller, $methodName)) {
-            throw new RuntimeException('Method not found: ' . $controllerName . '::' . $methodName);
-        }
-
-        $ref = new ReflectionMethod($controller, $methodName);
-
-        if (!$ref->isPublic()) {
-            throw new RuntimeException('Non-public method requested: ' . $controllerName . '::' . $methodName);
-        }
-
-        $required = $ref->getNumberOfRequiredParameters();
-        $total    = $ref->getNumberOfParameters();
-
-        if ($total === 1) {
-            $controller->{$methodName}($params);
-            return;
-        }
-
-        $argc = count($params);
-
-        if ($argc < $required || $argc > $total) {
-            throw new RuntimeException(
-                'Parameter mismatch for ' . $controllerName . '::' . $methodName .
-                ' (given ' . $argc . ', required ' . $required . ', total ' . $total . ')'
-            );
-        }
-
-        $controller->{$methodName}(...$params);
-    }
-
-    private function dispatchPageFallback(string $slug): void
-    {
-        if (!$this->isValidName($slug)) {
-            throw new RuntimeException('Invalid slug for page fallback.');
-        }
-
-        $pageController = 'page';
-
-        if (!$this->controllerFileExists($pageController)) {
-            throw new RuntimeException('Page controller not available for fallback routing.');
-        }
-
-        require_once $this->controllerFilePath($pageController);
-
-        if (!class_exists($pageController, false)) {
-            throw new RuntimeException('Page controller class not found after require.');
-        }
-
-        $page = new page();
-
-        if (!method_exists($page, 'index')) {
-            throw new RuntimeException('Page controller missing index().');
-        }
-
-        $ref = new ReflectionMethod($page, 'index');
-
-        if (!$ref->isPublic()) {
-            throw new RuntimeException('Page index() not public.');
-        }
-
-        $total = $ref->getNumberOfParameters();
-
-        if ($total === 1) {
-            $page->index($slug);
-            return;
-        }
-
-        $page->index([$slug]);
-    }
-
-    private function controllerFilePath(string $controllerName): string
-    {
-        return APPROOT . $this->controllersDir . '/' . $controllerName . '.php';
-    }
-
-    private function controllerFileExists(string $controllerName): bool
-    {
-        return is_file($this->controllerFilePath($controllerName));
-    }
-
-    private function normalizeControllerName(string $name): string
-    {
-        $name = strtolower(trim($name));
-        $name = str_replace('-', '_', $name);
-
-        if (!$this->isValidName($name)) {
-            throw new RuntimeException('Invalid controller name.');
-        }
-
-        return $name;
-    }
-
-    private function normalizeMethodName(string $name): string
-    {
-        $name = strtolower(trim($name));
-        $name = str_replace('-', '_', $name);
-
-        if (!$this->isValidName($name)) {
-            throw new RuntimeException('Invalid method name.');
-        }
-
-        return $name;
-    }
-
-    private function isValidName(string $name): bool
-    {
-        return (bool) preg_match('/^[a-z0-9_]+$/', $name);
-    }
-
-    private function isDeniedMethod(string $methodName): bool
-    {
-        if ($methodName === '') {
-            return true;
-        }
-
-        if (str_starts_with($methodName, '__')) {
-            return true;
-        }
-
-        if (str_starts_with($methodName, '_')) {
-            return true;
-        }
-
-        return false;
-    }
-
-    private function get_url(): array
-    {
-        if (!isset($_GET['url'])) {
-            return [];
-        }
-
-        $raw = (string) $_GET['url'];
-        $raw = trim($raw);
-        $raw = rtrim($raw, '/');
-
-        if ($raw === '') {
-            return [];
-        }
-
-        $parts = explode('/', $raw);
-        $out = [];
-
-        foreach ($parts as $p) {
-            $p = rawurldecode($p);
-            $p = strtolower(trim($p));
-            $p = str_replace('-', '_', $p);
-            $out[] = $p;
-        }
-
-        return $out;
-    }
-
-    private function respond404(): void
-    {
-        if (!headers_sent()) {
-            http_response_code(404);
-        }
-
-        $errController = 'error_handler';
-
-        if ($this->controllerFileExists($errController)) {
-
-            require_once $this->controllerFilePath($errController);
-
-            if (class_exists($errController, false)) {
-
-                $c = new error_handler();
-
-                if (method_exists($c, 'index')) {
-
-                    try {
-
-                        $ref = new ReflectionMethod($c, 'index');
-
-                        if ($ref->isPublic()) {
-                            $c->index(['404']);
-                            exit;
-                        }
-
-                    } catch (Throwable) {}
-
-                }
-
+            if (method_exists($this->controller, $url[1])) {
+                $this->method = $url[1];
+                unset($url[1]);
             }
-
         }
 
-        echo '404 Not Found';
+
+        /* -------------------------------------------------
+           PARAMS
+        --------------------------------------------------*/
+
+        $this->params = $url ? array_values($url) : [];
+
+
+        /* -------------------------------------------------
+           CLEAN URL SUPPORT
+           Allows:
+           /posts/my-post-slug
+           instead of:
+           /posts/show/my-post-slug
+        --------------------------------------------------*/
+
+        if (
+            $this->controller instanceof posts &&
+            $this->method === 'index' &&
+            count($this->params) === 1
+        ) {
+            $this->method = 'show';
+        }
+
+
+        /* -------------------------------------------------
+           FINAL DISPATCH
+        --------------------------------------------------*/
+
+        if (!method_exists($this->controller, $this->method)) {
+            $this->error404();
+            return;
+        }
+
+        call_user_func_array(
+            [$this->controller, $this->method],
+            [$this->params]
+        );
+    }
+
+
+    /**
+     * Parse URL from query string
+     */
+    private function parseUrl()
+    {
+        if (isset($_GET['url'])) {
+
+            $url = rtrim($_GET['url'], '/');
+
+            $url = filter_var($url, FILTER_SANITIZE_URL);
+
+            return explode('/', $url);
+        }
+
+        return [];
+    }
+
+
+    /**
+     * Basic 404 handler
+     */
+    private function error404()
+    {
+        header("HTTP/1.0 404 Not Found");
+
+        $error_file = APPROOT . '/views/errors/404.php';
+
+        if (file_exists($error_file)) {
+            require_once $error_file;
+        } else {
+            echo "404 - Page not found.";
+        }
+
         exit;
-    }
-
-    private function logException(Throwable $e): void
-    {
-        error_log('[router] ' . $e->getMessage());
     }
 }

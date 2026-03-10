@@ -10,6 +10,16 @@ class announcements_model extends model {
         return $this->db->query("SELECT * FROM {$this->table} ORDER BY id DESC")->fetchAll();
     }
     
+    /**
+     * Delete an announcement
+     * @param string $table The table name
+     * @param string $where The WHERE clause (e.g., "id = 5")
+     */
+    public function delete($table, $where) {
+        $sql = "DELETE FROM $table WHERE $where";
+        return $this->db->query($sql);
+    }
+
     // Fetch only published rows
     public function get_active() {
         $sql = "SELECT * FROM announcements WHERE published = 1 ORDER BY created_at DESC";

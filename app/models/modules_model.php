@@ -10,12 +10,12 @@ class modules_model extends model
         )->fetchAll();
     }
     
-    /**
-     * Fetch a module/page by slug using PDO 
-     */
     public function get_by_slug($slug) {
-        // Correcting the Call to undefined method PDOStatement::bind_param() 
-        return $this->query("SELECT * FROM modules WHERE slug = ?", [$slug])->fetch();
+    $sql = "SELECT p.*, m.file_path as image_path 
+            FROM posts p 
+            LEFT JOIN media m ON p.featured_image_id = m.id 
+            WHERE p.slug = ? AND p.published = 1 LIMIT 1";
+    return $this->fetch($sql, [$slug]);
     }
 
     public function create($data)

@@ -13,7 +13,7 @@
                 <p><em>Released on <?= $update['date_released'] ?></em></p>
                 
                 <div class="update-description">
-                    <?= $this->render_md->markdown($update['description']) ?>
+                    <?= $render_md->markdown($update['description']) ?>
                 </div>
             </div>
             <hr>

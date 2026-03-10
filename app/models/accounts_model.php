@@ -4,19 +4,18 @@ class accounts_model extends model
 {
 
     public function authenticate($username, $password) {
-        // Use the 'accounts' table and 'username' column from your SQL
-        $row = $this->fetch("SELECT * FROM accounts WHERE username = :username LIMIT 1", [
-            'username' => $username
-        ]);
+    // Fetch the user record by username
+    $row = $this->fetch("SELECT * FROM accounts WHERE username = :username LIMIT 1", [
+        'username' => $username
+    ]);
 
-        // MATCH YOUR SCHEMA: Use 'password_hash' instead of 'password'
-        if ($row && password_verify($password, $row['password_hash'])) {
-            // Remove hash before returning user data for the session
-            unset($row['password_hash']);
+    if ($row) {
+        // Compare the plain-text input to the hash in the 'password_hash' column
+        if (password_verify($password, $row['password_hash'])) {
             return $row;
         }
-
-        return false;
+    }
+    return false;
     }
 
     public function get_all()
