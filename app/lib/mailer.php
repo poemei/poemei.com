@@ -18,7 +18,7 @@ class mailer
         $mail->Host       = 'mail.poemei.com';
         $mail->SMTPAuth   = true;
         $mail->Username   = 'contact@poemei.com';
-        $mail->Password   = 'LsXJNW9S#';
+        $mail->Password   = 'PASS_WORD';
         $mail->SMTPSecure = \PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port       = 587;
         $mail->CharSet    = 'UTF-8';
