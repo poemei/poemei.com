@@ -53,7 +53,7 @@
         </p>
 
         <div class="sw-hero-meta">
-            <span>Code · Systems · Chaos</span>
+            <span>Code · Systems · Chaos · Witchy</span>
         </div>
     </div>
 </header>

@@ -23,6 +23,13 @@ if (!empty($data['holiday_message'])) {
     </ul>
     </p>
   </div>
+  <div class="row">
+  <p><code>Let me explain this image</code><br><b>PHP</b> then <b>MySQL</b> thats backend.<br>
+    <b>Go</b> (Golang) Googles Development Language<br>
+    <b>HTML</b> and <b>CSS</b>, which are Front-End Development.<br>
+    All set on a <b>Trans</b> Flag of Baby Blue, Powder Pink, and White.
+    </p>
+    </div>
 </section>
 </div>
 <div class="row">
@@ -57,6 +64,8 @@ You will find that I really do not give a fuck about what your opinion is of me 
 This platform is my creation, and I'm always working on it, so if you get here and shit is broke, ~~suck it up buttercup~~ and come back later.
 
 > **REMEMBER:** Hate is a **THEM** problem, their hatred of you is not **YOUR** problem.
+
+Don't be a **THEM** K? Snowflake?
 ---
     ";
 
