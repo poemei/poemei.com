@@ -29,7 +29,7 @@ In `/app/lib/render_md.php`
    - Newlines preserved outside `<pre>`.
    
 ## To Do
-- [ ] ***SEO Automation***
+- [x] ***SEO Automation***
 - [ ] Posts
 - [ ] Media
 - [ ] Monetization
