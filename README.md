@@ -31,6 +31,6 @@ In `/app/lib/render_md.php`
 ## To Do
 - [x] ***SEO Automation***
 - [ ] Posts
-- [ ] Media
+- [x] Media
 - [ ] Monetization
 
