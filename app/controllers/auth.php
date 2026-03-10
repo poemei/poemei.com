@@ -25,8 +25,13 @@ class auth extends controller {
                 $_SESSION['user_level'] = $user['user_level']; // RESTORED: This fixed the admin lockout
                 $_SESSION['role'] = $user['role'];
                 
-                header("Location: /admin");
-                exit;
+                if ($user['user_level'] == 9) {
+                    header("Location: /admin");
+                    exit;
+                }
+                else {
+                    header("Location: /");
+                }
             } else {
                 $data['error'] = "Invalid Credentials.";
             }

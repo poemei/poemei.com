@@ -8,32 +8,32 @@ class posts extends controller {
         $this->view('public/posts/index', ['items' => $model->get_public_feed()]);
     }
 
-    public function show($params = null): void {
-        $slug = is_array($params) ? ($params[0] ?? '') : (string)$params;
-        
-        if (empty($slug)) {
-            header("Location: /posts");
-            exit;
-        }
+    public function show($params = [])
+{
+    $slug = $params[0] ?? '';
 
-        $model = $this->model('posts_model');
-        $post = $model->get_post_with_image($slug);
+    $model = $this->model('posts_model');
 
-        if (!$post) {
-            $this->error_page("Post not found.");
-            return;
-        }
+    $post = $model->get_post_with_image($slug);
 
-        $data = [
-            'post' => $post,
-            'comments' => $model->get_comments_by_post($post['id'])
-        ];
-
-        // Use the inherited markdown renderer
-        $data['post']['body'] = $this->render_md->markdown($post['body']);
-
-        $this->view('public/posts/show', $data);
+    if (!$post) {
+        header("Location: /posts");
+        exit;
     }
+
+    // Load replies (this was missing)
+    $comments = $model->get_comments_by_post($post['id']);
+
+    $data = [
+        'post' => $post,
+        'comments' => $comments,
+        'shareUrl' => URLROOT . "/posts/show/" . ($post['slug'] ?? $post['id']),
+        'title' => $post['title']
+    ];
+
+    // Correct view path
+    $this->view('public/posts/show', $data);
+}
 
     public function admin($params = []) {
         // GATED: Redirect to login if no session
@@ -97,5 +97,5 @@ class posts extends controller {
         }
     }
     $this->error_page("Unauthorized.");
-}
+    }
 }

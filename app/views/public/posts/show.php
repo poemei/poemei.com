@@ -1,34 +1,47 @@
-<?php require APPROOT . '/views/inc/head.php'; ?>
+<?php
+require APPROOT . '/views/inc/head.php';
+require_once APPROOT . '/lib/share.php';
 
-<div class="post-container" style="max-width: 800px; margin: auto;">
+// Prepare URL for share buttons
+$post_url = rtrim(URLROOT, '/') . '/posts/show/' . urlencode((string)($post['slug'] ?? ''));
+?>
+
+<div class="post-container" style="max-width: 800px; margin: auto; padding: 20px;">
     <?php if (!empty($post['image_path'])): ?>
-        <div class="featured-image" style="margin-bottom: 20px;">
-            <img src="<?= $post['image_path'] ?>" 
-                 alt="<?= htmlspecialchars($post['title']) ?>" 
-                 style="width: 100%; height: auto; border-radius: 8px; object-fit: cover;">
+        <div class="featured-image" style="margin-bottom: 25px; overflow: hidden; border-radius: 8px;">
+            <img src="<?= htmlspecialchars($post['image_path'], ENT_QUOTES, 'UTF-8') ?>"
+                 alt="<?= htmlspecialchars($post['title'], ENT_QUOTES, 'UTF-8') ?>"
+                 style="width: 100%; max-height: 450px; object-fit: cover; display: block;">
         </div>
     <?php endif; ?>
 
     <article>
-        <h1><?= htmlspecialchars($post['title']) ?></h1>
-        <div class="post-body">
+        <h1 style="margin-bottom: 10px;"><?= htmlspecialchars($post['title'], ENT_QUOTES, 'UTF-8') ?></h1>
+
+        <?php if (function_exists('share_buttons')): ?>
+            <div style="margin: 15px 0 25px 0;">
+                <?= share_buttons($post_url, (string)($post['title'] ?? '')) ?>
+            </div>
+        <?php endif; ?>
+
+        <div class="post-body" style="line-height: 1.7; font-size: 1.15rem; white-space: pre-wrap; word-wrap: break-word;">
             <?= $post['body'] ?>
         </div>
     </article>
 
-    <hr>
+    <hr style="margin: 40px 0;">
 
     <section class="replies">
         <h3>Replies</h3>
-        
+
         <?php if (isset($_SESSION['user_id'])): ?>
             <div class="reply-form" style="margin-bottom: 30px; padding: 20px; background: #f4f4f4; border-radius: 8px;">
                 <h4>Leave a Reply</h4>
                 <form action="/posts/reply" method="POST">
-                    <input type="hidden" name="post_id" value="<?= $post['id'] ?>">
+                    <input type="hidden" name="post_id" value="<?= (int)$post['id'] ?>">
                     <div style="margin-bottom: 10px;">
                         <label>Name</label><br>
-                        <input type="text" name="author_name" value="<?= $_SESSION['user_name'] ?? 'Member' ?>" required style="width: 100%; padding: 8px;">
+                        <input type="text" name="author_name" value="<?= htmlspecialchars($_SESSION['user_name'] ?? 'Member', ENT_QUOTES, 'UTF-8') ?>" required style="width: 100%; padding: 8px;">
                     </div>
                     <div style="margin-bottom: 10px;">
                         <label>Message</label><br>
@@ -44,13 +57,14 @@
         <?php endif; ?>
 
         <?php foreach ($comments as $comment): ?>
-    <div class="comment" style="background: #000; color: #fff; padding: 15px; margin-bottom: 10px; border-radius: 5px;">
-        <p>
-            <strong><?= ucfirst(htmlspecialchars($comment['author_name'])) ?>:</strong><br> <?= nl2br(htmlspecialchars($comment['body'])) ?>
-        </p>
-        <small class="text-muted"><?= $comment['created_at'] ?></small>
-    </div>
-<?php endforeach; ?>
+            <div class="comment" style="background: #000; color: #fff; padding: 15px; margin-bottom: 10px; border-radius: 5px;">
+                <p>
+                    <strong><?= ucfirst(htmlspecialchars($comment['author_name'], ENT_QUOTES, 'UTF-8')) ?>:</strong><br>
+                    <?= nl2br(htmlspecialchars($comment['body'], ENT_QUOTES, 'UTF-8')) ?>
+                </p>
+                <small class="text-muted" style="color: #888;"><?= htmlspecialchars($comment['created_at'], ENT_QUOTES, 'UTF-8') ?></small>
+            </div>
+        <?php endforeach; ?>
     </section>
 </div>
 
