@@ -32,7 +32,8 @@ In `/app/lib/render_md.php`
 $text = "
 # Hi
 This is just a test Markdown message
- - Yould **Echo** this
+ - You should **Echo** this
+ ";
 ```
 `echo $this->render_md->markdown($text);`
 
