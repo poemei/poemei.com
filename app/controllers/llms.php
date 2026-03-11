@@ -7,7 +7,9 @@ class llms extends controller {
         $host = "https://" . $_SERVER['HTTP_HOST'];
 
         $excluded = ['admin.php', 'auth.php', 'health.php', 'sentinel.php', 'modules.php', 'ror.php', 'llms.php', 'sitemap.php'];
-        $controllers = array_diff(scandir(APPROOT . '/controllers'), array_merge(['.', '..'], $excluded));
+        //$controllers = array_diff(scandir(APPROOT . '/controllers'), array_merge(['.', '..'], $excluded));
+        $files = array_map('strtolower', scandir(APPROOT . '/controllers'));
+        $controllers = array_diff($files, array_merge(['.', '..'], $excluded));
 
         $txt = "# Poe Mei Map\n\n## Controllers\n";
         foreach ($controllers as $file) {
