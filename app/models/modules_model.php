@@ -6,7 +6,7 @@ class modules_model extends model
     public function get_all()
     {
         return $this->query(
-            "SELECT * FROM modules WHERE is_active = 1 ORDER BY title ASC"
+            "SELECT * FROM modules ORDER BY title ASC"
         )->fetchAll();
     }
     
@@ -18,6 +18,9 @@ class modules_model extends model
     return $this->fetch($sql, [$slug]);
     }
 
+    /* [Human:Mei | 2026-03-10 18:32:00 UTC] */
+    // Commented out CRUD operations to prevent unsanctioned DB writes
+    /**
     public function create($data)
     {
         return $this->query(
@@ -38,4 +41,6 @@ class modules_model extends model
     {
         return $this->query("DELETE FROM modules WHERE id = ?", [$id]);
     }
+    */
+    /* [End Human:Mei] */
 }

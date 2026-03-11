@@ -66,8 +66,12 @@ class admin extends controller
             if (in_array($slug, $restricted)) continue;
             
             $existing = $module_model->get_by_slug($slug);
-
+             
+             /* [Human:Mei | 2026-03-10 18:32:00 UTC] */
+             // Commented out CRUD operations to prevent unsanctioned DB writes
+             // during SEO refresh cycle.
             // Simple discovery: register file in DB if missing.
+            /**
             if (!$existing) {
                 $module_model->insert('modules', [
                     'slug' => $slug,
@@ -77,6 +81,8 @@ class admin extends controller
             }
             
             // SQUIRE_CRAWL REMOVED
+            */
+            /* [End Human:Mei] */
         }
 
         // Trigger SEO automated tools

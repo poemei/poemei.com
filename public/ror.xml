@@ -14,15 +14,8 @@
     <ror:resourceOf>sitemap</ror:resourceOf>
   </item>
   <item>
-    <title>">Media</title>
-    <link>http://poemei.com/media</link>
-    <ror:updated>2025-12-30T20:18:12+00:00</ror:updated>
-    <ror:updatePeriod>weekly</ror:updatePeriod>
-    <ror:resourceOf>sitemap</ror:resourceOf>
-  </item>
-  <item>
     <title>">Dev Log</title>
-    <link>http://poemei.com/pages/changelog</link>
+    <link>http://poemei.com/changelog</link>
     <ror:updated>2025-12-30T20:18:12+00:00</ror:updated>
     <ror:updatePeriod>weekly</ror:updatePeriod>
     <ror:resourceOf>sitemap</ror:resourceOf>
@@ -44,14 +37,6 @@
   <item>
     <title>">Resume</title>
     <link>http://poemei.com/resume</link>
-    <ror:updated>2025-12-30T20:18:12+00:00</ror:updated>
-    <ror:updatePeriod>weekly</ror:updatePeriod>
-    <ror:resourceOf>sitemap</ror:resourceOf>
-  </item>
-  <item>
-    <title>">
-                Account</title>
-    <link>http://poemei.com/profile</link>
     <ror:updated>2025-12-30T20:18:12+00:00</ror:updated>
     <ror:updatePeriod>weekly</ror:updatePeriod>
     <ror:resourceOf>sitemap</ror:resourceOf>

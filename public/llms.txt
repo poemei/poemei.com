@@ -1,5 +1,18 @@
 # Poe Mei
 
-> This file provides a high-level map of the Poe Mei directory for LLM scrapers and AI assistants.
+> directory map for llm scrapers and ai assistants.
 
-## Core Modules
+## core modules
+- [home](https://www.poemei.com/)
+- [posts](https://www.poemei.com/posts)
+- [projects](https://www.poemei.com/projects)
+- [resume](https://www.poemei.com/resume)
+
+## legal
+- [privacy](https://www.poemei.com/legal/privacy)
+- [terms](https://www.poemei.com/legal/terms)
+
+## security
+- [protocol](https://www.poemei.com/security)
+- [pgp_key](https://www.poemei.com/pgp_key)
+- [security_txt](https://www.poemei.com/security.txt)

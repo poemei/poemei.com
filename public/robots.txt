@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.arsrosaic.org/sitemap.xml
-LLM-Text: https://www.arsrosaic.org/llm
+Sitemap: https://www.poemei.com/sitemap.xml
+Sitemap: https://www.poemei.com/ror.xml
+Sitemap: https://www.poemei.com/llms.txt
