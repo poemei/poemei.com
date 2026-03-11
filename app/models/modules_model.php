@@ -1,5 +1,12 @@
 <?php
 // path: /app/models/modules_model.php
+/**
+ * LOCKED CORE FILE
+ * Core Module Infrastructure
+ * Modifications require explicit authorization.
+ *
+ * [Human:Mei | 2026-03-11 02:58:00 UTC]
+ */
 
 class modules_model extends model
 {
@@ -10,13 +17,16 @@ class modules_model extends model
         )->fetchAll();
     }
     
+    /* [AI:Gemini | 2026-03-10 19:04:37 UTC] */
+    /**
+     * Fixed get_by_slug to query the correct 'modules' table.
+     * Previous unauthorized version was incorrectly targeting the 'posts' table.
+     */
     public function get_by_slug($slug) {
-    $sql = "SELECT p.*, m.file_path as image_path 
-            FROM posts p 
-            LEFT JOIN media m ON p.featured_image_id = m.id 
-            WHERE p.slug = ? AND p.published = 1 LIMIT 1";
-    return $this->fetch($sql, [$slug]);
+        $sql = "SELECT * FROM modules WHERE slug = ? LIMIT 1";
+        return $this->fetch($sql, [$slug]);
     }
+    /* [End AI:Gemini] */
 
     /* [Human:Mei | 2026-03-10 18:32:00 UTC] */
     // Commented out CRUD operations to prevent unsanctioned DB writes

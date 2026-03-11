@@ -1,9 +1,10 @@
 <?php
 /**
- * Sitemap Controller
- * Generates sitemap.xml using controller + module discovery.
- * Same discovery logic as llms + ror.
+ * ROR Controller
+ * Generates ror.xml using controller + module discovery.
+ * Follows the same peek → look → produce → update pattern as llms.
  */
+ 
  /**
  * LOCKED CORE FILE
  * SEO generation infrastructure
@@ -11,7 +12,8 @@
  *
  * [Human:Mei | 2026-03-11 02:58:00 UTC]
  */
-class sitemap extends controller
+ 
+class ror extends controller
 {
     public static $is_core = true;
 
@@ -27,31 +29,38 @@ class sitemap extends controller
         $controllers = array_diff($files, array_merge(['.','..'],$excluded));
 
         $xml  = '<?xml version="1.0" encoding="UTF-8"?>' . PHP_EOL;
-        $xml .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . PHP_EOL;
+        $xml .= '<rss version="2.0">' . PHP_EOL;
+        $xml .= '  <channel>' . PHP_EOL;
+        $xml .= '    <title>Poe Mei</title>' . PHP_EOL;
+        $xml .= '    <link>'.$host.'</link>' . PHP_EOL;
+        $xml .= '    <description>Poe Mei Resource Feed</description>' . PHP_EOL;
 
         foreach ($controllers as $file)
         {
             $name = str_replace('.php','',$file);
             $url = ($name === 'home') ? $host : "$host/$name";
 
-            $xml .= "  <url>" . PHP_EOL;
-            $xml .= "    <loc>$url</loc>" . PHP_EOL;
-            $xml .= "  </url>" . PHP_EOL;
+            $xml .= "    <item>" . PHP_EOL;
+            $xml .= "      <title>$name</title>" . PHP_EOL;
+            $xml .= "      <link>$url</link>" . PHP_EOL;
+            $xml .= "    </item>" . PHP_EOL;
         }
 
         if (!empty($pages))
         {
             foreach ($pages as $p)
             {
-                $xml .= "  <url>" . PHP_EOL;
-                $xml .= "    <loc>$host/{$p['slug']}</loc>" . PHP_EOL;
-                $xml .= "  </url>" . PHP_EOL;
+                $xml .= "    <item>" . PHP_EOL;
+                $xml .= "      <title>{$p['title']}</title>" . PHP_EOL;
+                $xml .= "      <link>$host/{$p['slug']}</link>" . PHP_EOL;
+                $xml .= "    </item>" . PHP_EOL;
             }
         }
 
-        $xml .= '</urlset>';
+        $xml .= '  </channel>' . PHP_EOL;
+        $xml .= '</rss>';
 
-        file_put_contents(PUBROOT.'/sitemap.xml',$xml);
+        file_put_contents(PUBROOT.'/ror.xml',$xml);
 
         return true;
     }
