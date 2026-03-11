@@ -49,9 +49,9 @@ This is just a test `Markdown` message.
 ## To Do
 **Core**
 - [x] Admin
-- [ ] SEO Automation
 - [x] Posts
 - [x] Media
+- [ ] SEO Automation
 
 **Not Core**
 - [ ] Monetization
