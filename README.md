@@ -51,7 +51,7 @@ This is just a test `Markdown` message.
 - [x] Admin
 - [x] Posts
 - [x] Media
-- [ ] SEO Automation
+- [x] SEO Automation
 
 **Not Core**
 - [ ] Monetization
