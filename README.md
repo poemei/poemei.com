@@ -49,7 +49,7 @@ This is just a test `Markdown` message.
 ## To Do
 **Core**
 - [x] Admin
-- [x] SEO Automation
+- [ ] SEO Automation
 - [x] Posts
 - [x] Media
 
