@@ -55,9 +55,18 @@ class admin extends controller
         $directory = APPROOT . '/controllers/';
         $files = glob($directory . '*.php');
         
+         /* [Human:Mei | 2026-03-11 01:32:00 UTC] */
+        /**
+         * Removing all non poemei.com restricted controllers
         $restricted = [
             'sentinel', 'page', 'admin', 'auth', 'controller', 'llms', 'ror', 'sitemap',
             'rolls', 'offices', 's', 'modules', 'accounts', 'error_handler', 'health', 'lessons'
+        ];
+        */
+        /* [End Human:Mei] */
+
+        $restricted = [
+            'sentinel', 'page', 'admin', 'auth', 'controller', 'llms', 'ror', 'sitemap', 's', 'modules', 'accounts', 'error_handler', 'health'
         ];
 
         foreach ($files as $file) {
