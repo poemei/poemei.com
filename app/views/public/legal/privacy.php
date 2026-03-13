@@ -6,7 +6,7 @@
 I, Poe Mei, maintain a very strict protocol regarding data privacy and the protection of digital content and records. This policy outlines the collection, storage, and restricted access of digital footprints within my domain
 </p>
 <p>
-<strong>Information We Collect</strong><br>
+<strong>Information I Collect</strong><br>
 I believe in minimal data collection.
 </p>
 <p>

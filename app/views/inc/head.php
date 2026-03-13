@@ -1,3 +1,13 @@
+<?php
+$og = $og ?? [];
+
+$og_title = $og['title'] ?? 'Poe Mei';
+$og_desc  = $og['desc'] ?? 'Code * systems * Chaos * Witch';
+$og_url   = $og['url'] ?? URLROOT;
+$og_image = $og['image'] ?? URLROOT . '/assets/icons/icon.png';
+$og_type = 'article' ?? '';
+//print_r($data['og']);
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -13,17 +23,19 @@
     <meta name="application-name" content="Poe Mei" />
 
     <!-- For Facebook -->
-    <meta property="og:title" content="<?= htmlspecialchars($PAGE['title'] ?? $SITE['name'] ?? 'Poe Mei', ENT_QUOTES, 'UTF-8'); ?>" />
-    <meta property="og:image" content="https://www.poemei.com/assets/icons/icon.png" />
-    <meta property="og:url" content="https://www.poemei.com" />
-    <meta property="og:description" content="Code * systems * Chaos * Witch" />
+    <meta property="og:title" content="<?= htmlspecialchars($og_title) ?>" />
+    <meta property="og:image" content="<?= htmlspecialchars($og_image) ?>" />
+    <meta property="og:url" content="<?= htmlspecialchars($og_url) ?>" />
+    <meta property="og:description" content="<?= htmlspecialchars($og_desc) ?>" />
+    <meta property="og:type" content="<?= $og_type ?> ">
 
     <!-- For Twitter -->
     <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="<?= htmlspecialchars($PAGE['title'] ?? $SITE['name'] ?? 'Poe Mei', ENT_QUOTES, 'UTF-8'); ?>" />
-    <meta name="twitter:description" content="Code * systems * Chaos * Witch" />
-    <meta name="twitter:url" content="https://www.poemei.com" />
-    <meta name="twitter:image" content="https://www.poemei.com/assets/icons/icon.png" />
+    <meta name="twitter:title" content="<?= htmlspecialchars($og_title) ?>" />
+    <meta name="twitter:description" content="<?= htmlspecialchars($og_desc) ?>" />
+    <meta name="twitter:url" content="<?= htmlspecialchars($og_url) ?>" />
+    <meta name="twitter:image" content="<?= htmlspecialchars($og_image) ?>" />
+    <meta name="twitter:type" content="<?= $og_type ?>" />
     
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
@@ -49,11 +61,11 @@
         </h1>
 
         <p class="sw-hero-subtitle">
-            PHP Developer · System Architect · Shadow Witch
+            Content Creator · Developer · System Architect · Shadow Witch
         </p>
 
         <div class="sw-hero-meta">
-            <span>Code · Systems · Chaos · Witchy</span>
+            <span>Creator · Chaos · Shadow · Witchy ·Developer</span>
         </div>
     </div>
 </header>

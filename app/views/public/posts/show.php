@@ -2,7 +2,7 @@
 require APPROOT . '/views/inc/head.php';
 require_once APPROOT . '/lib/share.php';
 
-$post_url = rtrim(URLROOT, '/') . '/posts/show/' . urlencode((string)($post['slug'] ?? ''));
+$post_url = rtrim(URLROOT, '/') . '/posts/' . urlencode((string)($post['slug'] ?? ''));
 ?>
 
 <div class="post-container" style="width: 100%; margin: 0; padding: 0;">

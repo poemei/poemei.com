@@ -15,6 +15,8 @@ class posts extends controller {
     $model = $this->model('posts_model');
 
     $post = $model->get_post_with_image($slug);
+    //print_r($post);
+    //exit;
 
     if (!$post) {
         header("Location: /posts");
@@ -22,19 +24,38 @@ class posts extends controller {
     }
 
     $comments = $model->get_comments_by_post($post['id']);
-    //$clean_comments = string($comments);
-    //$rendered = $this->render_md->markdown($clean_comments);
-    
 
-    // restore markdown rendering
+    // render markdown
     $post['body'] = $this->render_md->markdown($post['body']);
 
+    $postUrl = URLROOT . "/posts/" . ($post['slug'] ?? $post['id']);
+    
+    $image = $post['image_path'] ?? '';
+
+    if ($image) {
+        // if the DB already includes /uploads/ keep it
+        if (str_starts_with($image, '/')) {
+            $ogImage = URLROOT . $image;
+        } else {
+            $ogImage = URLROOT . "/uploads/" . $image;
+        }
+    } else {
+        $ogImage = URLROOT . "/assets/icons/icon.png";
+    }
+
     $data = [
-        'post' => $post,
-        'comments' => $comments,
-        'shareUrl' => URLROOT . "/posts/" . ($post['slug'] ?? $post['id']),
-        'title' => $post['title']
-    ];
+    'post' => $post,
+    'comments' => $comments,
+    'shareUrl' => $postUrl,
+    'title' => $post['title'],
+
+    'og' => [
+        'title' => $post['title'],
+        'desc'  => substr(strip_tags($post['body']), 0, 160),
+        'url'   => $postUrl,
+        'image' => $ogImage
+    ]
+];
 
     $this->view('public/posts/show', $data);
 }
@@ -95,6 +116,12 @@ class posts extends controller {
 
         if ($model->insert('comments', $payload)) {
             // Redirect back to the post they just commented on
+            $mailerObj = new mailer();
+                $mail = $mailerObj->create();
+                $mail->addAddress('poe@poemei.com');
+                $mail->Subject = "New Comment";
+                $mail->Body = "Hey Poe, a new comment has been posted on something you posted.";
+                $mail->send();
             $redirect = $_SERVER['HTTP_REFERER'] ?? '/';
             header("Location: " . $redirect);
             exit;

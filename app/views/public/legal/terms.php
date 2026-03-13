@@ -9,7 +9,7 @@
 By accessing this website, and its associated content, you agree to be bound by these Terms of Use. These terms constitute a formal agreement between the user and Poe Mei. If you do not consent to these protocols, you must terminate your session immediately.
 </p>
 <p>
-<strong>Intellectual Property & Institutional Assets</strong><br>
+<strong>Intellectual Property & Assets</strong><br>
 All content, including but not limited to the architecture, proprietary modules, textual or media content, and Poe Mei's visual identity (Poe Mei), is the exclusive intellectual and legal property of Poe Mei.
 <ul>
   <li><strong>Limited Access</strong>:<br>
@@ -36,11 +36,11 @@ Users are granted a non-transferable right to view public records.
   </ul>
 </p>
 <p>
-<strong>The Archive & Restricted Media</strong><br>
+<strong>The Restricted Media</strong><br>
 Certain modules and media within this website are subject to specific classification tiers.
 <ul>
   <li>Access is granted based on credentialing.</li>
-  <li>Any attempt to "Black Box" or bypass security logic to access restricted data is a violation of institutional protocol and will be logged as a security breach.</li>
+  <li>Any attempt to "Black Box" or bypass security logic to access restricted data is a violation of stated protocol and will be logged as a security breach.</li>
 </ul>
 </p>
 <p>
@@ -53,7 +53,7 @@ Poe Mei shall not be held liable for any damages, including data loss or loss of
 </p>
 <p>
 <strong>Governing Law</strong>
-All claims relating to POe Mei shall be governed by the laws of her leagal & operating jurisdiction, without regard to its conflict of law provisions.
+All claims relating to Poe Mei shall be governed by the laws of her leagal & operating jurisdiction, without regard to its conflict of law provisions.
 </p>
 <p>
 <strong>Developer & System Integrity</strong><br>
