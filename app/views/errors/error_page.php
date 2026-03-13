@@ -5,6 +5,12 @@
         <h1 class="display-1 fw-bold text-secondary"><?= $data['code'] ?? 'Error' ?></h1>
         <h2 class="fs-3"><?= $data['title'] ?? 'Something went wrong' ?></h2>
         <p class="lead text-muted">
+            <?
+             /**
+              * Change <?= $data['message'] ?? to $data['msg'] ?? to match the controller msg
+              * [Human: Mei | 2026-03-13:03:45 UTC]
+            */
+            ?>
             <?= $data['msg'] ?? 'The system encountered an unexpected issue during migration.' ?>
         </p>
         <hr class="my-4">
