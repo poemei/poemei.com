@@ -6,7 +6,7 @@
   * LOCKED CORE FILE
  * Core Routing Infrastructure
  * Modifications require explicit authorization.
- * [Human:Mei | 2026-03-11 02:58:00 UTC]
+ * [Human:Mei | 2026-03-13 03:45:00 UTC]
  */
 
 class router
@@ -60,7 +60,10 @@ class router
         /* -------------------------------------------------
            CONTROLLER
         --------------------------------------------------*/
-
+        /**
+         * Re Work to get error handler implemented
+         * [AI:GPT | 2026-03-13 03:35:00 UTC]
+         * [HUMAN: Mei APPROVE | 2026-03-13 03:39:00 UTC]
         if (isset($url[0]) && $url[0] !== '') {
 
             $controller_file = APPROOT . '/controllers/' . $url[0] . '.php';
@@ -70,18 +73,39 @@ class router
                 unset($url[0]);
             }
         }
+        */
+        if (isset($url[0]) && $url[0] !== '') {
+            $controller_file = APPROOT . '/controllers/' . $url[0] . '.php';
+
+            if (file_exists($controller_file)) {
+                $this->controller = $url[0];
+                unset($url[0]);
+            } else {
+                (new error_handler())->not_found();
+                return;
+            }
+        }
+        /* [End AI:GPT] */
 
         $controller_path = APPROOT . '/controllers/' . $this->controller . '.php';
 
         if (!file_exists($controller_path)) {
-            $this->error404();
+            /** 
+             * Setting the proper error handler
+             * [Human:Mei | 2026-03-13 03:35:00 UTC]
+            */
+            (new error_handler())->not_found();
             return;
         }
 
         require_once $controller_path;
 
         if (!class_exists($this->controller)) {
-            $this->error404();
+            /** 
+             * Setting the proper error handler
+             * [Human:Mei | 2026-03-13 03:35:00 UTC]
+            */
+            (new error_handler())->not_found();
             return;
         }
 
@@ -130,7 +154,11 @@ class router
         --------------------------------------------------*/
 
         if (!method_exists($this->controller, $this->method)) {
-            $this->error404();
+            /** 
+             * Setting the proper error handler
+             * [Human:Mei | 2026-03-13 03:35:00 UTC]
+            */
+            (new error_handler())->not_found();
             return;
         }
 
@@ -162,6 +190,9 @@ class router
     /**
      * Basic 404 handler
      */
+     /**
+      * Removing to use the proper error handler
+      * [Human:Mei | 2026-03-13 03:35:00 UTC]
     private function error404()
     {
         header("HTTP/1.0 404 Not Found");
@@ -176,4 +207,5 @@ class router
 
         exit;
     }
+    */
 }
