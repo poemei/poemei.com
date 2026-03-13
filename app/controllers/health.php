@@ -1,5 +1,12 @@
 <?php
 // path: /app/controllers/health.php
+/**
+ * LOCKED CORE FILE
+ * Core Admin Infrastructure
+ * Modifications require explicit authorization.
+ *
+ * [Human:Mei | 2026-03-11 02:58:00 UTC]
+ */
 
 class health extends controller 
 {

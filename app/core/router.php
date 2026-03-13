@@ -3,8 +3,10 @@
  * Router
  * Responsible only for dispatching URL → controller → method → params
  * No database calls belong here.
- * THIS FILE IS LOCKED
- * NO MORE EDITS TO THIS FILE ARE ALLOWED
+  * LOCKED CORE FILE
+ * Core Routing Infrastructure
+ * Modifications require explicit authorization.
+ * [Human:Mei | 2026-03-11 02:58:00 UTC]
  */
 
 class router
