@@ -53,6 +53,7 @@ class recruiting extends controller {
 
             if ($this->recruit_model->add_recruit($data)) {
                 $this->send_confirmation($data);
+                $this->alert_poe($data);
                 $this->view('recruiting/success');
             } else {
                 $this->error_page("Intake Failed. Database integrity error.");
@@ -77,6 +78,30 @@ class recruiting extends controller {
             $mail->Body = "<h1>Audit Logged</h1>
                            <p>Your credentials have been logged for audit.</p>
                            <p><strong>Compliance is the watchword.</strong></p>";
+            
+            $mail->send();
+        } catch (Exception $e) {
+            error_log("Mailer Error: " . $e->getMessage());
+        }
+    }
+    
+     /**
+     * Notify Poe
+     */
+    private function alert_poe($data) {
+        try {
+            $mailerFactory = new mailer();
+            $mail = $mailerFactory->create();
+
+            $mail->addAddress('poe@poemei.com', 'Poe');
+            $mail->Subject = "New Developer Application";
+            
+            $mail->Body = "<h1>Hey Boss</h1>" .
+                          "<p>" .
+                          $data['name'] . " has just requested that you vet them. Please go vet this person." .
+                          "</p>" .
+                          "<p></p>" .
+                          "<p><strong>Compliance is the watchword.</strong></p>";
             
             $mail->send();
         } catch (Exception $e) {

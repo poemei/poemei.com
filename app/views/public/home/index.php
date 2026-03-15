@@ -90,7 +90,7 @@ Don't be a **THEM** K? Snowflake?
   ";
 echo $this->render_md->markdown($recruiting);
 ?>
-<p>If this is your sort of thing, and you got an interest, always check the <a href="/changelog">Changelog</a>, and send me an email to <a href="mailto:poe@poemei.com">poe@poemei.com</a>. I would love to be able to work with you. <b>Males</b> I am so sorry but you need not apply, no offense, but I was <b>once one of you</b>, and I <b>care not</b>, to be around <b><em>your energy</em></b>.</p>
+<p>If this is your sort of thing, and you got an interest, always check the <a href="/changelog">Changelog</a>, and then go <b><a href="/recruiting">HERE</a></b>. I would love to be able to work with you. <b>Males</b> I am so sorry, but you need not apply, no offense, but I was <b>once one of you</b>, and I <b>care not</b>, to be around <b><em>your energy</em></b>.</p>
 </div>
   </section>
 </div>

@@ -7,7 +7,7 @@ declare(strict_types=1);
  */
 require_once APPROOT . '/views/inc/head.php'; 
 ?>
-<p><small><a href="/">Home</a> >> <b>Strong</b></small></p>
+<p><small><a href="/">Home</a> >> <b>Recruiting</b></small></p>
 <div class="container mt-5">
     <div id="recruitment-portal" class="content-wrapper p-lg-5" style="background: #1e1e1e; border: 1px solid #333; border-radius: 8px;">
         
@@ -34,22 +34,23 @@ require_once APPROOT . '/views/inc/head.php';
         <div id="gate-2" style="display:none;">
             <h2 class="mb-4 text-white">The Protocol of the Core</h2>
             <ul class="list-unstyled text-light">
-                <li>• Mandatory Annotations</li>
-                <li>• Zero Tolerance for 'Shit Code'</li>
-                <li>• Three-Strike Removal Policy</li>
+                <li> <b>GitHub</b> is a <b>REQUIREMENT</b></li>
+                <li> Mandatory Annotations</li>
+                <li> Zero Tolerance for <code>Shit Code</code></li>
+                <li> Three-Strike Removal Policy is <b>Strictly</b> enforced.</li>
             </ul>
-            <button class="btn btn-outline-light" onclick="document.getElementById('gate-2').style.display='none'; document.getElementById('recruiting-form').style.display='block';">I Will Comply</button>
+            <button class="btn btn-outline-light" onclick="document.getElementById('gate-2').style.display='none'; document.getElementById('recruiting-form').style.display='block';">I'm Good with this...</button>
         </div>
 
         <form id="recruiting-form" action="<?php echo URLROOT; ?>/recruiting/submit" method="POST" style="display:none;">
             <div class="mb-4">
-                <label for="name" class="form-label text-light fw-bold" style="opacity: 0.9;">Name or Alias</label>
-                <input type="text" id="name" name="name" class="form-control bg-dark text-light border-secondary" placeholder="e.g. GhostInTheShell" required>
+                <label for="name" class="form-label text-light fw-bold" style="opacity: 0.9;">Name</label>
+                <input type="text" id="name" name="name" class="form-control bg-dark text-light border-secondary" placeholder="e.g. Your Name" required>
             </div>
             
             <div class="mb-4">
                 <label for="email" class="form-label text-light fw-bold" style="opacity: 0.9;">Secure Email Address</label>
-                <input type="email" id="email" name="email" class="form-control bg-dark text-light border-secondary" placeholder="e.g. entity@domain.com" required>
+                <input type="email" id="email" name="email" class="form-control bg-dark text-light border-secondary" placeholder="e.g. you@gmail.com" required>
             </div>
             
             <div class="mb-4">
@@ -58,7 +59,7 @@ require_once APPROOT . '/views/inc/head.php';
             </div>
             
             <div class="mb-4">
-                <label for="projects" class="form-label text-light fw-bold" style="opacity: 0.9;">High-Signal Project History</label>
+                <label for="projects" class="form-label text-light fw-bold" style="opacity: 0.9;">Project History</label>
                 <textarea id="projects" name="projects" class="form-control bg-dark text-light border-secondary" rows="5" placeholder="Briefly list your contributions to custom or core-level MVC architectures..."></textarea>
             </div>
             

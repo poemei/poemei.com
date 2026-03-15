@@ -7,7 +7,7 @@ declare(strict_types=1);
 */
 require_once APPROOT . '/views/inc/head.php';
 ?>
-<p><small><a href="/">Home</a> >> <b>Strong</b></small></p>
+<p><small><a href="/">Home</a> >> <b>Recruiting</b></small></p>
 <div class="container mt-5 text-center">
     <div class="content-wrapper p-lg-5">
         <h1 class="display-4 text-success mb-4">Submission Logged</h1>
