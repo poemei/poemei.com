@@ -60,56 +60,40 @@ class router
         /* -------------------------------------------------
            CONTROLLER
         --------------------------------------------------*/
-        /**
-         * Re Work to get error handler implemented
-         * [AI:GPT | 2026-03-13 03:35:00 UTC]
-         * [HUMAN: Mei APPROVE | 2026-03-13 03:39:00 UTC]
+        /* [AI:GPT | 2026-03-14 18:15:00 UTC] */
+        /* [HUMAN: MEI | APPROVE | 2026-03-15 18:17 UTC] */
         if (isset($url[0]) && $url[0] !== '') {
 
             $controller_file = APPROOT . '/controllers/' . $url[0] . '.php';
 
             if (file_exists($controller_file)) {
-                $this->controller = $url[0];
-                unset($url[0]);
-            }
-        }
-        
-        /**
-         * Re work to allow error_handler for unknown modules
-         * [AI:GPT | 2026-03-14 23:32 UTC]
-         * [HUMAN: APPROVED | 2026-03-13 03:39:00 UTC]
-         */
-        if (isset($url[0]) && $url[0] !== '') {
-            $controller_file = APPROOT . '/controllers/' . $url[0] . '.php';
 
-            if (file_exists($controller_file)) {
+                // Normal controller route
                 $this->controller = $url[0];
                 unset($url[0]);
+
             } else {
+
+                // Attempt DB-driven module resolution
+                require_once APPROOT . '/models/modules_model.php';
+                $modules = new modules_model();
+
+                if ($modules->get_by_slug($url[0])) {
+
+                // Route request through page controller
+                $this->controller = 'page';
+                $this->method = 'index';
+
+            } else {
+
+                // Nothing matched → true 404
                 (new error_handler())->not_found();
                 return;
+
             }
         }
-        /*[END GPT] */ 
-        
-        /**
-         * Re work to allow db based  modules
-         * [AI:GPT | 2026-03-14 23:32 UTC]
-         * [HUMAN: NOT APPROVED | 2026-03-13 03:39:00 UTC]
-         
-        if (isset($url[0]) && $url[0] !== '') {
-
-        $controller_file = APPROOT . '/controllers/' . $url[0] . '.php';
-
-        if (file_exists($controller_file)) {
-            $this->controller = $url[0];
-            unset($url[0]);
-        } else {
-            // fallback to page controller for DB-driven modules
-            $this->controller = 'page';
-        }
-       }
-       [/AI:GPT] */
+    }
+    /* [End AI:GPT] */
 
         $controller_path = APPROOT . '/controllers/' . $this->controller . '.php';
 
