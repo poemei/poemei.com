@@ -66,9 +66,14 @@ $moon = sw_get_moon_phase();
             <?= htmlspecialchars($moon['label'], ENT_QUOTES, 'UTF-8'); ?>
         </span>
         <span class="sw-footer-moon-note" style="color: #666;">· UTC</span>
+        <br>
+        <a href="/goddesses" style="text-decoration: none; color: inherit;">Goddesses</a>
+        <br>
+        <a href="https://discord.gg/CctRfPpe" target="_blank" style="text-decoration: none; color: inherit;">My Discord</a>
     </div>
 
     <div style="flex: 1; text-align: right;">
+        <a href="/" style="text-decoration: none; color: inherit; margin-left: 10px;">Home</a>
         <a href="/legal/terms" style="text-decoration: none; color: inherit; margin-left: 10px;">Terms</a>
         <a href="/legal/privacy" style="text-decoration: none; color: inherit; margin-left: 10px;">Privacy</a>
         <a href="/security" style="text-decoration: none; color: inherit; margin-left: 10px; margin-right: 20px;">Security</a>

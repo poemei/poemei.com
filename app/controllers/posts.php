@@ -2,6 +2,7 @@
 // path: /app/controllers/posts.php
 
 class posts extends controller {
+    public static $is_core = true;
 
     public function index(): void {
         $model = $this->model('posts_model');

@@ -9,7 +9,7 @@
     An MVC is a web based platform that has been around for a very long time.
       - The **M**odel is what deals with Database Functionality
       - The **V**iew presents the data from the **C**controller
-      - The **C**controller is the `Traffic Cop`, directing traffic while injecting data.
+      - The **C**ontroller is the `Traffic Cop`, directing traffic while injecting data.
     I chose to develop a custom version of this platform, that acts like a **Content Management System**.
     
     **The Chaos CMS**

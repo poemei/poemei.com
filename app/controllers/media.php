@@ -2,6 +2,7 @@
 // path: /app/controllers/media.php
 
 class media extends controller {
+    public static $is_core = true;
 
     public function admin($params = []) {
         $model = $this->model('media_model');

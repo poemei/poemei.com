@@ -73,7 +73,12 @@ class router
                 unset($url[0]);
             }
         }
-        */
+        
+        /**
+         * Re work to allow error_handler for unknown modules
+         * [AI:GPT | 2026-03-14 23:32 UTC]
+         * [HUMAN: APPROVED | 2026-03-13 03:39:00 UTC]
+         */
         if (isset($url[0]) && $url[0] !== '') {
             $controller_file = APPROOT . '/controllers/' . $url[0] . '.php';
 
@@ -85,7 +90,26 @@ class router
                 return;
             }
         }
-        /* [End AI:GPT] */
+        /*[END GPT] */ 
+        
+        /**
+         * Re work to allow db based  modules
+         * [AI:GPT | 2026-03-14 23:32 UTC]
+         * [HUMAN: NOT APPROVED | 2026-03-13 03:39:00 UTC]
+         
+        if (isset($url[0]) && $url[0] !== '') {
+
+        $controller_file = APPROOT . '/controllers/' . $url[0] . '.php';
+
+        if (file_exists($controller_file)) {
+            $this->controller = $url[0];
+            unset($url[0]);
+        } else {
+            // fallback to page controller for DB-driven modules
+            $this->controller = 'page';
+        }
+       }
+       [/AI:GPT] */
 
         $controller_path = APPROOT . '/controllers/' . $this->controller . '.php';
 
