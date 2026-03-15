@@ -7,7 +7,7 @@ declare(strict_types=1);
  */
 require_once APPROOT . '/views/inc/head.php'; 
 ?>
-
+<p><small><a href="/">Home</a> >> <b>Strong</b></small></p>
 <div class="container mt-5">
     <div id="recruitment-portal" class="content-wrapper p-lg-5" style="background: #1e1e1e; border: 1px solid #333; border-radius: 8px;">
         
