@@ -30,15 +30,17 @@ In `/app/lib/render_md.php`
 - **Usage**: 
 ```php
 <?php
+
 $render = new render_md();
+
 $text = "
 # Hi
+
 This is just a test `Markdown` message.
- - You should **echo** this.
- ";
-```
-```php
-<?php
+
+- You should **echo** this.
+";
+
 echo $render->markdown($text);
 ```
 Will render as:
