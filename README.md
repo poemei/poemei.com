@@ -30,6 +30,7 @@ In `/app/lib/render_md.php`
 - **Usage**: 
 ```php
 <?php
+$render = new render_md();
 $text = "
 # Hi
 This is just a test `Markdown` message.
@@ -38,7 +39,7 @@ This is just a test `Markdown` message.
 ```
 ```php
 <?php
-echo $this->render_md->markdown($text);
+echo $render->markdown($text);
 ```
 Will render as:
 # Hi
