@@ -57,6 +57,6 @@ This is just a test `Markdown` message.
 - [x] SEO Automation
 
 **Not Core**
-- [ ] Monetization
+- [x] Monetization via the market module
 - [ ] Web3 Blockchain Integrations
 
