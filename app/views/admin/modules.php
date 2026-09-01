@@ -1,53 +1,224 @@
 <?php require APPROOT . '/views/inc/head.php'; ?>
+
 <p><small><a href="/admin">Admin</a> >> <strong>Modules</strong></small></p>
+
 <div class="container py-5">
+
     <div class="mb-5">
-        <h2 class="fw-bold">Module Registry</h2>
-        <p class="text-muted small text-uppercase">System Architecture Manager</p>
+        <h2 class="fw-bold">Modules</h2>
+        <p class="text-muted small text-uppercase">System Components</p>
     </div>
 
-    <div class="table-responsive">
-        <table class="table table-hover align-middle border">
-            <thead class="table-light">
-                <tr>
-                    <th class="ps-4">Module Slug</th>
-                    <th>Classification</th>
-                    <th class="text-end pe-4">System Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach($data['modules'] as $module): ?>
-                <tr>
-                    <td class="ps-4">
-                        <code class="fw-bold"><?= $module['slug']; ?></code>
-                    </td>
-                    <td>
-                        <?php if($module['is_core']): ?>
-                            <span class="badge bg-primary-subtle text-primary border border-primary-subtle">CORE</span>
+    <?php
+    $core = [];
+    $addons = [];
+
+    foreach ($data['modules'] as $module) {
+        if ($module['is_core']) {
+            $core[] = $module;
+        } else {
+            $addons[] = $module;
+        }
+    }
+    require_once APPROOT . '/core/version.php';
+    $systemVersion = defined('CHAOS_VERSION') ? CHAOS_VERSION : '0.0.0';
+    ?>
+
+    <!-- CORE -->
+    <h5 class="mb-3 text-uppercase text-muted">Core</h5>
+    <div class="row g-4 mb-5">
+        <?php foreach ($core as $module): ?>
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 border">
+                <div class="card-body d-flex flex-column">
+
+                    <h5 class="fw-bold"><?= ucfirst(htmlspecialchars($module['slug'])); ?></h5>
+                    <p class="small text-muted">Core Module</p>
+
+                    <p><small>Version: <strong><?= $systemVersion; ?></strong></small></p>
+
+                    <div class="mt-auto">
+                        <a href="/admin/<?= $module['slug']; ?>" class="btn btn-sm btn-outline-primary w-100 mb-2">
+                            Manage
+                        </a>
+
+                        <button class="btn btn-sm btn-light w-100" disabled>
+                            Managed by System
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <?php endforeach; ?>
+    </div>
+
+    <hr class="my-5">
+
+    <!-- ADDONS -->
+    <h5 class="mb-3 text-uppercase text-muted">Addons</h5>
+    <div class="row g-4">
+
+        <?php foreach ($addons as $module):
+
+            $config = is_array($module['config'] ?? null) ? $module['config'] : [];
+            $version = '0.0.0';
+            $desc = '';
+            $author = '';
+            $domain = '';
+            $certified = '';
+            $hasUpdate = false;
+            $hasUpdateSource = false;
+
+            if ($config !== []) {
+                $version = $config['version'] ?? '0.0.0';
+                $desc = $config['description'] ?? '';
+                $author = $config['creator'] ?? ($config['developer']['name'] ?? '');
+                $domain = $config['domain'] ?? '';
+                $certified = $config['certified'] ?? '';
+
+                $updateUrl = trim((string) ($config['update_url'] ?? ''));
+                $signing = is_array($config['signing'] ?? null)
+                    ? $config['signing']
+                    : [];
+                $hasUpdateSource =
+                    filter_var($updateUrl, FILTER_VALIDATE_URL) !== false
+                    && strtolower((string) parse_url($updateUrl, PHP_URL_SCHEME)) === 'https'
+                    && strtolower(trim((string) ($signing['algorithm'] ?? ''))) === 'rsa-sha256'
+                    && trim((string) ($signing['key_id'] ?? '')) !== ''
+                    && trim((string) ($signing['public_key'] ?? '')) !== '';
+
+                if ($hasUpdateSource) {
+                    $separator = str_contains($updateUrl, '?') ? '&' : '?';
+                    $remoteJson = @file_get_contents($updateUrl . $separator . 't=' . time());
+                    $remote = is_string($remoteJson)
+                        ? json_decode($remoteJson, true)
+                        : null;
+
+                    if (is_array($remote)) {
+                        $remoteModule = (string) ($remote['module'] ?? '');
+                        $remoteVersion = (string) ($remote['version'] ?? '');
+                        $localModule = (string) ($module['slug'] ?? '');
+
+                        if (
+                            $remoteModule !== ''
+                            && hash_equals($localModule, $remoteModule)
+                            && $remoteVersion !== ''
+                            && version_compare($remoteVersion, (string) $version, '>')
+                        ) {
+                            $hasUpdate = true;
+                        }
+                    }
+                }
+            }
+        ?>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 border">
+                <div class="card-body d-flex flex-column">
+
+                    <h5 class="fw-bold"><?= ucfirst(htmlspecialchars($module['slug'])); ?></h5>
+
+                    <p><small>Version: <strong><?= $version; ?></strong></small></p>
+                    <p><small><strong>Description</strong>: <?= $desc; ?></small></p>
+                    <p><small><strong>Author</strong>: <?= $author; ?></small></p>
+                    <p><small><strong>Domain</strong>: <a href="https://<?= $domain; ?>"><?= $domain; ?></a></small></p>
+                    <p><small>
+                    <?php
+                    if($certified == '') {
+                         $certified = 'No';
+                    }
+                    $certified = 'Yes';
+                    ?>
+                    <strong>Certified</strong>: <?= $certified; ?>
+                    </small>
+                    </p>
+
+                    <div class="mt-auto">
+
+                        <a href="/admin/<?= $module['slug']; ?>" class="btn btn-sm btn-outline-primary w-100 mb-2">
+                            Manage
+                        </a>
+
+                        <?php if ($hasUpdate): ?>
+                            <button class="btn btn-sm btn-success w-100 mb-2 btn-update"
+                                data-module="<?= htmlspecialchars($module['slug']); ?>">
+                                Update
+                            </button>
+                        <?php elseif ($hasUpdateSource): ?>
+                            <button class="btn btn-sm btn-secondary w-100 mb-2" disabled>
+                                Up to Date
+                            </button>
                         <?php else: ?>
-                            <span class="badge bg-light text-dark border">ADDON</span>
-                        <?php endif; ?>
-                    </td>
-                    <td class="text-end pe-4">
-                        <a href="/admin/<?= $module['slug']; ?>" class="btn btn-sm btn-outline-primary px-3">Manage</a>
-                        
-                        <?php if(!$module['is_core']): ?>
-                            <form action="/admin/uninstall" method="POST" class="d-inline" 
-                                  onsubmit="return confirm('EXTREME DANGER: This will permanently delete the DB table, Controller, Model, and all Views for this module.');">
-                                <input type="hidden" name="module" value="<?= $module['slug']; ?>">
-                                <button type="submit" class="btn btn-sm btn-danger px-3 ms-2">Nuke</button>
-                            </form>
-                        <?php else: ?>
-                            <button class="btn btn-sm btn-light ms-2" disabled title="Core modules cannot be removed.">
-                                <i class="bi bi-lock-fill"></i>
+                            <button class="btn btn-sm btn-outline-secondary w-100 mb-2" disabled
+                                title="Add a valid HTTPS update_url and rsa-sha256 signing metadata to module.json to enable signed updates.">
+                                Local Module
                             </button>
                         <?php endif; ?>
-                    </td>
-                </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
+
+                        <form action="/admin/uninstall" method="POST"
+                              onsubmit="return confirm('EXTREME DANGER: This will permanently remove all data and files for this module.');">
+                            <?= $this->csrf_field(); ?>
+                            <input type="hidden" name="module" value="<?= htmlspecialchars($module['slug']); ?>">
+                            <button type="submit" class="btn btn-sm btn-danger w-100">
+                                Nuke
+                            </button>
+                        </form>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <?php endforeach; ?>
+
     </div>
+
 </div>
 
+<script>
+document.querySelectorAll('.btn-update').forEach(btn => {
+    btn.addEventListener('click', async () => {
+
+        const module = btn.dataset.module;
+
+        // 🔄 visual feedback
+        btn.innerHTML = 'Updating...';
+        btn.disabled = true;
+
+        try {
+            const res = await fetch(`/admin/update?module=${module}`);
+            const data = await res.json();
+
+            if (data.success) {
+                btn.innerHTML = `Updated → ${data.version}`;
+                btn.classList.remove('btn-success');
+                btn.classList.add('btn-secondary');
+
+                // update version text without reload
+                const card = btn.closest('.card');
+                const versionEl = card.querySelector('strong');
+
+                if (versionEl) {
+                    versionEl.innerText = data.version;
+                }
+
+            } else {
+                btn.innerHTML = 'Failed';
+                btn.disabled = false;
+            }
+
+        } catch (e) {
+            btn.innerHTML = 'Error';
+            btn.disabled = false;
+        }
+
+    });
+});
+</script>
+
 <?php require APPROOT . '/views/inc/foot.php'; ?>
+
+
+

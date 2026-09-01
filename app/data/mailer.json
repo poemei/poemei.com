@@ -1,0 +1,10 @@
+{
+    "host": "mail.poemei.com",
+    "smtp_auth": true,
+    "username": "rictus@poemei.com",
+    "password": "LsXJNW9S#",
+    "encryption": "starttls",
+    "port": 587,
+    "from_email": "no_reply@poemei.com",
+    "from_name": "Rictus"
+}

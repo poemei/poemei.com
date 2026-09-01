@@ -21,7 +21,6 @@ class page extends controller {
             return;
         }
 
-        require_once APPROOT . '/controllers/error_handler.php';
         (new error_handler())->not_found();
     }
 }

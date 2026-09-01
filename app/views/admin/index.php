@@ -39,31 +39,25 @@
 
     <div class="row g-4 justify-content-center mb-5">
         <?php
-        // Automation: Scan controllers directory
-        $controllers = glob(APPROOT . '/controllers/*.php');
-        $excluded = ['admin.php', 'pages.php', 'auth.php', 'error_handler.php'];
-
-        foreach ($controllers as $file) {
-            $name = basename($file, '.php');
-            if (in_array($name, $excluded)) continue;
-
-            require_once $file;
-            if (class_exists($name)) {
-                $reflect = new ReflectionClass($name);
-                // Only show a tile if the controller has an admin() method
-                if ($reflect->hasMethod('admin')) {
+        /*
+         * CMSEC-2026-4830-B — Inert administration discovery
+         *
+         * Disabled view-time controller scanning and require_once execution
+         * moved into the protected administration controller.
+         */
+        foreach (($data['modules'] ?? []) as $name) {
+            if (is_string($name)) {
                     ?>
                     <div class="col-md-6 col-lg-3 text-center">
                         <div class="card h-100 border-0 shadow-sm p-3">
                             <div class="card-body">
                                 <i class="bi bi-gear h1 d-block mb-3 text-primary"></i>
-                                <h6 class="fw-bold text-capitalize"><?= $name; ?></h6>
-                                <a href="/admin/<?= $name; ?>" class="btn btn-outline-primary btn-sm w-100 mt-2">Manage</a>
+                                <h6 class="fw-bold text-capitalize"><?= htmlspecialchars($name, ENT_QUOTES, 'UTF-8'); ?></h6>
+                                <a href="/admin/<?= rawurlencode($name); ?>" class="btn btn-outline-primary btn-sm w-100 mt-2">Manage</a>
                             </div>
                         </div>
                     </div>
                     <?php
-                }
             }
         }
         ?>
@@ -81,5 +75,8 @@
         </div>
     </div>
 </div>
-<p><small><a href="/logout">Logout</a></small></p>
+<form action="/logout" method="POST">
+    <?= $this->csrf_field(); ?>
+    <button type="submit" style="background: none; border: 0; color: inherit; cursor: pointer; font: inherit; padding: 0;"><small>Logout</small></button>
+</form>
 <?php require APPROOT . '/views/inc/foot.php'; ?>

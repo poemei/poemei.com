@@ -1,6 +1,5 @@
-
 <?php require APPROOT . '/views/inc/head.php'; ?>
-<p><small><a href="/admin">Admin</a> >> <strong>Sentinel</strong></small></p>
+
 <div class="container py-5">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <div>
@@ -68,10 +67,11 @@
                     </div>
                     <div class="card-body border">
                         <div class="mb-3">
-                            <label class="form-label small fw-bold text-muted text-uppercase">Permanent Site ID</label>
-                            <input type="text" class="form-control bg-light font-monospace" 
-                                   value="<?= $data['config_map']['site_id'] ?? 'site_75663fa85281c37a'; ?>" readonly>
-                            <div class="form-text x-small text-info mt-1">Locked for STN-Labz reporting.</div>
+                            <label class="form-label small fw-bold text-muted text-uppercase">Site ID</label>
+                            <input type="text" name="settings[site_id]" class="form-control font-monospace"
+                                   value="<?= htmlspecialchars($data['config_map']['site_id'] ?? '', ENT_QUOTES, 'UTF-8'); ?>"
+                                   minlength="3" maxlength="64" pattern="[A-Za-z0-9][A-Za-z0-9._-]{2,63}" required>
+                            <div class="form-text x-small text-info mt-1">Must be unique to this Sentinel installation.</div>
                         </div>
 
                         <div class="mb-0">
@@ -155,4 +155,3 @@
 </div>
 
 <?php require APPROOT . '/views/inc/foot.php'; ?>
-
