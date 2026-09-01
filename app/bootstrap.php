@@ -157,21 +157,25 @@ spl_autoload_register(
 );
 
 /**
-  * Sentinel MVC
-  * Perimeter Security
-*/
+ * Sentinel MVC
+ *
+ * Optional perimeter-security integration. When the Sentinel module is
+ * installed, inspect the request before normal MVC initialization continues.
+ */
 $sentinelController = USERROOT
     . '/modules/sentinel/controllers/sentinel.php';
 
-if (is_file($sentinelController)) {
+if (
+    is_file($sentinelController)
+    && !is_link($sentinelController)
+) {
     require_once $sentinelController;
 
-    if (class_exists('sentinel', false)) {
+    if (is_callable(['sentinel', 'inspect'])) {
         sentinel::inspect();
     }
 }
 /* End Sentinel */
-
 
 /* -------------------------------------------------
    INSTALL CHECK

@@ -9,8 +9,4 @@
     # This is the critical line: pass everything after the domain into ?url=
     RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]
     
-    RewriteRule (.*) https://www.poemei.com/$1 [R,L]
-
-    RewriteCond %{HTTP_HOST} !^www\.
-    RewriteRule ^(.*)$ http://www.%{HTTP_HOST}/$1 [R=301,L]
 </IfModule>

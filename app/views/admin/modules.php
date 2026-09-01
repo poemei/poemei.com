@@ -1,4 +1,17 @@
-<?php require APPROOT . '/views/inc/head.php'; ?>
+<?php
+/**
+ * Module Administration
+ *
+ * CMSEC-2026-4828-A — Authenticated module update requests
+ * CMSEC-2026-4828-B — Verified update manifest presentation
+ * CMSEC-2026-4828-H — Network-isolated module listing
+ * CMSEC-2026-4833-C — Asynchronous verified update discovery
+ *
+ * Path: /app/views/admin/modules.php
+ */
+
+require APPROOT . '/views/inc/head.php';
+?>
 
 <p><small><a href="/admin">Admin</a> >> <strong>Modules</strong></small></p>
 
@@ -32,13 +45,13 @@
             <div class="card h-100 border">
                 <div class="card-body d-flex flex-column">
 
-                    <h5 class="fw-bold"><?= ucfirst(htmlspecialchars($module['slug'])); ?></h5>
+                    <h5 class="fw-bold"><?= htmlspecialchars(ucfirst((string) $module['slug']), ENT_QUOTES, 'UTF-8'); ?></h5>
                     <p class="small text-muted">Core Module</p>
 
-                    <p><small>Version: <strong><?= $systemVersion; ?></strong></small></p>
+                    <p><small>Version: <strong><?= htmlspecialchars((string) $systemVersion, ENT_QUOTES, 'UTF-8'); ?></strong></small></p>
 
                     <div class="mt-auto">
-                        <a href="/admin/<?= $module['slug']; ?>" class="btn btn-sm btn-outline-primary w-100 mb-2">
+                        <a href="/admin/<?= rawurlencode((string) $module['slug']); ?>" class="btn btn-sm btn-outline-primary w-100 mb-2">
                             Manage
                         </a>
 
@@ -61,55 +74,95 @@
 
         <?php foreach ($addons as $module):
 
-            $config = is_array($module['config'] ?? null) ? $module['config'] : [];
+            /*
+             * CMSEC-2026-4828-F
+             *
+             * Database-provided slugs must satisfy the canonical module
+             * identifier rule before they can participate in file paths.
+             */
+            $moduleSlug = trim((string) ($module['slug'] ?? ''));
+
+            if (!preg_match('/^[a-z][a-z0-9_]{1,62}$/', $moduleSlug)) {
+                continue;
+            }
+
+            /*
+             * CMSEC-2026-4830-A — Separated module discovery
+             *
+             * Disabled view-time behavior read legacy metadata from
+             * APPROOT . '/data/modules/' . $moduleSlug . '.json'. Metadata
+             * now arrives from the controller's verified user-module scan.
+             */
+            $config = is_array($module['config'] ?? null)
+                ? $module['config']
+                : [];
             $version = '0.0.0';
             $desc = '';
             $author = '';
             $domain = '';
+            $domainUrl = null;
             $certified = '';
-            $hasUpdate = false;
+            $updateUrl = '';
             $hasUpdateSource = false;
 
             if ($config !== []) {
-                $version = $config['version'] ?? '0.0.0';
-                $desc = $config['description'] ?? '';
-                $author = $config['creator'] ?? ($config['developer']['name'] ?? '');
-                $domain = $config['domain'] ?? '';
-                $certified = $config['certified'] ?? '';
+                $version = (string) ($config['version'] ?? '0.0.0');
+                $desc = (string) ($config['description'] ?? '');
+                $author = (string) ($config['creator'] ?? '');
+                $domain = trim((string) ($config['domain'] ?? ''));
+                $certified = filter_var(
+                    $config['certified'] ?? false,
+                    FILTER_VALIDATE_BOOLEAN
+                ) ? 'Yes' : 'No';
 
-                $updateUrl = trim((string) ($config['update_url'] ?? ''));
-                $signing = is_array($config['signing'] ?? null)
-                    ? $config['signing']
-                    : [];
+                if (
+                    $domain !== ''
+                    && filter_var(
+                        $domain,
+                        FILTER_VALIDATE_DOMAIN,
+                        FILTER_FLAG_HOSTNAME
+                    ) !== false
+                ) {
+                    $domainUrl = 'https://' . $domain;
+                }
+
+                /*
+                 * CMSEC-2026-4828-B
+                 *
+                 * Previous unbounded metadata request retained as a disabled
+                 * maintenance record:
+                 *
+                 * $remote = @file_get_contents(
+                 *     $config['update_url'] . '?t=' . time()
+                 * );
+                 */
+                $updateUrl = (string) ($config['update_url'] ?? '');
                 $hasUpdateSource =
                     filter_var($updateUrl, FILTER_VALIDATE_URL) !== false
-                    && strtolower((string) parse_url($updateUrl, PHP_URL_SCHEME)) === 'https'
-                    && strtolower(trim((string) ($signing['algorithm'] ?? ''))) === 'rsa-sha256'
-                    && trim((string) ($signing['key_id'] ?? '')) !== ''
-                    && trim((string) ($signing['public_key'] ?? '')) !== '';
+                    && strtolower((string) parse_url($updateUrl, PHP_URL_SCHEME)) === 'https';
 
-                if ($hasUpdateSource) {
-                    $separator = str_contains($updateUrl, '?') ? '&' : '?';
-                    $remoteJson = @file_get_contents($updateUrl . $separator . 't=' . time());
-                    $remote = is_string($remoteJson)
-                        ? json_decode($remoteJson, true)
-                        : null;
-
-                    if (is_array($remote)) {
-                        $remoteModule = (string) ($remote['module'] ?? '');
-                        $remoteVersion = (string) ($remote['version'] ?? '');
-                        $localModule = (string) ($module['slug'] ?? '');
-
-                        if (
-                            $remoteModule !== ''
-                            && hash_equals($localModule, $remoteModule)
-                            && $remoteVersion !== ''
-                            && version_compare($remoteVersion, (string) $version, '>')
-                        ) {
-                            $hasUpdate = true;
-                        }
-                    }
-                }
+                /*
+                 * CMSEC-2026-4828-H
+                 *
+                 * Remote discovery during page rendering is disabled. The
+                 * authenticated update action performs the network check.
+                 *
+                 * Previous behavior opened the HTTPS update URL here and
+                 * derived $hasUpdate from the returned manifest.
+                 */
+                /*
+                 * CMSEC-2026-4833-C
+                 *
+                 * Disabled view-level update URL gate retained for ownership
+                 * history. Core discovery is authoritative and validates the
+                 * installed signed module's update_url before connecting.
+                 *
+                 * $hasUpdate =
+                 *     filter_var($updateUrl, FILTER_VALIDATE_URL) !== false
+                 *     && strtolower(
+                 *         (string) parse_url($updateUrl, PHP_URL_SCHEME)
+                 *     ) === 'https';
+                 */
             }
         ?>
 
@@ -117,49 +170,48 @@
             <div class="card h-100 border">
                 <div class="card-body d-flex flex-column">
 
-                    <h5 class="fw-bold"><?= ucfirst(htmlspecialchars($module['slug'])); ?></h5>
+                    <h5 class="fw-bold"><?= htmlspecialchars(ucfirst((string) $module['slug']), ENT_QUOTES, 'UTF-8'); ?></h5>
 
-                    <p><small>Version: <strong><?= $version; ?></strong></small></p>
-                    <p><small><strong>Description</strong>: <?= $desc; ?></small></p>
-                    <p><small><strong>Author</strong>: <?= $author; ?></small></p>
-                    <p><small><strong>Domain</strong>: <a href="https://<?= $domain; ?>"><?= $domain; ?></a></small></p>
+                    <p><small>Version: <strong><?= htmlspecialchars($version, ENT_QUOTES, 'UTF-8'); ?></strong></small></p>
+                    <p><small><strong>Description</strong>: <?= htmlspecialchars($desc, ENT_QUOTES, 'UTF-8'); ?></small></p>
+                    <p><small><strong>Author</strong>: <?= htmlspecialchars($author, ENT_QUOTES, 'UTF-8'); ?></small></p>
+                    <p><small><strong>Domain</strong>:
+                        <?php if ($domainUrl !== null): ?>
+                            <a href="<?= htmlspecialchars($domainUrl, ENT_QUOTES, 'UTF-8'); ?>"><?= htmlspecialchars($domain, ENT_QUOTES, 'UTF-8'); ?></a>
+                        <?php else: ?>
+                            <?= htmlspecialchars($domain, ENT_QUOTES, 'UTF-8'); ?>
+                        <?php endif; ?>
+                    </small></p>
                     <p><small>
-                    <?php
-                    if($certified == '') {
-                         $certified = 'No';
-                    }
-                    $certified = 'Yes';
-                    ?>
-                    <strong>Certified</strong>: <?= $certified; ?>
+                    <strong>Certified</strong>: <?= htmlspecialchars($certified, ENT_QUOTES, 'UTF-8'); ?>
                     </small>
                     </p>
 
                     <div class="mt-auto">
 
-                        <a href="/admin/<?= $module['slug']; ?>" class="btn btn-sm btn-outline-primary w-100 mb-2">
+                        <a href="/admin/<?= rawurlencode((string) $module['slug']); ?>" class="btn btn-sm btn-outline-primary w-100 mb-2">
                             Manage
                         </a>
 
-                        <?php if ($hasUpdate): ?>
-                            <button class="btn btn-sm btn-success w-100 mb-2 btn-update"
-                                data-module="<?= htmlspecialchars($module['slug']); ?>">
-                                Update
-                            </button>
-                        <?php elseif ($hasUpdateSource): ?>
-                            <button class="btn btn-sm btn-secondary w-100 mb-2" disabled>
-                                Up to Date
+                        <?php if ($hasUpdateSource): ?>
+                            <button class="btn btn-sm btn-secondary w-100 mb-2 btn-update"
+                                data-module="<?= htmlspecialchars((string) $module['slug'], ENT_QUOTES, 'UTF-8'); ?>"
+                                data-action="check"
+                                disabled>
+                                Checking for updates...
                             </button>
                         <?php else: ?>
                             <button class="btn btn-sm btn-outline-secondary w-100 mb-2" disabled
-                                title="Add a valid HTTPS update_url and rsa-sha256 signing metadata to module.json to enable signed updates.">
+                                title="Add a valid HTTPS update_url to module.json to enable update discovery.">
                                 Local Module
                             </button>
                         <?php endif; ?>
 
                         <form action="/admin/uninstall" method="POST"
                               onsubmit="return confirm('EXTREME DANGER: This will permanently remove all data and files for this module.');">
+                            <!-- CMSEC-2026-4828-E: authenticate destructive intent. -->
                             <?= $this->csrf_field(); ?>
-                            <input type="hidden" name="module" value="<?= htmlspecialchars($module['slug']); ?>">
+                            <input type="hidden" name="module" value="<?= htmlspecialchars($moduleSlug, ENT_QUOTES, 'UTF-8'); ?>">
                             <button type="submit" class="btn btn-sm btn-danger w-100">
                                 Nuke
                             </button>
@@ -178,47 +230,129 @@
 </div>
 
 <script>
-document.querySelectorAll('.btn-update').forEach(btn => {
-    btn.addEventListener('click', async () => {
+/*
+ * CMSEC-2026-4828-A — Authenticated module update requests
+ * CMSEC-2026-4833-C — Asynchronous verified update discovery
+ *
+ * Core checks signed remote manifests after page rendering. Individual
+ * modules never execute their own network or update logic.
+ */
+const moduleUpdateCsrfToken = <?= json_encode($this->csrf_token()); ?>;
 
-        const module = btn.dataset.module;
+function moduleRequestBody(module) {
+    return new URLSearchParams({
+        module,
+        csrf_token: moduleUpdateCsrfToken
+    }).toString();
+}
 
-        // 🔄 visual feedback
-        btn.innerHTML = 'Updating...';
-        btn.disabled = true;
+async function checkModuleUpdate(btn) {
+    const module = btn.dataset.module;
 
-        try {
-            const res = await fetch(`/admin/update?module=${module}`);
-            const data = await res.json();
+    btn.innerText = 'Checking for updates...';
+    btn.className = 'btn btn-sm btn-secondary w-100 mb-2 btn-update';
+    btn.dataset.action = 'check';
+    btn.disabled = true;
 
-            if (data.success) {
-                btn.innerHTML = `Updated → ${data.version}`;
-                btn.classList.remove('btn-success');
-                btn.classList.add('btn-secondary');
+    try {
+        const response = await fetch('/admin/check_update', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: moduleRequestBody(module)
+        });
+        const data = await response.json();
 
-                // update version text without reload
-                const card = btn.closest('.card');
-                const versionEl = card.querySelector('strong');
-
-                if (versionEl) {
-                    versionEl.innerText = data.version;
-                }
-
-            } else {
-                btn.innerHTML = 'Failed';
-                btn.disabled = false;
-            }
-
-        } catch (e) {
-            btn.innerHTML = 'Error';
-            btn.disabled = false;
+        if (!response.ok || !data.success) {
+            throw new Error(data.error || 'Update check failed.');
         }
 
+        if (data.update_available) {
+            btn.innerText = `Update Available → ${data.available_version}`;
+            btn.classList.remove('btn-secondary');
+            btn.classList.add('btn-success');
+            btn.dataset.action = 'update';
+            btn.disabled = false;
+        } else {
+            btn.innerText = 'Up to Date';
+            btn.dataset.action = 'current';
+            btn.disabled = true;
+        }
+    } catch (error) {
+        btn.innerText = 'Check failed — Retry';
+        btn.classList.remove('btn-secondary');
+        btn.classList.add('btn-outline-secondary');
+        btn.dataset.action = 'check';
+        btn.disabled = false;
+        btn.title = error instanceof Error
+            ? error.message
+            : 'Update check failed.';
+    }
+}
+
+async function installModuleUpdate(btn) {
+    const module = btn.dataset.module;
+
+    btn.innerText = 'Updating...';
+    btn.disabled = true;
+
+    try {
+        /*
+         * CMSEC-2026-4828-A
+         *
+         * Previous state-changing GET retained as a disabled record:
+         * const res = await fetch(`/admin/update?module=${module}`);
+         */
+        const response = await fetch('/admin/update', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: moduleRequestBody(module)
+        });
+        const data = await response.json();
+
+        if (!response.ok || !data.success) {
+            throw new Error(data.error || 'Module update failed.');
+        }
+
+        btn.innerText = `Updated → ${data.version}`;
+        btn.classList.remove('btn-success');
+        btn.classList.add('btn-secondary');
+        btn.dataset.action = 'current';
+        btn.disabled = true;
+
+        const card = btn.closest('.card');
+        const versionEl = card.querySelector('p small strong');
+
+        if (versionEl) {
+            versionEl.innerText = data.version;
+        }
+    } catch (error) {
+        btn.innerText = 'Update failed — Retry';
+        btn.disabled = false;
+        btn.title = error instanceof Error
+            ? error.message
+            : 'Module update failed.';
+    }
+}
+
+document.querySelectorAll('.btn-update').forEach(btn => {
+    btn.addEventListener('click', () => {
+        if (btn.dataset.action === 'update') {
+            installModuleUpdate(btn);
+        } else if (btn.dataset.action === 'check') {
+            checkModuleUpdate(btn);
+        }
     });
+
+    /*
+     * Each request is asynchronous, so an unavailable developer server does
+     * not block the page or checks for other installed modules.
+     */
+    checkModuleUpdate(btn);
 });
 </script>
 
 <?php require APPROOT . '/views/inc/foot.php'; ?>
-
-
-

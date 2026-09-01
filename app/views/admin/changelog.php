@@ -13,7 +13,8 @@
     td { padding: 12px; border-bottom: 1px solid #f6f8fa; vertical-align: top; }
     .form-group { margin-bottom: 15px; }
     label { display: block; font-weight: bold; margin-bottom: 5px; font-size: 13px; }
-    input, textarea { width: 100%; padding: 10px; border: 1px solid #d1d5da; border-radius: 3px; box-sizing: border-box; }
+    input, textarea, select { width: 100%; padding: 10px; border: 1px solid #d1d5da; border-radius: 3px; box-sizing: border-box; font-family: inherit; }
+    .badge { font-size: 10px; padding: 2px 6px; border-radius: 10px; border: 1px solid #ccc; text-transform: uppercase; font-weight: bold; color: #666; background: #f9f9f9; }
 </style>
 
 <div class="cl-container">
@@ -27,11 +28,23 @@
     <div class="cl-card">
         <h3><?= $data['edit_item'] ? 'Edit Update' : 'Log New Improvement' ?></h3>
         <form action="/admin/changelog" method="POST">
-            <input type="hidden" name="id" value="<?= $data['edit_item']['id'] ?? '' ?>">
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+            <input type="hidden" name="id" value="<?= (int) ($data['edit_item']['id'] ?? 0) ?>">
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px;">
                 <div class="form-group">
                     <label>Version Number</label>
-                    <input type="text" name="version" placeholder="v1.0.0" value="<?= $data['edit_item']['version'] ?? '' ?>" required>
+                    <input type="text" name="version" placeholder="v1.0.0" value="<?= htmlspecialchars((string) ($data['edit_item']['version'] ?? ''), ENT_QUOTES, 'UTF-8') ?>" required>
+                </div>
+                <div class="form-group">
+                    <label>Category</label>
+                    <select name="category" required>
+                        <?php 
+                            $categories = ['maintenance', 'feature', 'fix', 'security', 'release', 'development'];
+                            foreach($categories as $cat): 
+                                $selected = (isset($data['edit_item']['category']) && $data['edit_item']['category'] === $cat) ? 'selected' : '';
+                        ?>
+                            <option value="<?= $cat ?>" <?= $selected ?>><?= ucfirst($cat) ?></option>
+                        <?php endforeach; ?>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label>Release Date</label>
@@ -40,7 +53,7 @@
             </div>
             <div class="form-group">
                 <label>Change Description</label>
-                <textarea name="description" rows="4" placeholder="Mention bug fixes, new features, or optimizations..." required><?= $data['edit_item']['description'] ?? '' ?></textarea>
+                <textarea name="description" rows="4" placeholder="Mention bug fixes, new features, or optimizations..." required><?= htmlspecialchars((string) ($data['edit_item']['description'] ?? ''), ENT_QUOTES, 'UTF-8') ?></textarea>
             </div>
             <button type="submit" class="btn btn-primary"><?= $data['edit_item'] ? 'Save Changes' : 'Publish to Log' ?></button>
         </form>
@@ -51,6 +64,7 @@
             <thead>
                 <tr>
                     <th>Version</th>
+                    <th>Type</th>
                     <th>Date</th>
                     <th>Summary</th>
                     <th style="text-align:right">Actions</th>
@@ -59,12 +73,13 @@
             <tbody>
                 <?php foreach ($data['items'] as $item): ?>
                 <tr>
-                    <td><strong><?= $item['version'] ?></strong></td>
+                    <td><strong><?= htmlspecialchars((string) $item['version'], ENT_QUOTES, 'UTF-8') ?></strong></td>
+                    <td><span class="badge"><?= htmlspecialchars($item['category'] ?? 'maintenance') ?></span></td>
                     <td style="white-space:nowrap; font-size: 13px; color: #586069;"><?= date('M j, Y', strtotime($item['date_released'])) ?></td>
-                    <td style="font-size: 14px; line-height: 1.5;"><?= nl2br($item['description']) ?></td>
+                    <td style="font-size: 14px; line-height: 1.5;"><?= nl2br(htmlspecialchars($item['description'])) ?></td>
                     <td style="text-align:right; white-space:nowrap;">
-                        <a href="/admin/changelog/edit/<?= $item['id'] ?>" class="btn btn-edit">Edit</a>
-                        <a href="/admin/changelog/delete/<?= $item['id'] ?>" class="btn btn-danger" onclick="return confirm('Archive this log?')">Delete</a>
+                        <a href="/admin/changelog/edit/<?= (int) $item['id'] ?>" class="btn btn-edit">Edit</a>
+                        <a href="/admin/changelog/delete/<?= (int) $item['id'] ?>" class="btn btn-danger" onclick="return confirm('Archive this log?')">Delete</a>
                     </td>
                 </tr>
                 <?php endforeach; ?>

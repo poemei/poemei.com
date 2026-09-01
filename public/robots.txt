@@ -1,6 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://www.poemei.com/sitemap.xml
-Sitemap: https://www.poemei.com/ror.xml
-Sitemap: https://www.poemei.com/llms.txt
