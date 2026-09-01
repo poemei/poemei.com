@@ -6,6 +6,7 @@
             <a href="/posts">Posts</a>
             <a href="/current_projects">Projects</a>
             <a href="/resume">Resume</a>
+			<a href="/shop">Shop</a>
         </div>
 
         <div class="pm-nav-utility">

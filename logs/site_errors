@@ -670,3 +670,23 @@
 #1 /home/microcms/public_html/poemei.com/app/core/router.php(63): router->dispatch()
 #2 /home/microcms/public_html/poemei.com/public/index.php(7): router->__construct()
 #3 {main}
+[01-Sep-2026 04:58:55 UTC] [ChAoS Error 82d7d303a9c8] Error: Call to undefined method changelog_model::getAllUpdates() in /home/microcms/public_html/poemei.com/user/modules/changelog/controllers/changelog.php:13
+#0 /home/microcms/public_html/poemei.com/app/core/router.php(370): changelog->index()
+#1 /home/microcms/public_html/poemei.com/app/core/router.php(63): router->dispatch()
+#2 /home/microcms/public_html/poemei.com/public/index.php(7): router->__construct()
+#3 {main}
+[01-Sep-2026 19:25:53 UTC] PHP Fatal error:  Cannot declare class error_handler, because the name is already in use in /home/microcms/public_html/poemei.com/app/controllers/error_handler.php on line 2
+[01-Sep-2026 19:25:53 UTC] [ChAoS Error 38aafc6cd5b9] ErrorException: Cannot declare class error_handler, because the name is already in use in /home/microcms/public_html/poemei.com/app/controllers/error_handler.php:2
+#0 [internal function]: error_handler::{closure}()
+#1 {main}
+[01-Sep-2026 19:33:53 UTC] Module update discovery failed for downloads: Module server returned a non-success status.
+[01-Sep-2026 19:33:53 UTC] Module update discovery failed for get: Module server returned a non-success status.
+[01-Sep-2026 19:33:54 UTC] Module update discovery failed for legal: Update manifest does not match the installed module.
+[01-Sep-2026 19:33:54 UTC] Module update discovery failed for resume: Module server returned a non-success status.
+[01-Sep-2026 20:44:30 UTC] [ChAoS Error fede0224d0e9] ErrorException: Undefined array key "unit_price" in /home/microcms/public_html/poemei.com/user/modules/shop/lib/shop_gateways.php:306
+#0 /home/microcms/public_html/poemei.com/user/modules/shop/lib/shop_gateways.php(306): error_handler::{closure}()
+#1 /home/microcms/public_html/poemei.com/user/modules/shop/controllers/shop.php(133): shop_stripe_checkout_gateway->createPayment()
+#2 /home/microcms/public_html/poemei.com/app/core/router.php(370): shop->checkout()
+#3 /home/microcms/public_html/poemei.com/app/core/router.php(63): router->dispatch()
+#4 /home/microcms/public_html/poemei.com/public/index.php(7): router->__construct()
+#5 {main}

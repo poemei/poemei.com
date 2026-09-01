@@ -1,0 +1,9 @@
+{
+    "module": "announcements",
+    "version": "1.3.1",
+    "download": "https://poemei.com/packages/announcements-mvc-1.3.1.zip",
+    "sha256": "c09784712192055b7d339af33e8e80ac40efa7af37e7a44ff02d061f5b81d118",
+    "key_id": "pm73-6753d9470509fdf0",
+    "signature": "MIIBojANBgkqhkiG9w0BAQEFAAOCAY8AMIIBigKCAYEAt6DA2gPmrwSWMUR/FHLma7kCU2b30W75TodtgRoR8d7vOohOAiXf2z1v/F2Q9MP9h/DEcRJY0zX6sltKhyoWri48jzQSNrURgi9gvfYbAzsvvqoudoebBZjuOvPcdD4FrZLKAji4sZcVCFzkXmtrXLtXbD+HjcKYTOTIGTky6UNGojmNWLM6FI/oLr7jlLjZpF0zA++gbduOk/xg+O6ndlSeg5GiKnWnJlo/DAAXpUaCj2LJMhuwbhmJY7Bf4AXM53vSJe47TWTovecSR9AO2iURYpKaxS6vD1f89KfgrI3IfYpBDc37PLdU4KuHpdAY3XLc+KEzMIiyHnrRzf9rp3G+3e65uap5vuOrozeUuEC/uqEMOa+uAOTuV4El9+3B4dVm9tQObNZiUo0fNYez1SCOkLaY0KlJdW2M5ElIQRrWiNHv6X0eAnJtzDUFTOQvpyw5bQxkYxhT8OSVWN3BugLv5guEZy7lUzEKh1Lw+ekpd5OXkZhbI7pn4uhB0msBAgMBAAE=",
+    "description": "Announcements for your Website, with an admin interface. Non-Free."
+}

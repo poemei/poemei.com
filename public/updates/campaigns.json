@@ -1,0 +1,8 @@
+{
+  "version": "1.0.2",
+  "update_url": "https://poemei.com/updates/campaigns.json",
+  "description": "A Campaigns Addon Module for the Chaos MVC.",
+  "creator": "P.Mei",
+  "domain": "www.poemei.com",
+  "certified": "Yes"
+}
