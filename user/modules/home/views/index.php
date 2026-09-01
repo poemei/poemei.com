@@ -1,97 +1,248 @@
-<?php require APPROOT . '/views/inc/head.php';
+<?php
 
-// Holday Message
-if (!empty($data['holiday_message'])) {
-  echo '<div class="row">';
-  echo '<section class="home-holiday-wrap">';
-  echo '<h3 class="home-holiday">' . $data['holiday_message'] . '</h3>';
-  echo '</section>';
-  echo '</div>';
-}
+declare(strict_types=1);
+
+/*
+ * [AI:GPT-5.6 Sol | 2026-09-01 03:18:00 UTC]
+ */
+
+require APPROOT . '/views/inc/head.php';
+
+$featuredAnnouncement = $data['featured_announcement'] ?? false;
 ?>
-  <div class="row">
-  <section>
-  <div class="content-wrap">
-    <img src="/assets/icons/icon.png" class="wrap-left" alt="Trans Developer">
-    <h2>Greetings and Welcome</h2>
-    <p>To Poe Mei dot Com</p>
-    <p>This platform is my own custom MVC:
-    <ul>
-      <li> <strong>M</strong>odel, which handles all database functions.</li>
-      <li> <strong>V</strong>iew, which makes the site look how you want it to.</li>
-      <li> <strong>C</strong>ontroller, which acts as a traffic cop, directing traffic.
-    </ul>
-    </p>
-  </div>
-  <div class="row">
-  <p><code>Let me explain this image</code><br><b>PHP</b> then <b>MySQL</b> thats backend.<br>
-    <b>Go</b> (Golang) Googles Development Language<br>
-    <b>HTML</b> and <b>CSS</b>, which are Front-End Development.<br>
-    All set on a <b>Trans</b> Flag of Baby Blue, Powder Pink, and White.
-    </p>
-    </div>
-</section>
-</div>
-<div class="row">
-<?php 
-// Announcements
-    if(isset($data['featured_announcement']) && $data['featured_announcement'] !== false) : 
-    $post = $data['featured_announcement']; ?>
-    <section id="latest-announcement">
-        <div class="announcement-content">
-            <h3><?php echo htmlspecialchars($post['title']); ?></h3>
-            <p><?php echo nl2br(htmlspecialchars($post['body'])); ?></p>
-            <small>Posted: <?php echo date('Y.m.d', strtotime($post['created_at'])); ?></small>
-        </div>
+
+<main>
+
+<?php if (!empty($data['holiday_message'])): ?>
+    <section>
+        <h3>
+            <?= htmlspecialchars(
+                (string) $data['holiday_message'],
+                ENT_QUOTES,
+                'UTF-8'
+            ); ?>
+        </h3>
     </section>
 <?php endif; ?>
-</div>
-<div class="row">
-  <section>
-  <div class="content-wrap">
-    <img src="/assets/img/fuk_you.png" class="wrap-right" alt="I dont fucking care">
-    <?php
-    $about_me = "
-## A little about me
-I am a semi-retired Soldier, a web developer, a small business owner, creator of web platforms, and I am a **Transgender Woman**. 
 
-From time to time, when the opportunity arises, I will post about trans related issues, and my hatred of man's law, and society in general. I am also a **Witch**, as if you cannot tell from this site's aesthetic. 
+<section>
+    <img
+        src="<?= htmlspecialchars(
+            theme::assetUrl('icons/icon.png'),
+            ENT_QUOTES,
+            'UTF-8'
+        ); ?>"
+        class="img-left"
+        alt="Poe Mei"
+    >
 
-That hawt lil bitch in the background? Yeah, that is an AI rendition of me and what my face could look like after some cosmetic facial surgery. 
+    <h1>Greetings and Welcome</h1>
 
-You will find that I really do not give a fuck about what your opinion is of me or what I do. I get enough of that from the people that I consider within my very small bubble.
+    <p>To Poe Mei dot Com</p>
 
-This platform is my creation, and I'm always working on it, so if you get here and shit is broke, ~~suck it up buttercup~~ and come back later.
+    <p>
+        <em>
+            “We met for a reason, either you're a blessing or a lesson”
+            — Tu Pac
+        </em>
+    </p>
 
-> **REMEMBER:** Hate is a **THEM** problem, their hatred of you is not **YOUR** problem.
+    <p>
+        This is my little corner of the Internet.
+    </p>
 
-Don't be a **THEM** K? Snowflake?
----
-    ";
-
-    echo $this->render_md->markdown($about_me);
-    ?>
-    </div>
+    <p>
+        It is messy, occasionally ridiculous, perpetually under construction,
+        and unmistakably mine.
+    </p>
 </section>
-</div>
 
-<div class="row">
-  <section>
-  <div class="content-wrap">
-    <img src="/assets/img/pm_developers.png" class="wrap-left" alt="Girlie Witchy Developers">
-  <?php
-  $recruiting = "## Female or Trans Female Web Developers
-    Care to jump on this project? its built with:
-    - PHP
-    - MySQL
-    - HTML5
-    - CSS4
-    - Some Bootstrap
-  ";
-echo $this->render_md->markdown($recruiting);
-?>
-<p>If this is your sort of thing, and you got an interest, always check the <a href="/changelog">Changelog</a>, and then go <b><a href="/recruiting">HERE</a></b>. I would love to be able to work with you. <b>Males</b> I am so sorry, but you need not apply, no offense, but I was <b>once one of you</b>, and I <b>care not</b>, to be around <b><em>your energy</em></b>.</p>
-</div>
-  </section>
-</div>
-<?php require APPROOT . '/views/inc/foot.php'; ?>
+<?php if (is_array($featuredAnnouncement)): ?>
+    <section id="latest-announcement">
+        <h2>
+            <?= htmlspecialchars(
+                (string) ($featuredAnnouncement['title'] ?? ''),
+                ENT_QUOTES,
+                'UTF-8'
+            ); ?>
+        </h2>
+
+        <div>
+            <?= (string) ($featuredAnnouncement['body'] ?? ''); ?>
+        </div>
+
+        <?php if (!empty($featuredAnnouncement['created_at'])): ?>
+            <p>
+                <small>
+                    Posted:
+                    <?= htmlspecialchars(
+                        date(
+                            'Y.m.d',
+                            strtotime(
+                                (string) $featuredAnnouncement['created_at']
+                            )
+                        ),
+                        ENT_QUOTES,
+                        'UTF-8'
+                    ); ?>
+                </small>
+            </p>
+        <?php endif; ?>
+    </section>
+<?php endif; ?>
+
+<section>
+    <img
+        src="<?= htmlspecialchars(
+            theme::assetUrl('img/me_sl.png'),
+            ENT_QUOTES,
+            'UTF-8'
+        ); ?>"
+        class="img-right"
+        alt="I dont fucking care"
+    >
+
+    <h2>A little about me</h2>
+
+    <p>
+        Hi. I'm <strong>Poe Mei</strong>.
+    </p>
+
+    <p>
+        I'm messy, but not careless.
+    </p>
+
+    <p>
+        Ridiculous, but not frivolous.
+    </p>
+
+    <p>
+        Serious about the things that matter, but allergic to taking myself
+        too seriously.
+    </p>
+
+    <p>
+        I'm curious enough to wander into weird places and skeptical enough
+        not to believe everything I find there.
+    </p>
+
+    <p>
+        I'm witchy, but no hocus-pocus, ever.
+    </p>
+
+    <p>
+        Spiritual, but not dogmatic, cause religion is control cloaked in
+        salvation.
+    </p>
+
+    <p>
+        I'm a <strong>Transgender Woman</strong>. That's part of who I am,
+        not everything there is to know about me.
+    </p>
+
+    <p>
+        I make things. I break things. Sometimes I spend entirely too much
+        time making something only to look at it and decide,
+        <em>nah, that ain't it</em>, and start over.
+    </p>
+
+    <p>
+        I don't need to know everything.
+    </p>
+
+    <p>
+        I'd rather say <strong>I don't know</strong> and go find out than
+        pretend certainty I haven't earned.
+    </p>
+
+    <p>
+        This site reflects that.
+    </p>
+
+    <p>
+        There will be development stuff here because I develop things.
+        There will be opinions because occasionally I have those too.
+        There will be strange rabbit holes, unfinished ideas, things that
+        make me laugh, things I care deeply about, and probably something
+        broken because I was fucking with it again.
+    </p>
+
+    <p>
+        This isn't a corporate homepage.
+    </p>
+
+    <p>
+        It's mine.
+    </p>
+
+    <p>
+        So wander around.
+    </p>
+
+    <p>
+        You might find something interesting.
+    </p>
+
+    <blockquote>
+        <p>
+            <strong>REMEMBER:</strong>
+            Hate is a <strong>THEM</strong> problem, their hatred of you is
+            not <strong>YOUR</strong> problem.
+        </p>
+    </blockquote>
+
+    <p>
+        Don't be a <strong>THEM</strong>, K? <em>Snowflake</em>?
+    </p>
+</section>
+
+<section>
+    <img
+        src="<?= htmlspecialchars(
+            theme::assetUrl('img/pm_developers.png'),
+            ENT_QUOTES,
+            'UTF-8'
+        ); ?>"
+        class="img-left"
+        alt="Girlie Witchy Developers"
+    >
+
+    <h2>Sometimes I Build Shit</h2>
+
+    <p>
+        Development is one of the things I do, and this website is one of
+        the things I've built.
+    </p>
+
+    <p>
+        It changes.
+    </p>
+
+    <p>
+        Sometimes intentionally.
+    </p>
+
+    <p>
+        Sometimes because I touched something I probably should have left
+        the fuck alone.
+    </p>
+
+    <p>
+        If you're interested in the development side of what I do, you can
+        poke around there too.
+    </p>
+
+    <p>
+        Check out the <a href="/changelog">Changelog</a>,
+        take a look at <a href="/recruiter">Recruiting</a>,
+        or wander into the <a href="/developer">Developers Portal</a>.
+    </p>
+</section>
+
+</main>
+
+<?php
+
+require APPROOT . '/views/inc/foot.php';
+
+/* [End AI:GPT-5.6 Sol] */

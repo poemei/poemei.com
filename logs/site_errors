@@ -1,0 +1,672 @@
+[28-Aug-2026 03:50:31 UTC] [ChAoS Error 89d046d9f579] Error: Call to undefined method developer::render_md() in /home/microcms/public_html/poemei.com/user/modules/developer/views/example.php:283
+#0 /home/microcms/public_html/poemei.com/app/core/controller.php(282): require()
+#1 /home/microcms/public_html/poemei.com/user/modules/developer/controllers/developer.php(45): controller->view()
+#2 /home/microcms/public_html/poemei.com/app/core/router.php(354): developer->example()
+#3 /home/microcms/public_html/poemei.com/app/core/router.php(63): router->dispatch()
+#4 /home/microcms/public_html/poemei.com/public/index.php(7): router->__construct()
+#5 {main}
+[28-Aug-2026 03:52:29 UTC] [ChAoS Error 6bdf2754f496] Error: Call to undefined method render_md::render() in /home/microcms/public_html/poemei.com/user/modules/developer/views/example.php:282
+#0 /home/microcms/public_html/poemei.com/app/core/controller.php(282): require()
+#1 /home/microcms/public_html/poemei.com/user/modules/developer/controllers/developer.php(45): controller->view()
+#2 /home/microcms/public_html/poemei.com/app/core/router.php(354): developer->example()
+#3 /home/microcms/public_html/poemei.com/app/core/router.php(63): router->dispatch()
+#4 /home/microcms/public_html/poemei.com/public/index.php(7): router->__construct()
+#5 {main}
+[28-Aug-2026 04:00:13 UTC] [ChAoS Error feaf10704586] ErrorException: require(/home/microcms/public_html/poemei.com/app/views/public/developer/layout.php): Failed to open stream: No such file or directory in /home/microcms/public_html/poemei.com/user/modules/developer/views/database.php:135
+#0 /home/microcms/public_html/poemei.com/user/modules/developer/views/database.php(135): error_handler::{closure}()
+#1 /home/microcms/public_html/poemei.com/user/modules/developer/views/database.php(135): require()
+#2 /home/microcms/public_html/poemei.com/app/core/controller.php(282): require('/home/microcms/...')
+#3 /home/microcms/public_html/poemei.com/user/modules/developer/controllers/developer.php(57): controller->view()
+#4 /home/microcms/public_html/poemei.com/app/core/router.php(354): developer->database()
+#5 /home/microcms/public_html/poemei.com/app/core/router.php(63): router->dispatch()
+#6 /home/microcms/public_html/poemei.com/public/index.php(7): router->__construct()
+#7 {main}
+[28-Aug-2026 04:01:55 UTC] [ChAoS Error 6331f79d0e29] ErrorException: require(/home/microcms/public_html/poemei.com/app/views/public/developer/layout.php): Failed to open stream: No such file or directory in /home/microcms/public_html/poemei.com/user/modules/developer/views/markdown.php:98
+#0 /home/microcms/public_html/poemei.com/user/modules/developer/views/markdown.php(98): error_handler::{closure}()
+#1 /home/microcms/public_html/poemei.com/user/modules/developer/views/markdown.php(98): require()
+#2 /home/microcms/public_html/poemei.com/app/core/controller.php(282): require('/home/microcms/...')
+#3 /home/microcms/public_html/poemei.com/user/modules/developer/controllers/developer.php(69): controller->view()
+#4 /home/microcms/public_html/poemei.com/app/core/router.php(354): developer->markdown()
+#5 /home/microcms/public_html/poemei.com/app/core/router.php(63): router->dispatch()
+#6 /home/microcms/public_html/poemei.com/public/index.php(7): router->__construct()
+#7 {main}
+[28-Aug-2026 04:03:04 UTC] [ChAoS Error 146834919572] ErrorException: require(/home/microcms/public_html/poemei.com/app/views/public/developer/layout.php): Failed to open stream: No such file or directory in /home/microcms/public_html/poemei.com/user/modules/developer/views/theme.php:111
+#0 /home/microcms/public_html/poemei.com/user/modules/developer/views/theme.php(111): error_handler::{closure}()
+#1 /home/microcms/public_html/poemei.com/user/modules/developer/views/theme.php(111): require()
+#2 /home/microcms/public_html/poemei.com/app/core/controller.php(282): require('/home/microcms/...')
+#3 /home/microcms/public_html/poemei.com/user/modules/developer/controllers/developer.php(81): controller->view()
+#4 /home/microcms/public_html/poemei.com/app/core/router.php(354): developer->theme()
+#5 /home/microcms/public_html/poemei.com/app/core/router.php(63): router->dispatch()
+#6 /home/microcms/public_html/poemei.com/public/index.php(7): router->__construct()
+#7 {main}
+[28-Aug-2026 04:08:12 UTC] [ChAoS Error 0a409b7a3641] ErrorException: include(/home/microcms/public_html/poemei.com/user/modules/developer/views/nav.php): Failed to open stream: No such file or directory in /home/microcms/public_html/poemei.com/user/modules/developer/views/theme.php:125
+#0 /home/microcms/public_html/poemei.com/user/modules/developer/views/theme.php(125): error_handler::{closure}()
+#1 /home/microcms/public_html/poemei.com/user/modules/developer/views/theme.php(125): include()
+#2 /home/microcms/public_html/poemei.com/app/core/controller.php(282): require('/home/microcms/...')
+#3 /home/microcms/public_html/poemei.com/user/modules/developer/controllers/developer.php(81): controller->view()
+#4 /home/microcms/public_html/poemei.com/app/core/router.php(354): developer->theme()
+#5 /home/microcms/public_html/poemei.com/app/core/router.php(63): router->dispatch()
+#6 /home/microcms/public_html/poemei.com/public/index.php(7): router->__construct()
+#7 {main}
+[28-Aug-2026 04:10:24 UTC] [ChAoS Error 345f55838f5a] ErrorException: include(/home/microcms/public_html/poemei.com/user/modules/developer/views/nav.php): Failed to open stream: No such file or directory in /home/microcms/public_html/poemei.com/user/modules/developer/views/theme.php:126
+#0 /home/microcms/public_html/poemei.com/user/modules/developer/views/theme.php(126): error_handler::{closure}()
+#1 /home/microcms/public_html/poemei.com/user/modules/developer/views/theme.php(126): include()
+#2 /home/microcms/public_html/poemei.com/app/core/controller.php(282): require('/home/microcms/...')
+#3 /home/microcms/public_html/poemei.com/user/modules/developer/controllers/developer.php(81): controller->view()
+#4 /home/microcms/public_html/poemei.com/app/core/router.php(354): developer->theme()
+#5 /home/microcms/public_html/poemei.com/app/core/router.php(63): router->dispatch()
+#6 /home/microcms/public_html/poemei.com/public/index.php(7): router->__construct()
+#7 {main}
+[28-Aug-2026 05:17:50 UTC] Mailer Error: SMTP Error: The following recipients failed: eshaw@poemei.com: No Such User Here"
+
+[28-Aug-2026 05:33:36 UTC] [ChAoS Error 043e95849a22] Error: Cannot access protected property changelog_model::$db in /home/microcms/public_html/poemei.com/user/modules/changelog/controllers/changelog.php:35
+#0 /home/microcms/public_html/poemei.com/app/controllers/admin.php(44): changelog->admin()
+#1 /home/microcms/public_html/poemei.com/app/core/router.php(354): admin->index()
+#2 /home/microcms/public_html/poemei.com/app/core/router.php(63): router->dispatch()
+#3 /home/microcms/public_html/poemei.com/public/index.php(7): router->__construct()
+#4 {main}
+[28-Aug-2026 05:33:44 UTC] [ChAoS Error c156044a08d8] Error: Cannot access protected property changelog_model::$db in /home/microcms/public_html/poemei.com/user/modules/changelog/controllers/changelog.php:28
+#0 /home/microcms/public_html/poemei.com/app/controllers/admin.php(44): changelog->admin()
+#1 /home/microcms/public_html/poemei.com/app/core/router.php(354): admin->index()
+#2 /home/microcms/public_html/poemei.com/app/core/router.php(63): router->dispatch()
+#3 /home/microcms/public_html/poemei.com/public/index.php(7): router->__construct()
+#4 {main}
+[28-Aug-2026 19:33:44 UTC] Recruiter notification mail error: SMTP Error: Could not authenticate.
+[28-Aug-2026 19:33:50 UTC] Recruiter confirmation mail error: SMTP Error: Could not authenticate.
+[28-Aug-2026 21:15:45 UTC] Module update discovery failed for announcements: Update manifest does not match the installed module.
+[28-Aug-2026 21:24:40 UTC] Module update discovery failed for announcements: Update manifest does not match the installed module.
+[28-Aug-2026 21:26:34 UTC] Module update discovery failed for announcements: Update manifest does not match the installed module.
+[28-Aug-2026 21:26:34 UTC] Module update discovery failed for contact: Update manifest does not match the installed module.
+[28-Aug-2026 21:57:44 UTC] Module update discovery failed for announcements: Update manifest does not match the installed module.
+[28-Aug-2026 21:57:45 UTC] Module update discovery failed for contact: Update manifest does not match the installed module.
+[28-Aug-2026 21:57:51 UTC] Module update discovery failed for announcements: Update manifest does not match the installed module.
+[28-Aug-2026 21:57:52 UTC] Module update discovery failed for contact: Update manifest does not match the installed module.
+[28-Aug-2026 21:58:06 UTC] Module update discovery failed for announcements: Update manifest does not match the installed module.
+[28-Aug-2026 21:58:06 UTC] Module update discovery failed for contact: Update manifest does not match the installed module.
+[28-Aug-2026 23:25:01 UTC] [ChAoS Error 9fe4cdb55bbc] ErrorException: require_once(/home/microcms/public_html/poemei.com/app/lib/module_package_builder.php): Failed to open stream: No such file or directory in /home/microcms/public_html/poemei.com/user/modules/module_builder/controllers/module_builder.php:30
+#0 /home/microcms/public_html/poemei.com/user/modules/module_builder/controllers/module_builder.php(30): error_handler::{closure}()
+#1 /home/microcms/public_html/poemei.com/user/modules/module_builder/controllers/module_builder.php(30): require_once()
+#2 /home/microcms/public_html/poemei.com/app/controllers/admin.php(167): module_builder->admin()
+#3 /home/microcms/public_html/poemei.com/app/core/router.php(354): admin->index()
+#4 /home/microcms/public_html/poemei.com/app/core/router.php(63): router->dispatch()
+#5 /home/microcms/public_html/poemei.com/public/index.php(7): router->__construct()
+#6 {main}
+[28-Aug-2026 23:25:16 UTC] [ChAoS Error 27c1b077a747] ErrorException: require_once(/home/microcms/public_html/poemei.com/app/lib/module_package_builder.php): Failed to open stream: No such file or directory in /home/microcms/public_html/poemei.com/user/modules/module_builder/controllers/module_builder.php:30
+#0 /home/microcms/public_html/poemei.com/user/modules/module_builder/controllers/module_builder.php(30): error_handler::{closure}()
+#1 /home/microcms/public_html/poemei.com/user/modules/module_builder/controllers/module_builder.php(30): require_once()
+#2 /home/microcms/public_html/poemei.com/app/controllers/admin.php(167): module_builder->admin()
+#3 /home/microcms/public_html/poemei.com/app/core/router.php(354): admin->index()
+#4 /home/microcms/public_html/poemei.com/app/core/router.php(63): router->dispatch()
+#5 /home/microcms/public_html/poemei.com/public/index.php(7): router->__construct()
+#6 {main}
+[29-Aug-2026 02:39:10 UTC] Module update discovery failed for announcements: Update manifest does not match the installed module.
+[29-Aug-2026 02:39:10 UTC] Module update discovery failed for contact: Update manifest does not match the installed module.
+[29-Aug-2026 02:41:15 UTC] Module update discovery failed for announcements: Update manifest does not match the installed module.
+[29-Aug-2026 02:41:16 UTC] Module update discovery failed for contact: Update manifest does not match the installed module.
+[29-Aug-2026 02:41:30 UTC] Module update discovery failed for announcements: Update manifest does not match the installed module.
+[29-Aug-2026 02:41:30 UTC] Module update discovery failed for contact: Update manifest does not match the installed module.
+[29-Aug-2026 02:46:29 UTC] Module update discovery failed for announcements: Update manifest does not match the installed module.
+[29-Aug-2026 02:46:29 UTC] Module update discovery failed for contact: Update manifest does not match the installed module.
+[29-Aug-2026 02:46:52 UTC] Module update discovery failed for announcements: Update manifest does not match the installed module.
+[29-Aug-2026 02:46:52 UTC] Module update discovery failed for contact: Update manifest does not match the installed module.
+[29-Aug-2026 02:50:48 UTC] Module update discovery failed for announcements: Update manifest does not match the installed module.
+[29-Aug-2026 02:50:48 UTC] Module update discovery failed for contact: Update manifest does not match the installed module.
+[29-Aug-2026 02:52:33 UTC] Module update discovery failed for announcements: Update manifest does not match the installed module.
+[29-Aug-2026 02:52:34 UTC] Module update discovery failed for contact: Update manifest does not match the installed module.
+[29-Aug-2026 03:01:49 UTC] Module update discovery failed for announcements: Update manifest does not match the installed module.
+[29-Aug-2026 03:01:50 UTC] Module update discovery failed for contact: Update manifest does not match the installed module.
+[29-Aug-2026 03:22:33 UTC] Module update discovery failed for announcements: Update manifest does not match the installed module.
+[29-Aug-2026 03:22:33 UTC] Module update discovery failed for contact: Update manifest does not match the installed module.
+[29-Aug-2026 03:22:48 UTC] Module update discovery failed for announcements: Update manifest does not match the installed module.
+[29-Aug-2026 03:22:48 UTC] Module update discovery failed for contact: Update manifest does not match the installed module.
+[29-Aug-2026 03:26:58 UTC] Module update discovery failed for announcements: Update manifest does not match the installed module.
+[29-Aug-2026 03:26:58 UTC] Module update discovery failed for contact: Update manifest does not match the installed module.
+[29-Aug-2026 03:27:05 UTC] [ChAoS Error b1d38956651d] ErrorException: require_once(/home/microcms/public_html/poemei.com/app/lib/module_package_builder.php): Failed to open stream: No such file or directory in /home/microcms/public_html/poemei.com/user/modules/module_builder/controllers/module_builder.php:30
+#0 /home/microcms/public_html/poemei.com/user/modules/module_builder/controllers/module_builder.php(30): error_handler::{closure}()
+#1 /home/microcms/public_html/poemei.com/user/modules/module_builder/controllers/module_builder.php(30): require_once()
+#2 /home/microcms/public_html/poemei.com/app/controllers/admin.php(167): module_builder->admin()
+#3 /home/microcms/public_html/poemei.com/app/core/router.php(354): admin->index()
+#4 /home/microcms/public_html/poemei.com/app/core/router.php(63): router->dispatch()
+#5 /home/microcms/public_html/poemei.com/public/index.php(7): router->__construct()
+#6 {main}
+[29-Aug-2026 03:45:50 UTC] [ChAoS Error 03ab10185f1c] RuntimeException: Project outside module root. in /home/microcms/public_html/poemei.com/user/modules/module_builder/lib/module_package_builder.php:1111
+#0 /home/microcms/public_html/poemei.com/user/modules/module_builder/lib/module_package_builder.php(291): module_package_builder->root()
+#1 /home/microcms/public_html/poemei.com/user/modules/module_builder/controllers/module_builder.php(45): module_package_builder->fileTree()
+#2 /home/microcms/public_html/poemei.com/app/controllers/admin.php(167): module_builder->admin()
+#3 /home/microcms/public_html/poemei.com/app/core/router.php(354): admin->index()
+#4 /home/microcms/public_html/poemei.com/app/core/router.php(63): router->dispatch()
+#5 /home/microcms/public_html/poemei.com/public/index.php(7): router->__construct()
+#6 {main}
+[29-Aug-2026 03:45:57 UTC] [ChAoS Error 32581335239f] RuntimeException: Project outside module root. in /home/microcms/public_html/poemei.com/user/modules/module_builder/lib/module_package_builder.php:1111
+#0 /home/microcms/public_html/poemei.com/user/modules/module_builder/lib/module_package_builder.php(291): module_package_builder->root()
+#1 /home/microcms/public_html/poemei.com/user/modules/module_builder/controllers/module_builder.php(45): module_package_builder->fileTree()
+#2 /home/microcms/public_html/poemei.com/app/controllers/admin.php(167): module_builder->admin()
+#3 /home/microcms/public_html/poemei.com/app/core/router.php(354): admin->index()
+#4 /home/microcms/public_html/poemei.com/app/core/router.php(63): router->dispatch()
+#5 /home/microcms/public_html/poemei.com/public/index.php(7): router->__construct()
+#6 {main}
+[29-Aug-2026 04:03:02 UTC] [ChAoS Error 016d32b86265] RuntimeException: Project outside theme root. in /home/microcms/public_html/poemei.com/user/modules/theme_builder/lib/theme_package_builder.php:582
+#0 /home/microcms/public_html/poemei.com/user/modules/theme_builder/lib/theme_package_builder.php(157): theme_package_builder->root()
+#1 /home/microcms/public_html/poemei.com/user/modules/theme_builder/controllers/theme_builder.php(52): theme_package_builder->fileTree()
+#2 /home/microcms/public_html/poemei.com/app/controllers/admin.php(167): theme_builder->admin()
+#3 /home/microcms/public_html/poemei.com/app/core/router.php(354): admin->index()
+#4 /home/microcms/public_html/poemei.com/app/core/router.php(63): router->dispatch()
+#5 /home/microcms/public_html/poemei.com/public/index.php(7): router->__construct()
+#6 {main}
+[29-Aug-2026 04:03:07 UTC] [ChAoS Error b33109a7957e] RuntimeException: Project outside theme root. in /home/microcms/public_html/poemei.com/user/modules/theme_builder/lib/theme_package_builder.php:582
+#0 /home/microcms/public_html/poemei.com/user/modules/theme_builder/lib/theme_package_builder.php(157): theme_package_builder->root()
+#1 /home/microcms/public_html/poemei.com/user/modules/theme_builder/controllers/theme_builder.php(52): theme_package_builder->fileTree()
+#2 /home/microcms/public_html/poemei.com/app/controllers/admin.php(167): theme_builder->admin()
+#3 /home/microcms/public_html/poemei.com/app/core/router.php(354): admin->index()
+#4 /home/microcms/public_html/poemei.com/app/core/router.php(63): router->dispatch()
+#5 /home/microcms/public_html/poemei.com/public/index.php(7): router->__construct()
+#6 {main}
+[29-Aug-2026 04:03:30 UTC] [ChAoS Error 7cb4a870d689] RuntimeException: Project outside theme root. in /home/microcms/public_html/poemei.com/user/modules/theme_builder/lib/theme_package_builder.php:582
+#0 /home/microcms/public_html/poemei.com/user/modules/theme_builder/lib/theme_package_builder.php(157): theme_package_builder->root()
+#1 /home/microcms/public_html/poemei.com/user/modules/theme_builder/controllers/theme_builder.php(52): theme_package_builder->fileTree()
+#2 /home/microcms/public_html/poemei.com/app/controllers/admin.php(167): theme_builder->admin()
+#3 /home/microcms/public_html/poemei.com/app/core/router.php(354): admin->index()
+#4 /home/microcms/public_html/poemei.com/app/core/router.php(63): router->dispatch()
+#5 /home/microcms/public_html/poemei.com/public/index.php(7): router->__construct()
+#6 {main}
+[29-Aug-2026 04:10:29 UTC] Module update discovery failed for announcements: Update manifest does not match the installed module.
+[29-Aug-2026 04:10:29 UTC] Module update discovery failed for contact: Update manifest does not match the installed module.
+[29-Aug-2026 04:15:54 UTC] Module update discovery failed for announcements: Update manifest does not match the installed module.
+[29-Aug-2026 04:15:56 UTC] Module update discovery failed for contact: Update manifest is invalid.
+[29-Aug-2026 04:18:33 UTC] Module update discovery failed for announcements: Update manifest does not match the installed module.
+[29-Aug-2026 04:18:33 UTC] Module update discovery failed for contact: Manifest package host is not authorized by module metadata.
+[29-Aug-2026 04:21:13 UTC] Module update discovery failed for announcements: Update manifest does not match the installed module.
+[29-Aug-2026 04:21:50 UTC] Module update discovery failed for announcements: Update manifest does not match the installed module.
+[29-Aug-2026 04:21:50 UTC] Module update discovery failed for contact: Manifest package host is not authorized by module metadata.
+[29-Aug-2026 04:22:36 UTC] Module update discovery failed for announcements: Update manifest does not match the installed module.
+[29-Aug-2026 04:22:36 UTC] Module update discovery failed for contact: Manifest package host is not authorized by module metadata.
+[29-Aug-2026 04:26:26 UTC] Module update discovery failed for announcements: Update manifest does not match the installed module.
+[29-Aug-2026 04:26:26 UTC] Module update discovery failed for contact: Manifest package host is not authorized by module metadata.
+[29-Aug-2026 04:27:53 UTC] Module update discovery failed for announcements: Update manifest does not match the installed module.
+[29-Aug-2026 04:27:54 UTC] Module update discovery failed for contact: Manifest package host is not authorized by module metadata.
+[29-Aug-2026 04:29:19 UTC] Module update discovery failed for announcements: Update manifest does not match the installed module.
+[29-Aug-2026 04:29:19 UTC] Module update discovery failed for contact: Manifest package host is not authorized by module metadata.
+[29-Aug-2026 04:29:19 UTC] Module update discovery failed for developer: Module server returned a non-success status.
+[29-Aug-2026 04:30:14 UTC] Module update discovery failed for announcements: Update manifest does not match the installed module.
+[29-Aug-2026 04:30:14 UTC] Module update discovery failed for contact: Manifest package host is not authorized by module metadata.
+[29-Aug-2026 04:30:14 UTC] Module update discovery failed for developer: Module server returned a non-success status.
+[29-Aug-2026 04:33:55 UTC] Module update discovery failed for announcements: Update manifest does not match the installed module.
+[29-Aug-2026 04:33:55 UTC] Module update discovery failed for contact: Manifest package host is not authorized by module metadata.
+[29-Aug-2026 04:33:55 UTC] Module update discovery failed for developer: Module server returned a non-success status.
+[29-Aug-2026 04:33:55 UTC] Module update discovery failed for example: Module server returned a non-success status.
+[29-Aug-2026 04:33:55 UTC] Module update discovery failed for legal: Module server returned a non-success status.
+[29-Aug-2026 04:33:56 UTC] Module update discovery failed for projects: Module server returned a non-success status.
+[29-Aug-2026 04:35:17 UTC] Module update discovery failed for announcements: Update manifest does not match the installed module.
+[29-Aug-2026 04:35:17 UTC] Module update discovery failed for contact: Manifest package host is not authorized by module metadata.
+[29-Aug-2026 04:35:18 UTC] Module update discovery failed for developer: Module server returned a non-success status.
+[29-Aug-2026 04:35:18 UTC] Module update discovery failed for example: Module server returned a non-success status.
+[29-Aug-2026 04:35:18 UTC] Module update discovery failed for legal: Module server returned a non-success status.
+[29-Aug-2026 04:35:18 UTC] Module update discovery failed for module_builder: Module server returned a non-success status.
+[29-Aug-2026 04:35:18 UTC] Module update discovery failed for projects: Module server returned a non-success status.
+[29-Aug-2026 04:36:24 UTC] Module update discovery failed for announcements: Update manifest does not match the installed module.
+[29-Aug-2026 04:36:24 UTC] Module update discovery failed for contact: Manifest package host is not authorized by module metadata.
+[29-Aug-2026 04:36:25 UTC] Module update discovery failed for developer: Module server returned a non-success status.
+[29-Aug-2026 04:36:25 UTC] Module update discovery failed for example: Module server returned a non-success status.
+[29-Aug-2026 04:36:25 UTC] Module update discovery failed for projects: Module server returned a non-success status.
+[29-Aug-2026 04:36:25 UTC] Module update discovery failed for module_builder: Module server returned a non-success status.
+[29-Aug-2026 04:36:25 UTC] Module update discovery failed for legal: Module server returned a non-success status.
+[29-Aug-2026 04:36:25 UTC] Module update discovery failed for recruiter: Module server returned a non-success status.
+[29-Aug-2026 04:39:13 UTC] Module update discovery failed for announcements: Update manifest does not match the installed module.
+[29-Aug-2026 04:39:13 UTC] Module update discovery failed for contact: Manifest package host is not authorized by module metadata.
+[29-Aug-2026 04:39:13 UTC] Module update discovery failed for developer: Module server returned a non-success status.
+[29-Aug-2026 04:39:13 UTC] Module update discovery failed for example: Module server returned a non-success status.
+[29-Aug-2026 04:39:14 UTC] Module update discovery failed for legal: Module server returned a non-success status.
+[29-Aug-2026 04:39:14 UTC] Module update discovery failed for module_builder: Module server returned a non-success status.
+[29-Aug-2026 04:39:15 UTC] Module update discovery failed for projects: Module server returned a non-success status.
+[29-Aug-2026 04:39:15 UTC] Module update discovery failed for recruiter: Module server returned a non-success status.
+[29-Aug-2026 04:39:15 UTC] Module update discovery failed for theme_builder: Manifest package host is not authorized by module metadata.
+[29-Aug-2026 04:39:15 UTC] Module update discovery failed for resume: Module server returned a non-success status.
+[29-Aug-2026 05:12:10 UTC] Module update discovery failed for announcements: Module signing trust is missing or invalid.
+[29-Aug-2026 05:12:10 UTC] Module update discovery failed for contact: Manifest package host is not authorized by module metadata.
+[29-Aug-2026 05:12:11 UTC] Module update discovery failed for developer: Module server returned a non-success status.
+[29-Aug-2026 05:12:11 UTC] Module update discovery failed for module_builder: Module server returned a non-success status.
+[29-Aug-2026 05:12:11 UTC] Module update discovery failed for example: Module server returned a non-success status.
+[29-Aug-2026 05:12:11 UTC] Module update discovery failed for legal: Module server returned a non-success status.
+[29-Aug-2026 05:12:11 UTC] Module update discovery failed for projects: Module server returned a non-success status.
+[29-Aug-2026 05:12:12 UTC] Module update discovery failed for resume: Module server returned a non-success status.
+[29-Aug-2026 05:12:12 UTC] Module update discovery failed for theme_builder: Manifest package host is not authorized by module metadata.
+[29-Aug-2026 05:12:12 UTC] Module update discovery failed for recruiter: Module server returned a non-success status.
+[29-Aug-2026 05:28:08 UTC] Module update discovery failed for announcements: Module signing trust is missing or invalid.
+[29-Aug-2026 05:28:08 UTC] Module update discovery failed for contact: Update manifest is invalid.
+[29-Aug-2026 05:28:08 UTC] Module update discovery failed for developer: Module server returned a non-success status.
+[29-Aug-2026 05:28:08 UTC] Module update discovery failed for example: Module server returned a non-success status.
+[29-Aug-2026 05:28:09 UTC] Module update discovery failed for projects: Module server returned a non-success status.
+[29-Aug-2026 05:28:09 UTC] Module update discovery failed for legal: Module server returned a non-success status.
+[29-Aug-2026 05:28:09 UTC] Module update discovery failed for recruiter: Module server returned a non-success status.
+[29-Aug-2026 05:28:09 UTC] Module update discovery failed for module_builder: Module server returned a non-success status.
+[29-Aug-2026 05:28:09 UTC] Module update discovery failed for resume: Module server returned a non-success status.
+[29-Aug-2026 05:28:09 UTC] Module update discovery failed for theme_builder: Manifest package host is not authorized by module metadata.
+[29-Aug-2026 05:36:39 UTC] Module update discovery failed for announcements: Module signing trust is missing or invalid.
+[29-Aug-2026 05:36:39 UTC] Module update discovery failed for contact: Update manifest is invalid.
+[29-Aug-2026 05:36:39 UTC] Module update discovery failed for developer: Module server returned a non-success status.
+[29-Aug-2026 05:36:39 UTC] Module update discovery failed for example: Module server returned a non-success status.
+[29-Aug-2026 05:36:39 UTC] Module update discovery failed for theme_builder: Manifest package host is not authorized by module metadata.
+[29-Aug-2026 05:36:39 UTC] Module update discovery failed for module_builder: Module server returned a non-success status.
+[29-Aug-2026 05:36:39 UTC] Module update discovery failed for projects: Module server returned a non-success status.
+[29-Aug-2026 05:36:40 UTC] Module update discovery failed for recruiter: Module server returned a non-success status.
+[29-Aug-2026 05:36:40 UTC] Module update discovery failed for resume: Module server returned a non-success status.
+[29-Aug-2026 05:36:40 UTC] Module update discovery failed for legal: Module server returned a non-success status.
+[29-Aug-2026 05:38:22 UTC] Module update discovery failed for announcements: Module signing trust is missing or invalid.
+[29-Aug-2026 05:38:23 UTC] Module update discovery failed for contact: Update manifest is invalid.
+[29-Aug-2026 05:38:23 UTC] Module update discovery failed for developer: Module server returned a non-success status.
+[29-Aug-2026 05:38:23 UTC] Module update discovery failed for example: Module server returned a non-success status.
+[29-Aug-2026 05:38:23 UTC] Module update discovery failed for projects: Module server returned a non-success status.
+[29-Aug-2026 05:38:23 UTC] Module update discovery failed for theme_builder: Manifest package host is not authorized by module metadata.
+[29-Aug-2026 05:38:23 UTC] Module update discovery failed for legal: Module server returned a non-success status.
+[29-Aug-2026 05:38:23 UTC] Module update discovery failed for resume: Module server returned a non-success status.
+[29-Aug-2026 05:38:23 UTC] Module update discovery failed for recruiter: Module server returned a non-success status.
+[29-Aug-2026 05:38:24 UTC] Module update discovery failed for module_builder: Module server returned a non-success status.
+[29-Aug-2026 05:39:27 UTC] Module update discovery failed for announcements: Module signing trust is missing or invalid.
+[29-Aug-2026 05:39:27 UTC] Module update discovery failed for contact: Update manifest is invalid.
+[29-Aug-2026 05:39:27 UTC] Module update discovery failed for developer: Module server returned a non-success status.
+[29-Aug-2026 05:39:27 UTC] Module update discovery failed for recruiter: Module server returned a non-success status.
+[29-Aug-2026 05:39:27 UTC] Module update discovery failed for module_builder: Module server returned a non-success status.
+[29-Aug-2026 05:39:27 UTC] Module update discovery failed for projects: Module server returned a non-success status.
+[29-Aug-2026 05:39:28 UTC] Module update discovery failed for resume: Module server returned a non-success status.
+[29-Aug-2026 05:39:28 UTC] Module update discovery failed for example: Module server returned a non-success status.
+[29-Aug-2026 05:39:28 UTC] Module update discovery failed for theme_builder: Manifest package host is not authorized by module metadata.
+[29-Aug-2026 05:39:28 UTC] Module update discovery failed for legal: Module server returned a non-success status.
+[29-Aug-2026 05:43:13 UTC] Module update discovery failed for announcements: Module signing trust is missing or invalid.
+[29-Aug-2026 05:43:13 UTC] Module update discovery failed for contact: Update manifest is invalid.
+[29-Aug-2026 05:43:14 UTC] Module update discovery failed for developer: Module server returned a non-success status.
+[29-Aug-2026 05:43:14 UTC] Module update discovery failed for example: Module server returned a non-success status.
+[29-Aug-2026 05:43:14 UTC] Module update discovery failed for legal: Module server returned a non-success status.
+[29-Aug-2026 05:43:14 UTC] Module update discovery failed for recruiter: Module server returned a non-success status.
+[29-Aug-2026 05:43:14 UTC] Module update discovery failed for resume: Module server returned a non-success status.
+[29-Aug-2026 05:43:14 UTC] Module update discovery failed for module_builder: Module server returned a non-success status.
+[29-Aug-2026 05:43:14 UTC] Module update discovery failed for theme_builder: Manifest package host is not authorized by module metadata.
+[29-Aug-2026 05:43:15 UTC] Module update discovery failed for projects: Module server returned a non-success status.
+[29-Aug-2026 05:56:26 UTC] Module update debug requested=[announcements] manifest_module=[announcements] manifest_version=[1.3.1] update_url=[https://poemei.com/updates/announcements.json] raw=[{
+    "module": "announcements",
+    "version": "1.3.1",
+    "download": "https://poemei.com/packages/announcements-mvc-1.3.1.zip",
+    "sha256": "c09784712192055b7d339af33e8e80ac40efa7af37e7a44ff02d061f5b81d118",
+    "key_id": "pm73-6753d9470509fdf0",
+    "signature": "THNYSk5XOVMjUE03Mw==",
+    "description": "Announcements for your Website, with an admin interface. Non-Free."
+}
+]
+[29-Aug-2026 05:56:26 UTC] Module update discovery failed for announcements: Module signing trust is missing or invalid.
+[29-Aug-2026 05:56:26 UTC] Module update discovery failed for contact: Update manifest is invalid.
+[29-Aug-2026 05:56:26 UTC] Module update discovery failed for developer: Module server returned a non-success status.
+[29-Aug-2026 05:56:26 UTC] Module update discovery failed for module_builder: Module server returned a non-success status.
+[29-Aug-2026 05:56:26 UTC] Module update discovery failed for legal: Module server returned a non-success status.
+[29-Aug-2026 05:56:27 UTC] Module update discovery failed for example: Module server returned a non-success status.
+[29-Aug-2026 05:56:27 UTC] Module update discovery failed for projects: Module server returned a non-success status.
+[29-Aug-2026 05:56:27 UTC] Module update discovery failed for resume: Module server returned a non-success status.
+[29-Aug-2026 05:56:27 UTC] Module update discovery failed for recruiter: Module server returned a non-success status.
+[29-Aug-2026 05:56:27 UTC] Module update debug requested=[theme_builder] manifest_module=[theme_builder] manifest_version=[0.1.2] update_url=[https://poemei.com/updates/theme-builder.json] raw=[{
+    "module": "theme_builder",
+    "version": "0.1.2",
+    "download": "https://www.poemei.com/packages/them_builder-0.1.2.zip",
+    "sha256": "d713f33230efe8960d36a5503014de6065f02f21e519aea313214814dd9a0cf6",
+    "key_id": "pm73-6753d9470509fdf0",
+    "signature": "THNYSk5XOVMjUE03Mw=="
+}]
+[29-Aug-2026 05:56:27 UTC] Module update discovery failed for theme_builder: Manifest package host is not authorized by module metadata.
+[29-Aug-2026 05:59:11 UTC] Module update debug requested=[announcements] manifest_module=[announcements] manifest_version=[1.3.1] update_url=[https://poemei.com/updates/announcements.json] raw=[{
+    "module": "announcements",
+    "version": "1.3.1",
+    "download": "https://poemei.com/packages/announcements-mvc-1.3.1.zip",
+    "sha256": "c09784712192055b7d339af33e8e80ac40efa7af37e7a44ff02d061f5b81d118",
+    "key_id": "pm73-6753d9470509fdf0",
+    "signature": "THNYSk5XOVMjUE03Mw==",
+    "description": "Announcements for your Website, with an admin interface. Non-Free."
+}
+]
+[29-Aug-2026 05:59:11 UTC] Module update discovery failed for announcements: Module signing trust is missing or invalid.
+[29-Aug-2026 05:59:11 UTC] Module update discovery failed for contact: Update manifest is invalid.
+[29-Aug-2026 05:59:11 UTC] Module update discovery failed for developer: Module server returned a non-success status.
+[29-Aug-2026 05:59:11 UTC] Module update discovery failed for example: Module server returned a non-success status.
+[29-Aug-2026 05:59:11 UTC] Module update discovery failed for legal: Module server returned a non-success status.
+[29-Aug-2026 05:59:11 UTC] Module update discovery failed for module_builder: Module server returned a non-success status.
+[29-Aug-2026 05:59:11 UTC] Module update discovery failed for projects: Module server returned a non-success status.
+[29-Aug-2026 05:59:11 UTC] Module update debug requested=[theme_builder] manifest_module=[theme_builder] manifest_version=[0.1.2] update_url=[https://poemei.com/updates/theme-builder.json] raw=[{
+    "module": "theme_builder",
+    "version": "0.1.2",
+    "download": "https://www.poemei.com/packages/them_builder-0.1.2.zip",
+    "sha256": "d713f33230efe8960d36a5503014de6065f02f21e519aea313214814dd9a0cf6",
+    "key_id": "pm73-6753d9470509fdf0",
+    "signature": "THNYSk5XOVMjUE03Mw=="
+}]
+[29-Aug-2026 05:59:11 UTC] Module update discovery failed for theme_builder: Manifest package host is not authorized by module metadata.
+[29-Aug-2026 05:59:11 UTC] Module update discovery failed for resume: Module server returned a non-success status.
+[29-Aug-2026 05:59:12 UTC] Module update discovery failed for recruiter: Module server returned a non-success status.
+[29-Aug-2026 06:17:03 UTC] Module update debug requested=[announcements] manifest_module=[announcements] manifest_version=[1.3.1] update_url=[https://poemei.com/updates/announcements.json] raw=[{
+    "module": "announcements",
+    "version": "1.3.1",
+    "download": "https://poemei.com/packages/announcements-mvc-1.3.1.zip",
+    "sha256": "c09784712192055b7d339af33e8e80ac40efa7af37e7a44ff02d061f5b81d118",
+    "key_id": "pm73-6753d9470509fdf0",
+    "signature": "MIIHXDBOBgkqhkiG9w0BBQ0wQTApBgkqhkiG9w0BBQwwHAQIQAu98g93NDYCAggA\nMAwGCCqGSIb3DQIJBQAwFAYIKoZIhvcNAwcECGftqMjpbh79BIIHCM5n9fT4ljU4\nC0cAX+xASPOmobwWqxidpXw9KDYLaossNyvYwKw6rL9y87VkmuEIJxhtICMREqSK\ndFjX7WUqA8Q9kclPObvKE7q2zHNbmuF7I2UCj05O0+kUUgWGG2TgRClTdyn8iIAN\nq0yAxWvw/J+5x6m5vo+lR+4TJ9av2EdkMnr4oHJXhPSYCFFfixhnTsN9C1lO/cyI\nV51p2F7eVhwSjrAfrwxYVa26moESnHG54H3HoVQapKKTWhPqxEunEaA5LS3yMnZT\naLhfi4cjYBaXDGGldIYiR6b0PzBhf83jRYx/SKO1vOM7i2s3Xr/p7lSVPAjj3oXf\nUhh7amAlVJLpNNjpLi90Pk98Ezj0M0+uH5QyzjwqysbSG5FAWUTXaGYHAfz0n5a6\ni9VhBPVGi6FOifrJsuxXZj7IqAUj3sDjXHs6F6GusCQU+qe6HtF2O3g0gVSOlDCl\nYHNIaEJFckGGxlFH3I0BeBgXOYeAo74NohV5oY0mwsc90m7L1Fe7ctTN3sLiauM5\nngGS4oiI1ave4mGFCRN8pMAXAGAJdGY7aD9BuXs3GRZcUw/2JBunK/c6cqWSVM6s\nmQSdgMQMxh3dymu++DCSXIU5u/Qyji+EMTA88fU/9flkZSMnbQY2pzWfD2Qo2W7w\nnbLu8ybY6y9NCmRf/7lmSzLuWXI104DlS/r2kSqjt3IN164/06YjWhq5ih7HdMX/\n1WtHvfWHnny/KpiciOsFlEjMjeP3RIGBIn7qLUdeytIsd+XKTPl6ff+2wVi6kz4k\nonc849v/31wB5DH7BdGXsCMqwn0wOuRV+aL145i1CBlO25dVEyFHCJoCvd0j5lsc\nKpHa8wOqridWzA8qtxBUwRcGsAEXBNPhkd2GgGwIzucqzfAlSmt4/47+VxJluFnB\ncZ2FHS9k69H/6m5aop3R6pQSW0ZPnjEtdAOkrqqlDKJaoCdhTvPrTcnRT/wRmDki\n3ULFKm7touJCRJV3VYTWmAeYwpgqef+svB9dGz0L2IL7EuJuganeSQiIObXGXcl/\nuiTYbdrfJjrJV+Bh7JhcXLH02j12QhLcWZCDhoVY11T1ecUgiA/HBwzjXVKEOoRW\nOcyhzRJ4IZ3CVJwd4MB0AlQzF7oCi4zU2QH6YLr9YB2Y42BG+a5DDfwmM5QM6Muq\nP6DxtVSG+zcg7AII59Jz+M1qX5vOW+ECizvh0mY1xNmSPzhFCP2+Jt7JePqNMQPZ\nlzPDJYrmDDm58Zp+Cl9h37eRcXQRYvzOs+ZTR+bacU6y6aJ1oQ1raloIS37/+XNa\nicTwHglx7XU6UspCWzzs65IlxRFIafkhaJoD4LGA9YydZsmROakdAo55bLxekH+g\nTmCHFaEjybj0y/F06BxYyk5xgofqvca/zmzctRsCwv8lRQAczZRkCoDd7SzNoFaM\n1lTnA9+bMFrcXOClriE6T/GegrAM5Oy0FCe8OZlOfvhI9oMafmFq3QkGUZrFUn+K\nr0npThEfAz/C9nLrbCX6XintN8w59h9qgLUnosEdFxNeIHQ7Sj7HtJ7Gpg1PLfpB\nOx94Gj5dKh03HzY1g0zC7oFkpO81VGP5+ZJB7WEtzRoYH/AsLBEhmvewtDgQFnSn\n4XPMU4FKupJbPg5SDpwnR938H1fHaYu3A+HfuKWc0yF7D/DsZXbzy9rAYqbu4YSq\nq81ZBm/GgU6Ms4o3s8PQ/nowNCn0Ukr2h6WQZmb5z+beDSQc3M+VucrxpWEZirlW\nW1MZ4hOfF0l7zzj5/WRgh6+mA/YxGCeXy00ulfT3bhIQJXsKxXbhhG0wAHYskde/\nVBeMSPQBMo2rzehgMIFzU2vnDbpeRqc6F/bk6eS6/UtKg0z03D4KwRL3ju7FDtCP\nd0DPoFVRoIOemvqCVQxJJsdVtnAmblFz3BiojN6j9RYSptTdz6+2SdT39XCJj4Xj\naJXJ2x579xV+b8fCaQ9FZY8oBiT9QgdxOGB9rvK1SePsMbeFcJprP04s8DmrTSYA\nP5DG0TO3dRbWQ1SisqFluvzNTmZU3aEt2QuKnFNmp0NJ7hi5Eztxyq7inR6zq/UA\nwEbsw38R5LuhpxrTjA7CxxZTSlt+Bc4vp/yh0QWB+sN9dRpIchjh1XjLdEYz2iuS\naMg68xjN2lVEaj4WYUAcC5RlfY58BaLZsTj8rkJscFcXaw3XeNzgTpmDehLt0W1r\n2xPLR/RrkFZ8WPjihamf8dQOQU87Pj6eSKvgSMCqM2ayHTunc5rTglG3dutV5Lp0\n8TvAJTlZkpDzZHc9whVdKz/It3UsJfAAaOZvDkw8V+4y28NzKASzaGNgq/ayzMCr\nU6/X5Z1euSA1wSjSerbIN0JONNNVkI0EFtgQvV5u+zGLVtXkndRraXKoU3p6NZ2k\nWcWPo6O1ajbmsK21sDc9zw==",
+    "description": "Announcements for your Website, with an admin interface. Non-Free."
+}
+]
+[29-Aug-2026 06:17:03 UTC] Module update discovery failed for announcements: Module signing trust is missing or invalid.
+[29-Aug-2026 06:17:03 UTC] Module update discovery failed for contact: Update manifest is invalid.
+[29-Aug-2026 06:17:03 UTC] Module update discovery failed for developer: Module server returned a non-success status.
+[29-Aug-2026 06:17:03 UTC] Module update discovery failed for example: Module server returned a non-success status.
+[29-Aug-2026 06:17:04 UTC] Module update discovery failed for legal: Module server returned a non-success status.
+[29-Aug-2026 06:17:04 UTC] Module update discovery failed for module_builder: Module server returned a non-success status.
+[29-Aug-2026 06:17:04 UTC] Module update discovery failed for recruiter: Module server returned a non-success status.
+[29-Aug-2026 06:17:04 UTC] Module update discovery failed for resume: Module server returned a non-success status.
+[29-Aug-2026 06:17:04 UTC] Module update discovery failed for projects: Module server returned a non-success status.
+[29-Aug-2026 06:17:04 UTC] Module update debug requested=[theme_builder] manifest_module=[theme_builder] manifest_version=[0.1.2] update_url=[https://poemei.com/updates/theme-builder.json] raw=[{
+    "module": "theme_builder",
+    "version": "0.1.2",
+    "download": "https://www.poemei.com/packages/them_builder-0.1.2.zip",
+    "sha256": "d713f33230efe8960d36a5503014de6065f02f21e519aea313214814dd9a0cf6",
+    "key_id": "pm73-6753d9470509fdf0",
+    "signature": "THNYSk5XOVMjUE03Mw=="
+}]
+[29-Aug-2026 06:17:04 UTC] Module update discovery failed for theme_builder: Manifest package host is not authorized by module metadata.
+[29-Aug-2026 06:17:09 UTC] Module update debug requested=[announcements] manifest_module=[announcements] manifest_version=[1.3.1] update_url=[https://poemei.com/updates/announcements.json] raw=[{
+    "module": "announcements",
+    "version": "1.3.1",
+    "download": "https://poemei.com/packages/announcements-mvc-1.3.1.zip",
+    "sha256": "c09784712192055b7d339af33e8e80ac40efa7af37e7a44ff02d061f5b81d118",
+    "key_id": "pm73-6753d9470509fdf0",
+    "signature": "MIIHXDBOBgkqhkiG9w0BBQ0wQTApBgkqhkiG9w0BBQwwHAQIQAu98g93NDYCAggA\nMAwGCCqGSIb3DQIJBQAwFAYIKoZIhvcNAwcECGftqMjpbh79BIIHCM5n9fT4ljU4\nC0cAX+xASPOmobwWqxidpXw9KDYLaossNyvYwKw6rL9y87VkmuEIJxhtICMREqSK\ndFjX7WUqA8Q9kclPObvKE7q2zHNbmuF7I2UCj05O0+kUUgWGG2TgRClTdyn8iIAN\nq0yAxWvw/J+5x6m5vo+lR+4TJ9av2EdkMnr4oHJXhPSYCFFfixhnTsN9C1lO/cyI\nV51p2F7eVhwSjrAfrwxYVa26moESnHG54H3HoVQapKKTWhPqxEunEaA5LS3yMnZT\naLhfi4cjYBaXDGGldIYiR6b0PzBhf83jRYx/SKO1vOM7i2s3Xr/p7lSVPAjj3oXf\nUhh7amAlVJLpNNjpLi90Pk98Ezj0M0+uH5QyzjwqysbSG5FAWUTXaGYHAfz0n5a6\ni9VhBPVGi6FOifrJsuxXZj7IqAUj3sDjXHs6F6GusCQU+qe6HtF2O3g0gVSOlDCl\nYHNIaEJFckGGxlFH3I0BeBgXOYeAo74NohV5oY0mwsc90m7L1Fe7ctTN3sLiauM5\nngGS4oiI1ave4mGFCRN8pMAXAGAJdGY7aD9BuXs3GRZcUw/2JBunK/c6cqWSVM6s\nmQSdgMQMxh3dymu++DCSXIU5u/Qyji+EMTA88fU/9flkZSMnbQY2pzWfD2Qo2W7w\nnbLu8ybY6y9NCmRf/7lmSzLuWXI104DlS/r2kSqjt3IN164/06YjWhq5ih7HdMX/\n1WtHvfWHnny/KpiciOsFlEjMjeP3RIGBIn7qLUdeytIsd+XKTPl6ff+2wVi6kz4k\nonc849v/31wB5DH7BdGXsCMqwn0wOuRV+aL145i1CBlO25dVEyFHCJoCvd0j5lsc\nKpHa8wOqridWzA8qtxBUwRcGsAEXBNPhkd2GgGwIzucqzfAlSmt4/47+VxJluFnB\ncZ2FHS9k69H/6m5aop3R6pQSW0ZPnjEtdAOkrqqlDKJaoCdhTvPrTcnRT/wRmDki\n3ULFKm7touJCRJV3VYTWmAeYwpgqef+svB9dGz0L2IL7EuJuganeSQiIObXGXcl/\nuiTYbdrfJjrJV+Bh7JhcXLH02j12QhLcWZCDhoVY11T1ecUgiA/HBwzjXVKEOoRW\nOcyhzRJ4IZ3CVJwd4MB0AlQzF7oCi4zU2QH6YLr9YB2Y42BG+a5DDfwmM5QM6Muq\nP6DxtVSG+zcg7AII59Jz+M1qX5vOW+ECizvh0mY1xNmSPzhFCP2+Jt7JePqNMQPZ\nlzPDJYrmDDm58Zp+Cl9h37eRcXQRYvzOs+ZTR+bacU6y6aJ1oQ1raloIS37/+XNa\nicTwHglx7XU6UspCWzzs65IlxRFIafkhaJoD4LGA9YydZsmROakdAo55bLxekH+g\nTmCHFaEjybj0y/F06BxYyk5xgofqvca/zmzctRsCwv8lRQAczZRkCoDd7SzNoFaM\n1lTnA9+bMFrcXOClriE6T/GegrAM5Oy0FCe8OZlOfvhI9oMafmFq3QkGUZrFUn+K\nr0npThEfAz/C9nLrbCX6XintN8w59h9qgLUnosEdFxNeIHQ7Sj7HtJ7Gpg1PLfpB\nOx94Gj5dKh03HzY1g0zC7oFkpO81VGP5+ZJB7WEtzRoYH/AsLBEhmvewtDgQFnSn\n4XPMU4FKupJbPg5SDpwnR938H1fHaYu3A+HfuKWc0yF7D/DsZXbzy9rAYqbu4YSq\nq81ZBm/GgU6Ms4o3s8PQ/nowNCn0Ukr2h6WQZmb5z+beDSQc3M+VucrxpWEZirlW\nW1MZ4hOfF0l7zzj5/WRgh6+mA/YxGCeXy00ulfT3bhIQJXsKxXbhhG0wAHYskde/\nVBeMSPQBMo2rzehgMIFzU2vnDbpeRqc6F/bk6eS6/UtKg0z03D4KwRL3ju7FDtCP\nd0DPoFVRoIOemvqCVQxJJsdVtnAmblFz3BiojN6j9RYSptTdz6+2SdT39XCJj4Xj\naJXJ2x579xV+b8fCaQ9FZY8oBiT9QgdxOGB9rvK1SePsMbeFcJprP04s8DmrTSYA\nP5DG0TO3dRbWQ1SisqFluvzNTmZU3aEt2QuKnFNmp0NJ7hi5Eztxyq7inR6zq/UA\nwEbsw38R5LuhpxrTjA7CxxZTSlt+Bc4vp/yh0QWB+sN9dRpIchjh1XjLdEYz2iuS\naMg68xjN2lVEaj4WYUAcC5RlfY58BaLZsTj8rkJscFcXaw3XeNzgTpmDehLt0W1r\n2xPLR/RrkFZ8WPjihamf8dQOQU87Pj6eSKvgSMCqM2ayHTunc5rTglG3dutV5Lp0\n8TvAJTlZkpDzZHc9whVdKz/It3UsJfAAaOZvDkw8V+4y28NzKASzaGNgq/ayzMCr\nU6/X5Z1euSA1wSjSerbIN0JONNNVkI0EFtgQvV5u+zGLVtXkndRraXKoU3p6NZ2k\nWcWPo6O1ajbmsK21sDc9zw==",
+    "description": "Announcements for your Website, with an admin interface. Non-Free."
+}
+]
+[29-Aug-2026 06:17:09 UTC] Module update discovery failed for announcements: Module signing trust is missing or invalid.
+[29-Aug-2026 06:17:09 UTC] Module update discovery failed for legal: Module server returned a non-success status.
+[29-Aug-2026 06:17:09 UTC] Module update discovery failed for module_builder: Module server returned a non-success status.
+[29-Aug-2026 06:17:09 UTC] Module update discovery failed for example: Module server returned a non-success status.
+[29-Aug-2026 06:17:09 UTC] Module update discovery failed for recruiter: Module server returned a non-success status.
+[29-Aug-2026 06:17:09 UTC] Module update discovery failed for resume: Module server returned a non-success status.
+[29-Aug-2026 06:17:09 UTC] Module update discovery failed for contact: Update manifest is invalid.
+[29-Aug-2026 06:17:10 UTC] Module update discovery failed for projects: Module server returned a non-success status.
+[29-Aug-2026 06:17:10 UTC] Module update debug requested=[theme_builder] manifest_module=[theme_builder] manifest_version=[0.1.2] update_url=[https://poemei.com/updates/theme-builder.json] raw=[{
+    "module": "theme_builder",
+    "version": "0.1.2",
+    "download": "https://www.poemei.com/packages/them_builder-0.1.2.zip",
+    "sha256": "d713f33230efe8960d36a5503014de6065f02f21e519aea313214814dd9a0cf6",
+    "key_id": "pm73-6753d9470509fdf0",
+    "signature": "THNYSk5XOVMjUE03Mw=="
+}]
+[29-Aug-2026 06:17:10 UTC] Module update discovery failed for theme_builder: Manifest package host is not authorized by module metadata.
+[29-Aug-2026 06:17:10 UTC] Module update discovery failed for developer: Module server returned a non-success status.
+[29-Aug-2026 06:27:57 UTC] Module update debug requested=[announcements] manifest_module=[announcements] manifest_version=[1.3.1] update_url=[https://poemei.com/updates/announcements.json] raw=[{
+    "module": "announcements",
+    "version": "1.3.1",
+    "download": "https://poemei.com/packages/announcements-mvc-1.3.1.zip",
+    "sha256": "c09784712192055b7d339af33e8e80ac40efa7af37e7a44ff02d061f5b81d118",
+    "key_id": "pm73-6753d9470509fdf0",
+    "signature": "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\nWcWPo6O1ajbmsK21sDc9zw==",
+    "description": "Announcements for your Website, with an admin interface. Non-Free."
+}
+]
+[29-Aug-2026 06:27:57 UTC] Module update discovery failed for announcements: Module signing trust is missing or invalid.
+[29-Aug-2026 06:27:58 UTC] Module update discovery failed for developer: Module server returned a non-success status.
+[29-Aug-2026 06:27:58 UTC] Module update discovery failed for contact: Update manifest is invalid.
+[29-Aug-2026 06:27:58 UTC] Module update discovery failed for recruiter: Module server returned a non-success status.
+[29-Aug-2026 06:27:58 UTC] Module update discovery failed for example: Module server returned a non-success status.
+[29-Aug-2026 06:27:59 UTC] Module update discovery failed for legal: Module server returned a non-success status.
+[29-Aug-2026 06:27:59 UTC] Module update discovery failed for resume: Module server returned a non-success status.
+[29-Aug-2026 06:27:59 UTC] Module update discovery failed for projects: Module server returned a non-success status.
+[29-Aug-2026 06:27:59 UTC] Module update debug requested=[theme_builder] manifest_module=[theme_builder] manifest_version=[0.1.2] update_url=[https://poemei.com/updates/theme-builder.json] raw=[{
+    "module": "theme_builder",
+    "version": "0.1.2",
+    "download": "https://www.poemei.com/packages/them_builder-0.1.2.zip",
+    "sha256": "d713f33230efe8960d36a5503014de6065f02f21e519aea313214814dd9a0cf6",
+    "key_id": "pm73-6753d9470509fdf0",
+    "signature": "THNYSk5XOVMjUE03Mw=="
+}]
+[29-Aug-2026 06:27:59 UTC] Module update discovery failed for theme_builder: Manifest package host is not authorized by module metadata.
+[29-Aug-2026 06:27:59 UTC] Module update discovery failed for module_builder: Module server returned a non-success status.
+[29-Aug-2026 06:28:03 UTC] Module update discovery failed for contact: Update manifest is invalid.
+[29-Aug-2026 06:28:03 UTC] Module update discovery failed for module_builder: Module server returned a non-success status.
+[29-Aug-2026 06:28:03 UTC] Module update discovery failed for projects: Module server returned a non-success status.
+[29-Aug-2026 06:28:03 UTC] Module update discovery failed for example: Module server returned a non-success status.
+[29-Aug-2026 06:28:04 UTC] Module update discovery failed for resume: Module server returned a non-success status.
+[29-Aug-2026 06:28:04 UTC] Module update discovery failed for developer: Module server returned a non-success status.
+[29-Aug-2026 06:28:04 UTC] Module update discovery failed for recruiter: Module server returned a non-success status.
+[29-Aug-2026 06:28:04 UTC] Module update debug requested=[theme_builder] manifest_module=[theme_builder] manifest_version=[0.1.2] update_url=[https://poemei.com/updates/theme-builder.json] raw=[{
+    "module": "theme_builder",
+    "version": "0.1.2",
+    "download": "https://www.poemei.com/packages/them_builder-0.1.2.zip",
+    "sha256": "d713f33230efe8960d36a5503014de6065f02f21e519aea313214814dd9a0cf6",
+    "key_id": "pm73-6753d9470509fdf0",
+    "signature": "THNYSk5XOVMjUE03Mw=="
+}]
+[29-Aug-2026 06:28:04 UTC] Module update discovery failed for theme_builder: Manifest package host is not authorized by module metadata.
+[29-Aug-2026 06:28:04 UTC] Module update debug requested=[announcements] manifest_module=[announcements] manifest_version=[1.3.1] update_url=[https://poemei.com/updates/announcements.json] raw=[{
+    "module": "announcements",
+    "version": "1.3.1",
+    "download": "https://poemei.com/packages/announcements-mvc-1.3.1.zip",
+    "sha256": "c09784712192055b7d339af33e8e80ac40efa7af37e7a44ff02d061f5b81d118",
+    "key_id": "pm73-6753d9470509fdf0",
+    "signature": "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\nWcWPo6O1ajbmsK21sDc9zw==",
+    "description": "Announcements for your Website, with an admin interface. Non-Free."
+}
+]
+[29-Aug-2026 06:28:04 UTC] Module update discovery failed for announcements: Module signing trust is missing or invalid.
+[29-Aug-2026 06:28:04 UTC] Module update discovery failed for legal: Module server returned a non-success status.
+[29-Aug-2026 06:38:09 UTC] Module update debug requested=[announcements] manifest_module=[announcements] manifest_version=[1.3.1] update_url=[https://poemei.com/updates/announcements.json] raw=[{
+    "module": "announcements",
+    "version": "1.3.1",
+    "download": "https://poemei.com/packages/announcements-mvc-1.3.1.zip",
+    "sha256": "c09784712192055b7d339af33e8e80ac40efa7af37e7a44ff02d061f5b81d118",
+    "key_id": "pm73-6753d9470509fdf0",
+    "signature": "MIIBojANBgkqhkiG9w0BAQEFAAOCAY8AMIIBigKCAYEAt6DA2gPmrwSWMUR/FHLma7kCU2b30W75TodtgRoR8d7vOohOAiXf2z1v/F2Q9MP9h/DEcRJY0zX6sltKhyoWri48jzQSNrURgi9gvfYbAzsvvqoudoebBZjuOvPcdD4FrZLKAji4sZcVCFzkXmtrXLtXbD+HjcKYTOTIGTky6UNGojmNWLM6FI/oLr7jlLjZpF0zA++gbduOk/xg+O6ndlSeg5GiKnWnJlo/DAAXpUaCj2LJMhuwbhmJY7Bf4AXM53vSJe47TWTovecSR9AO2iURYpKaxS6vD1f89KfgrI3IfYpBDc37PLdU4KuHpdAY3XLc+KEzMIiyHnrRzf9rp3G+3e65uap5vuOrozeUuEC/uqEMOa+uAOTuV4El9+3B4dVm9tQObNZiUo0fNYez1SCOkLaY0KlJdW2M5ElIQRrWiNHv6X0eAnJtzDUFTOQvpyw5bQxkYxhT8OSVWN3BugLv5guEZy7lUzEKh1Lw+ekpd5OXkZhbI7pn4uhB0msBAgMBAAE=",
+    "description": "Announcements for your Website, with an admin interface. Non-Free."
+}
+]
+[29-Aug-2026 06:38:09 UTC] Module update discovery failed for announcements: Module signing trust is missing or invalid.
+[29-Aug-2026 06:38:09 UTC] Module update debug requested=[contact] manifest_module=[contact] manifest_version=[1.1.0] update_url=[https://poemei.com/updates/contact.json] raw=[{
+    "module": "contact",
+    "version": "1.1.0",
+    "download": "https://www.poemei.com/packages/contact-1.1.0.zip",
+    "sha256": "53c8cafd60ceefa4dbf48615dc9063d4690651bc181faad1edf4f4d7f6b826ae",
+    "key_id": "pm-aab3866b2f02eab5",
+    "signature": "MIIBojANBgkqhkiG9w0BAQEFAAOCAY8AMIIBigKCAYEAt6DA2gPmrwSWMUR/FHLma7kCU2b30W75TodtgRoR8d7vOohOAiXf2z1v/F2Q9MP9h/DEcRJY0zX6sltKhyoWri48jzQSNrURgi9gvfYbAzsvvqoudoebBZjuOvPcdD4FrZLKAji4sZcVCFzkXmtrXLtXbD+HjcKYTOTIGTky6UNGojmNWLM6FI/oLr7jlLjZpF0zA++gbduOk/xg+O6ndlSeg5GiKnWnJlo/DAAXpUaCj2LJMhuwbhmJY7Bf4AXM53vSJe47TWTovecSR9AO2iURYpKaxS6vD1f89KfgrI3IfYpBDc37PLdU4KuHpdAY3XLc+KEzMIiyHnrRzf9rp3G+3e65uap5vuOrozeUuEC/uqEMOa+uAOTuV4El9+3B4dVm9tQObNZiUo0fNYez1SCOkLaY0KlJdW2M5ElIQRrWiNHv6X0eAnJtzDUFTOQvpyw5bQxkYxhT8OSVWN3BugLv5guEZy7lUzEKh1Lw+ekpd5OXkZhbI7pn4uhB0msBAgMBAAE=",
+    "description": "A Lightweight Contact Addon Module for MVC platforms. Commercial module.",
+    "creator": "P. Mei",
+    "domain": "www.poemei.com",
+    "certified": "Yes"
+}
+]
+[29-Aug-2026 06:38:09 UTC] Module update discovery failed for contact: Manifest package host is not authorized by module metadata.
+[29-Aug-2026 06:38:09 UTC] Module update discovery failed for example: Module server returned a non-success status.
+[29-Aug-2026 06:38:10 UTC] Module update discovery failed for developer: Module server returned a non-success status.
+[29-Aug-2026 06:38:10 UTC] Module update discovery failed for module_builder: Module server returned a non-success status.
+[29-Aug-2026 06:38:10 UTC] Module update debug requested=[theme_builder] manifest_module=[theme_builder] manifest_version=[0.1.2] update_url=[https://poemei.com/updates/theme-builder.json] raw=[{
+    "module": "theme_builder",
+    "version": "0.1.2",
+    "download": "https://www.poemei.com/packages/them_builder-0.1.2.zip",
+    "sha256": "d713f33230efe8960d36a5503014de6065f02f21e519aea313214814dd9a0cf6",
+    "key_id": "pm73-6753d9470509fdf0",
+    "signature": "MIIBojANBgkqhkiG9w0BAQEFAAOCAY8AMIIBigKCAYEAt6DA2gPmrwSWMUR/FHLma7kCU2b30W75TodtgRoR8d7vOohOAiXf2z1v/F2Q9MP9h/DEcRJY0zX6sltKhyoWri48jzQSNrURgi9gvfYbAzsvvqoudoebBZjuOvPcdD4FrZLKAji4sZcVCFzkXmtrXLtXbD+HjcKYTOTIGTky6UNGojmNWLM6FI/oLr7jlLjZpF0zA++gbduOk/xg+O6ndlSeg5GiKnWnJlo/DAAXpUaCj2LJMhuwbhmJY7Bf4AXM53vSJe47TWTovecSR9AO2iURYpKaxS6vD1f89KfgrI3IfYpBDc37PLdU4KuHpdAY3XLc+KEzMIiyHnrRzf9rp3G+3e65uap5vuOrozeUuEC/uqEMOa+uAOTuV4El9+3B4dVm9tQObNZiUo0fNYez1SCOkLaY0KlJdW2M5ElIQRrWiNHv6X0eAnJtzDUFTOQvpyw5bQxkYxhT8OSVWN3BugLv5guEZy7lUzEKh1Lw+ekpd5OXkZhbI7pn4uhB0msBAgMBAAE="
+}]
+[29-Aug-2026 06:38:10 UTC] Module update discovery failed for theme_builder: Manifest package host is not authorized by module metadata.
+[29-Aug-2026 06:38:10 UTC] Module update discovery failed for resume: Module server returned a non-success status.
+[29-Aug-2026 06:38:10 UTC] Module update discovery failed for projects: Module server returned a non-success status.
+[29-Aug-2026 06:38:10 UTC] Module update discovery failed for recruiter: Module server returned a non-success status.
+[29-Aug-2026 06:38:10 UTC] Module update discovery failed for legal: Module server returned a non-success status.
+[29-Aug-2026 06:38:14 UTC] Module update discovery failed for developer: Module server returned a non-success status.
+[29-Aug-2026 06:38:14 UTC] Module update discovery failed for legal: Module server returned a non-success status.
+[29-Aug-2026 06:38:14 UTC] Module update debug requested=[announcements] manifest_module=[announcements] manifest_version=[1.3.1] update_url=[https://poemei.com/updates/announcements.json] raw=[{
+    "module": "announcements",
+    "version": "1.3.1",
+    "download": "https://poemei.com/packages/announcements-mvc-1.3.1.zip",
+    "sha256": "c09784712192055b7d339af33e8e80ac40efa7af37e7a44ff02d061f5b81d118",
+    "key_id": "pm73-6753d9470509fdf0",
+    "signature": "MIIBojANBgkqhkiG9w0BAQEFAAOCAY8AMIIBigKCAYEAt6DA2gPmrwSWMUR/FHLma7kCU2b30W75TodtgRoR8d7vOohOAiXf2z1v/F2Q9MP9h/DEcRJY0zX6sltKhyoWri48jzQSNrURgi9gvfYbAzsvvqoudoebBZjuOvPcdD4FrZLKAji4sZcVCFzkXmtrXLtXbD+HjcKYTOTIGTky6UNGojmNWLM6FI/oLr7jlLjZpF0zA++gbduOk/xg+O6ndlSeg5GiKnWnJlo/DAAXpUaCj2LJMhuwbhmJY7Bf4AXM53vSJe47TWTovecSR9AO2iURYpKaxS6vD1f89KfgrI3IfYpBDc37PLdU4KuHpdAY3XLc+KEzMIiyHnrRzf9rp3G+3e65uap5vuOrozeUuEC/uqEMOa+uAOTuV4El9+3B4dVm9tQObNZiUo0fNYez1SCOkLaY0KlJdW2M5ElIQRrWiNHv6X0eAnJtzDUFTOQvpyw5bQxkYxhT8OSVWN3BugLv5guEZy7lUzEKh1Lw+ekpd5OXkZhbI7pn4uhB0msBAgMBAAE=",
+    "description": "Announcements for your Website, with an admin interface. Non-Free."
+}
+]
+[29-Aug-2026 06:38:14 UTC] Module update discovery failed for announcements: Module signing trust is missing or invalid.
+[29-Aug-2026 06:38:15 UTC] Module update discovery failed for module_builder: Module server returned a non-success status.
+[29-Aug-2026 06:38:15 UTC] Module update discovery failed for example: Module server returned a non-success status.
+[29-Aug-2026 06:38:18 UTC] Module update discovery failed for recruiter: Module server returned a non-success status.
+[29-Aug-2026 06:38:18 UTC] Module update discovery failed for resume: Module server returned a non-success status.
+[29-Aug-2026 06:38:18 UTC] Module update discovery failed for projects: Module server returned a non-success status.
+[29-Aug-2026 06:38:18 UTC] Module update debug requested=[theme_builder] manifest_module=[theme_builder] manifest_version=[0.1.2] update_url=[https://poemei.com/updates/theme-builder.json] raw=[{
+    "module": "theme_builder",
+    "version": "0.1.2",
+    "download": "https://www.poemei.com/packages/them_builder-0.1.2.zip",
+    "sha256": "d713f33230efe8960d36a5503014de6065f02f21e519aea313214814dd9a0cf6",
+    "key_id": "pm73-6753d9470509fdf0",
+    "signature": "MIIBojANBgkqhkiG9w0BAQEFAAOCAY8AMIIBigKCAYEAt6DA2gPmrwSWMUR/FHLma7kCU2b30W75TodtgRoR8d7vOohOAiXf2z1v/F2Q9MP9h/DEcRJY0zX6sltKhyoWri48jzQSNrURgi9gvfYbAzsvvqoudoebBZjuOvPcdD4FrZLKAji4sZcVCFzkXmtrXLtXbD+HjcKYTOTIGTky6UNGojmNWLM6FI/oLr7jlLjZpF0zA++gbduOk/xg+O6ndlSeg5GiKnWnJlo/DAAXpUaCj2LJMhuwbhmJY7Bf4AXM53vSJe47TWTovecSR9AO2iURYpKaxS6vD1f89KfgrI3IfYpBDc37PLdU4KuHpdAY3XLc+KEzMIiyHnrRzf9rp3G+3e65uap5vuOrozeUuEC/uqEMOa+uAOTuV4El9+3B4dVm9tQObNZiUo0fNYez1SCOkLaY0KlJdW2M5ElIQRrWiNHv6X0eAnJtzDUFTOQvpyw5bQxkYxhT8OSVWN3BugLv5guEZy7lUzEKh1Lw+ekpd5OXkZhbI7pn4uhB0msBAgMBAAE="
+}]
+[29-Aug-2026 06:38:18 UTC] Module update discovery failed for theme_builder: Manifest package host is not authorized by module metadata.
+[29-Aug-2026 15:08:15 UTC] Module update debug requested=[announcements] manifest_module=[announcements] manifest_version=[1.3.1] update_url=[https://poemei.com/updates/announcements.json] raw=[{
+    "module": "announcements",
+    "version": "1.3.1",
+    "download": "https://poemei.com/packages/announcements-mvc-1.3.1.zip",
+    "sha256": "c09784712192055b7d339af33e8e80ac40efa7af37e7a44ff02d061f5b81d118",
+    "key_id": "pm73-6753d9470509fdf0",
+    "signature": "MIIBojANBgkqhkiG9w0BAQEFAAOCAY8AMIIBigKCAYEAt6DA2gPmrwSWMUR/FHLma7kCU2b30W75TodtgRoR8d7vOohOAiXf2z1v/F2Q9MP9h/DEcRJY0zX6sltKhyoWri48jzQSNrURgi9gvfYbAzsvvqoudoebBZjuOvPcdD4FrZLKAji4sZcVCFzkXmtrXLtXbD+HjcKYTOTIGTky6UNGojmNWLM6FI/oLr7jlLjZpF0zA++gbduOk/xg+O6ndlSeg5GiKnWnJlo/DAAXpUaCj2LJMhuwbhmJY7Bf4AXM53vSJe47TWTovecSR9AO2iURYpKaxS6vD1f89KfgrI3IfYpBDc37PLdU4KuHpdAY3XLc+KEzMIiyHnrRzf9rp3G+3e65uap5vuOrozeUuEC/uqEMOa+uAOTuV4El9+3B4dVm9tQObNZiUo0fNYez1SCOkLaY0KlJdW2M5ElIQRrWiNHv6X0eAnJtzDUFTOQvpyw5bQxkYxhT8OSVWN3BugLv5guEZy7lUzEKh1Lw+ekpd5OXkZhbI7pn4uhB0msBAgMBAAE=",
+    "description": "Announcements for your Website, with an admin interface. Non-Free."
+}
+]
+[29-Aug-2026 15:08:15 UTC] Module update discovery failed for announcements: Module signing trust is missing or invalid.
+[29-Aug-2026 15:08:15 UTC] Module update discovery failed for developer: Module server returned a non-success status.
+[29-Aug-2026 15:08:15 UTC] Module update discovery failed for example: Module server returned a non-success status.
+[29-Aug-2026 15:08:15 UTC] Module update discovery failed for legal: Module server returned a non-success status.
+[29-Aug-2026 15:08:15 UTC] Module update discovery failed for module_builder: Module server returned a non-success status.
+[29-Aug-2026 15:08:15 UTC] Module update discovery failed for projects: Module server returned a non-success status.
+[29-Aug-2026 15:08:15 UTC] Module update discovery failed for recruiter: Module server returned a non-success status.
+[29-Aug-2026 15:08:15 UTC] Module update debug requested=[theme_builder] manifest_module=[theme_builder] manifest_version=[0.1.2] update_url=[https://poemei.com/updates/theme-builder.json] raw=[{
+    "module": "theme_builder",
+    "version": "0.1.2",
+    "download": "https://www.poemei.com/packages/them_builder-0.1.2.zip",
+    "sha256": "d713f33230efe8960d36a5503014de6065f02f21e519aea313214814dd9a0cf6",
+    "key_id": "pm73-6753d9470509fdf0",
+    "signature": "MIIBojANBgkqhkiG9w0BAQEFAAOCAY8AMIIBigKCAYEAt6DA2gPmrwSWMUR/FHLma7kCU2b30W75TodtgRoR8d7vOohOAiXf2z1v/F2Q9MP9h/DEcRJY0zX6sltKhyoWri48jzQSNrURgi9gvfYbAzsvvqoudoebBZjuOvPcdD4FrZLKAji4sZcVCFzkXmtrXLtXbD+HjcKYTOTIGTky6UNGojmNWLM6FI/oLr7jlLjZpF0zA++gbduOk/xg+O6ndlSeg5GiKnWnJlo/DAAXpUaCj2LJMhuwbhmJY7Bf4AXM53vSJe47TWTovecSR9AO2iURYpKaxS6vD1f89KfgrI3IfYpBDc37PLdU4KuHpdAY3XLc+KEzMIiyHnrRzf9rp3G+3e65uap5vuOrozeUuEC/uqEMOa+uAOTuV4El9+3B4dVm9tQObNZiUo0fNYez1SCOkLaY0KlJdW2M5ElIQRrWiNHv6X0eAnJtzDUFTOQvpyw5bQxkYxhT8OSVWN3BugLv5guEZy7lUzEKh1Lw+ekpd5OXkZhbI7pn4uhB0msBAgMBAAE="
+}]
+[29-Aug-2026 15:08:15 UTC] Module update discovery failed for theme_builder: Manifest package host is not authorized by module metadata.
+[29-Aug-2026 15:08:15 UTC] Module update discovery failed for resume: Module server returned a non-success status.
+[29-Aug-2026 15:09:24 UTC] Module update discovery failed for example: Module server returned a non-success status.
+[29-Aug-2026 15:09:24 UTC] Module update discovery failed for legal: Module server returned a non-success status.
+[29-Aug-2026 15:09:25 UTC] Module update discovery failed for module_builder: Module server returned a non-success status.
+[29-Aug-2026 15:09:26 UTC] Module update discovery failed for resume: Module server returned a non-success status.
+[29-Aug-2026 15:10:35 UTC] Module update discovery failed for example: Module server returned a non-success status.
+[29-Aug-2026 15:10:35 UTC] Module update discovery failed for legal: Module server returned a non-success status.
+[29-Aug-2026 15:10:35 UTC] Module update discovery failed for module_builder: Module server returned a non-success status.
+[29-Aug-2026 15:10:35 UTC] Module update discovery failed for resume: Module server returned a non-success status.
+[29-Aug-2026 15:13:19 UTC] Module update discovery failed for example: Module server returned a non-success status.
+[29-Aug-2026 15:13:19 UTC] Module update discovery failed for legal: Module server returned a non-success status.
+[29-Aug-2026 15:13:19 UTC] Module update discovery failed for module_builder: Module server returned a non-success status.
+[29-Aug-2026 15:13:20 UTC] Module update discovery failed for resume: Module server returned a non-success status.
+[29-Aug-2026 15:15:18 UTC] Module update discovery failed for example: Module server returned a non-success status.
+[29-Aug-2026 15:15:18 UTC] Module update discovery failed for legal: Module server returned a non-success status.
+[29-Aug-2026 15:15:18 UTC] Module update discovery failed for module_builder: Module server returned a non-success status.
+[29-Aug-2026 15:15:20 UTC] Module update discovery failed for resume: Module server returned a non-success status.
+[29-Aug-2026 15:17:14 UTC] Module update discovery failed for example: Module server returned a non-success status.
+[29-Aug-2026 15:17:14 UTC] Module update discovery failed for legal: Module server returned a non-success status.
+[29-Aug-2026 15:17:14 UTC] Module update discovery failed for module_builder: Module server returned a non-success status.
+[29-Aug-2026 15:17:16 UTC] Module update discovery failed for resume: Module server returned a non-success status.
+[29-Aug-2026 15:17:50 UTC] Module update discovery failed for example: Module server returned a non-success status.
+[29-Aug-2026 15:17:50 UTC] Module update discovery failed for legal: Module server returned a non-success status.
+[29-Aug-2026 15:17:50 UTC] Module update discovery failed for module_builder: Module server returned a non-success status.
+[29-Aug-2026 15:17:50 UTC] Module update discovery failed for resume: Module server returned a non-success status.
+[29-Aug-2026 15:20:59 UTC] Module update discovery failed for example: Module server returned a non-success status.
+[29-Aug-2026 15:20:59 UTC] Module update discovery failed for legal: Module server returned a non-success status.
+[29-Aug-2026 15:20:59 UTC] Module update discovery failed for module_builder: Module server returned a non-success status.
+[29-Aug-2026 15:21:00 UTC] Module update discovery failed for resume: Module server returned a non-success status.
+[29-Aug-2026 15:22:04 UTC] Module update discovery failed for example: Module server returned a non-success status.
+[29-Aug-2026 15:22:05 UTC] Module update discovery failed for legal: Module server returned a non-success status.
+[29-Aug-2026 15:22:05 UTC] Module update discovery failed for module_builder: Module server returned a non-success status.
+[29-Aug-2026 15:22:05 UTC] Module update discovery failed for resume: Module server returned a non-success status.
+[29-Aug-2026 15:22:21 UTC] Module update discovery failed for legal: Module server returned a non-success status.
+[29-Aug-2026 15:22:21 UTC] Module update discovery failed for module_builder: Module server returned a non-success status.
+[29-Aug-2026 15:22:21 UTC] Module update discovery failed for resume: Module server returned a non-success status.
+[29-Aug-2026 15:30:42 UTC] Module update discovery failed for legal: Update manifest does not match the installed module.
+[29-Aug-2026 15:30:42 UTC] Module update discovery failed for resume: Module server returned a non-success status.
+[29-Aug-2026 15:30:43 UTC] Module update discovery failed for module_builder: Module server returned a non-success status.
+[29-Aug-2026 15:32:29 UTC] Module update discovery failed for legal: Update manifest does not match the installed module.
+[29-Aug-2026 15:32:29 UTC] Module update discovery failed for module_builder: Module server returned a non-success status.
+[29-Aug-2026 15:32:30 UTC] Module update discovery failed for resume: Module server returned a non-success status.
+[29-Aug-2026 15:34:04 UTC] Module update discovery failed for module_builder: Module server returned a non-success status.
+[29-Aug-2026 15:34:04 UTC] Module update discovery failed for legal: Update manifest does not match the installed module.
+[29-Aug-2026 15:34:05 UTC] Module update discovery failed for resume: Module server returned a non-success status.
+[29-Aug-2026 15:35:45 UTC] Module update discovery failed for legal: Update manifest does not match the installed module.
+[29-Aug-2026 15:35:45 UTC] Module update discovery failed for module_builder: Module server returned a non-success status.
+[29-Aug-2026 15:35:45 UTC] Module update discovery failed for resume: Module server returned a non-success status.
+[29-Aug-2026 15:35:47 UTC] Module update discovery failed for module_builder: Module server returned a non-success status.
+[29-Aug-2026 15:53:44 UTC] Module update discovery failed for legal: Update manifest does not match the installed module.
+[29-Aug-2026 15:53:44 UTC] Module update discovery failed for module_builder: Module server returned a non-success status.
+[29-Aug-2026 15:53:44 UTC] Module update discovery failed for resume: Module server returned a non-success status.
+[29-Aug-2026 15:53:51 UTC] Module update discovery failed for module_builder: Module server returned a non-success status.
+[29-Aug-2026 15:56:10 UTC] Module update discovery failed for resume: Module server returned a non-success status.
+[29-Aug-2026 15:56:10 UTC] Module update discovery failed for legal: Update manifest does not match the installed module.
+[29-Aug-2026 15:57:55 UTC] Module update discovery failed for module_builder: Update manifest is invalid.
+[29-Aug-2026 15:57:55 UTC] Module update discovery failed for legal: Update manifest does not match the installed module.
+[29-Aug-2026 15:57:58 UTC] Module update discovery failed for resume: Module server returned a non-success status.
+[29-Aug-2026 15:59:21 UTC] Module update discovery failed for legal: Update manifest does not match the installed module.
+[29-Aug-2026 15:59:21 UTC] Module update discovery failed for module_builder: Update manifest is invalid.
+[29-Aug-2026 15:59:21 UTC] Module update discovery failed for resume: Module server returned a non-success status.
+[29-Aug-2026 16:01:03 UTC] Module update discovery failed for legal: Update manifest does not match the installed module.
+[29-Aug-2026 16:01:04 UTC] Module update discovery failed for module_builder: Update manifest is invalid.
+[29-Aug-2026 16:01:06 UTC] Module update discovery failed for resume: Module server returned a non-success status.
+[30-Aug-2026 18:14:00 UTC] [ChAoS Error d04fbb842155] ErrorException: Undefined variable $hasSigning in /home/microcms/public_html/poemei.com/user/modules/module_builder/views/admin/index.php:62
+#0 /home/microcms/public_html/poemei.com/user/modules/module_builder/views/admin/index.php(62): error_handler::{closure}()
+#1 /home/microcms/public_html/poemei.com/app/core/controller.php(282): require('/home/microcms/...')
+#2 /home/microcms/public_html/poemei.com/user/modules/module_builder/controllers/module_builder.php(42): controller->view()
+#3 /home/microcms/public_html/poemei.com/app/controllers/admin.php(167): module_builder->admin()
+#4 /home/microcms/public_html/poemei.com/app/core/router.php(354): admin->index()
+#5 /home/microcms/public_html/poemei.com/app/core/router.php(63): router->dispatch()
+#6 /home/microcms/public_html/poemei.com/public/index.php(7): router->__construct()
+#7 {main}
+[30-Aug-2026 18:25:54 UTC] [ChAoS Error 5832dfca56bb] ErrorException: Undefined variable $hasSigning in /home/microcms/public_html/poemei.com/user/modules/module_builder/views/admin/index.php:62
+#0 /home/microcms/public_html/poemei.com/user/modules/module_builder/views/admin/index.php(62): error_handler::{closure}()
+#1 /home/microcms/public_html/poemei.com/app/core/controller.php(282): require('/home/microcms/...')
+#2 /home/microcms/public_html/poemei.com/user/modules/module_builder/controllers/module_builder.php(42): controller->view()
+#3 /home/microcms/public_html/poemei.com/app/controllers/admin.php(167): module_builder->admin()
+#4 /home/microcms/public_html/poemei.com/app/core/router.php(354): admin->index()
+#5 /home/microcms/public_html/poemei.com/app/core/router.php(63): router->dispatch()
+#6 /home/microcms/public_html/poemei.com/public/index.php(7): router->__construct()
+#7 {main}
+[01-Sep-2026 03:29:43 UTC] [ChAoS Error c94de6981d9d] Error: Call to undefined method announcements_model::get_latest_single() in /home/microcms/public_html/poemei.com/user/modules/home/controllers/home.php:24
+#0 /home/microcms/public_html/poemei.com/app/core/router.php(370): home->index()
+#1 /home/microcms/public_html/poemei.com/app/core/router.php(63): router->dispatch()
+#2 /home/microcms/public_html/poemei.com/public/index.php(7): router->__construct()
+#3 {main}
+[01-Sep-2026 03:30:50 UTC] [ChAoS Error d856c9a30b91] Error: Call to undefined method announcements_model::get_latest_single() in /home/microcms/public_html/poemei.com/user/modules/home/controllers/home.php:24
+#0 /home/microcms/public_html/poemei.com/app/core/router.php(370): home->index()
+#1 /home/microcms/public_html/poemei.com/app/core/router.php(63): router->dispatch()
+#2 /home/microcms/public_html/poemei.com/public/index.php(7): router->__construct()
+#3 {main}
+[01-Sep-2026 03:30:55 UTC] [ChAoS Error 2cc8252b3a2f] Error: Call to undefined method announcements_model::get_latest_single() in /home/microcms/public_html/poemei.com/user/modules/home/controllers/home.php:24
+#0 /home/microcms/public_html/poemei.com/app/core/router.php(370): home->index()
+#1 /home/microcms/public_html/poemei.com/app/core/router.php(63): router->dispatch()
+#2 /home/microcms/public_html/poemei.com/public/index.php(7): router->__construct()
+#3 {main}
+[01-Sep-2026 03:34:09 UTC] [ChAoS Error 35e3f6441a5c] Error: Call to undefined method announcements_model::get_latest_single() in /home/microcms/public_html/poemei.com/user/modules/home/controllers/home.php:24
+#0 /home/microcms/public_html/poemei.com/app/core/router.php(370): home->index()
+#1 /home/microcms/public_html/poemei.com/app/core/router.php(63): router->dispatch()
+#2 /home/microcms/public_html/poemei.com/public/index.php(7): router->__construct()
+#3 {main}
+[01-Sep-2026 03:35:20 UTC] [ChAoS Error d5876d147ddd] Error: Call to undefined method announcements_model::get_latest_single() in /home/microcms/public_html/poemei.com/user/modules/home/controllers/home.php:24
+#0 /home/microcms/public_html/poemei.com/app/core/router.php(370): home->index()
+#1 /home/microcms/public_html/poemei.com/app/core/router.php(63): router->dispatch()
+#2 /home/microcms/public_html/poemei.com/public/index.php(7): router->__construct()
+#3 {main}
+[01-Sep-2026 03:35:20 UTC] [ChAoS Error 88ef1ca3e341] Error: Call to undefined method announcements_model::get_latest_single() in /home/microcms/public_html/poemei.com/user/modules/home/controllers/home.php:24
+#0 /home/microcms/public_html/poemei.com/app/core/router.php(370): home->index()
+#1 /home/microcms/public_html/poemei.com/app/core/router.php(63): router->dispatch()
+#2 /home/microcms/public_html/poemei.com/public/index.php(7): router->__construct()
+#3 {main}
+[01-Sep-2026 03:35:21 UTC] [ChAoS Error ccf979d5ea3e] Error: Call to undefined method announcements_model::get_latest_single() in /home/microcms/public_html/poemei.com/user/modules/home/controllers/home.php:24
+#0 /home/microcms/public_html/poemei.com/app/core/router.php(370): home->index()
+#1 /home/microcms/public_html/poemei.com/app/core/router.php(63): router->dispatch()
+#2 /home/microcms/public_html/poemei.com/public/index.php(7): router->__construct()
+#3 {main}
+[01-Sep-2026 03:35:21 UTC] [ChAoS Error 641bb7fe8156] Error: Call to undefined method announcements_model::get_latest_single() in /home/microcms/public_html/poemei.com/user/modules/home/controllers/home.php:24
+#0 /home/microcms/public_html/poemei.com/app/core/router.php(370): home->index()
+#1 /home/microcms/public_html/poemei.com/app/core/router.php(63): router->dispatch()
+#2 /home/microcms/public_html/poemei.com/public/index.php(7): router->__construct()
+#3 {main}
+[01-Sep-2026 03:55:20 UTC] [ChAoS Error 9ba8e6117dd4] Error: Call to undefined method announcements_model::get_latest_single() in /home/microcms/public_html/poemei.com/user/modules/home/controllers/home.php:24
+#0 /home/microcms/public_html/poemei.com/app/core/router.php(370): home->index()
+#1 /home/microcms/public_html/poemei.com/app/core/router.php(63): router->dispatch()
+#2 /home/microcms/public_html/poemei.com/public/index.php(7): router->__construct()
+#3 {main}
