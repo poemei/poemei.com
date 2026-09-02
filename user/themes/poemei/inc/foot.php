@@ -141,6 +141,7 @@ $moon = sw_get_moon_phase();
         aria-label="Footer navigation"
     >
         <a href="/">Home</a>
+		<a href="/letters">Subscribe</a>
         <a href="/legal/terms">Terms</a>
         <a href="/legal/privacy">Privacy</a>
     </nav>
