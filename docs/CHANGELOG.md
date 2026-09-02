@@ -14,11 +14,18 @@
 - Separated module update discovery from installation verification: status checks compare local and remotely announced versions, while installation continues enforcing package host, SHA-256, signing, archive, and migration requirements
 
 ## Reliability
+- Separated optional Sentinel perimeter inspection from its HTTP controller so installed Sentinel modules retain `/admin/sentinel` availability while absent installations continue normally
+- Added an authenticated Site administration control for enabling and disabling public maintenance mode independently of updater-owned maintenance state
 - Added explicit service-module parameter routing through `module.json`'s `index_parameters` declaration, allowing URLs such as `/s/{code}` to reach the module's declared `index()` action without treating the value as a method name
 - Aligned controller ownership validation with the router so one-character user-module slugs such as `s` can establish their confined module context
 - Aligned Admin dispatch, public `admin()` discovery, update checks, update execution, and Nuke with one-character module slugs, allowing service modules such as `s` to use their complete authorized administration lifecycle
+- Redirected successful logout requests to the site root instead of the login page
 - Made module uninstall filesystem cleanup fail explicitly when a file, link, or directory cannot be removed, and added administrator success confirmation after completed removal
+- Removed the obsolete Core example controller from the distributed application tree
 - Removed the obsolete `app/controllers/admin_old.php` maintenance copy
+
+## Documentation
+- Added the public Module Creation Guide defining the supported user-module structure, Core boundary, database lifecycle, CSRF responsibilities, update integration, and removal contract for human developers and AI development agents
 
 ---
 
