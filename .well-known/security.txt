@@ -1,0 +1,7 @@
+# Poe Mei's policies
+contact: mailto:poe@poemei.com
+encryption: https://poemei.com/pgp_key
+canonical: https://poemei.com/.well-known/security.txt
+policy: https://poemei.com/security
+hiring: https://poemei.com/jobs
+expires: 2030-01-01t00:00:00.000z
